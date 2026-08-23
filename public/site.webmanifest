@@ -1,0 +1,27 @@
+{
+  "name": "vårdbemanning.ai",
+  "short_name": "vårdbemanning",
+  "description": "Smarta verktyg för konsulter",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#EEF4F5",
+  "theme_color": "#07333D",
+  "icons": [
+    {
+      "src": "/favicon/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon/icon-maskable-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ]
+}
