@@ -1,4 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
+import {
+  ArrowRight,
+  CheckCircle2,
+  FileSearch,
+  MessageSquare,
+  ShieldCheck,
+} from "lucide-react";
+
+import { Button } from "@/components/ui/button";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -21,22 +30,204 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
+const PILLARS = [
+  {
+    id: "salary-analysis",
+    question: "Tjänar jag rätt?",
+    title: "Ersättningsanalys",
+    description:
+      "Jämför din ersättning med ramavtalspriserna i realtid. 290 kommuner, alla specialiseringar — för konsulter och de som vill bli det.",
+    icon: ShieldCheck,
+    cta: "Analysera din ersättning",
+  },
+  {
+    id: "invoice-audit",
+    question: "Fakturerar jag rätt?",
+    title: "Fakturagranskning",
+    description:
+      "AI-assistenten granskar dina fakturor retroaktivt för att se om du missat att fakturera för redan arbetad tid. Finns det avvikelser hittar vi dem.",
+    icon: FileSearch,
+    cta: "Granska fakturor",
+  },
+  {
+    id: "negotiation-agent",
+    question: "Förhandlar jag rätt?",
+    title: "Förhandlingsassistent",
+    description:
+      "Ställ frågor om marknadspriser, avtalsvillkor och förhandlingsstrategier. Assistenten ger dig underlag inför ditt nästa konsultuppdrag.",
+    icon: MessageSquare,
+    cta: "Starta förhandling",
+  },
+] as const;
+
+const TRUST_POINTS = [
+  "Baserat på officiella ramavtal",
+  "Branschens marginalmodell (85–90 %)",
+  "290 kommuner, alla specialiseringar",
+  "Lika användbart för agenter som för människor",
+];
+
+function Wordmark() {
+  return (
+    <span className="inline-flex items-center gap-2">
+      <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-sm font-bold text-primary-foreground">
+        V
+      </span>
+      <span className="text-base font-semibold tracking-tight text-foreground">
+        Vårdbemanning<span className="text-primary">.ai</span>
+      </span>
+    </span>
+  );
+}
+
 function Index() {
   return (
-    <main className="flex min-h-screen flex-col items-center justify-center bg-background px-6 text-center">
-      <h1 className="max-w-2xl text-3xl font-semibold tracking-tight text-foreground sm:text-4xl">
-        Vårdbemanning.ai
-      </h1>
-      <p className="mt-4 max-w-xl text-sm text-muted-foreground">
-        Smarta verktyg och AI som underlättar det administrativa och affärsmässiga för vårdens
-        konsulter.
-      </p>
-      <Link
-        to="/auth"
-        className="mt-8 inline-flex items-center justify-center rounded-md bg-primary px-5 py-2.5 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+    <div className="min-h-screen bg-background">
+      {/* ── Nav ────────────────────────────────────────── */}
+      <nav
+        className="sticky top-0 z-50 border-b border-border bg-background/70 backdrop-blur-md"
+        role="navigation"
+        aria-label="Huvudnavigation"
       >
-        Logga in
-      </Link>
-    </main>
+        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+          <Link to="/" aria-label="Vårdbemanning.ai startsida">
+            <Wordmark />
+          </Link>
+          <Link to="/auth">
+            <Button variant="ghost" size="sm" className="text-muted-foreground">
+              Logga in
+            </Button>
+          </Link>
+        </div>
+      </nav>
+
+      {/* ── Hero ───────────────────────────────────────── */}
+      <section className="hero-dark relative px-6 pt-12 pb-20" aria-labelledby="hero-heading">
+        <div className="relative z-10 mx-auto max-w-4xl text-center">
+          <h1
+            id="hero-heading"
+            className="mb-5 text-5xl leading-[1.1] font-bold tracking-tight"
+          >
+            Förhandla utifrån data,
+            <br />
+            inte magkänsla
+          </h1>
+
+          <p className="text-hero-foreground/70 mx-auto mb-8 max-w-2xl text-lg leading-relaxed md:text-xl">
+            Vi visar aktuella ersättningsnivåer för läkare och sjuksköterskor på
+            bemanningsuppdrag. Sök efter din roll och kommun för att se svaret direkt.
+            {"\n"}
+            Baserat på ramavtal och AI-analys av bemanningsbranschens marginaler.
+          </p>
+
+          <SearchPanel />
+        </div>
+        <div className="absolute right-1 bottom-0 left-1 h-[200px] bg-gradient-to-t from-background to-transparent" />
+      </section>
+
+      {/* ── Tre pelare ─────────────────────────────────── */}
+      <section
+        className="relative z-20 mx-auto max-w-6xl px-6 pt-4 pb-12"
+        aria-label="Tjänster"
+      >
+        <div className="grid gap-6 md:grid-cols-3">
+          {PILLARS.map((pillar) => (
+            <article
+              key={pillar.id}
+              className="glass glow-hover rounded-2xl p-6 shadow-lg md:p-8"
+              data-service={pillar.id}
+            >
+              <pillar.icon className="mb-4 h-8 w-8 text-primary" />
+              <p className="mb-1 text-sm font-semibold text-primary">{pillar.question}</p>
+              <h2 className="mb-3 text-xl font-bold text-foreground">{pillar.title}</h2>
+              <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
+                {pillar.description}
+              </p>
+              <Button variant="outline" size="sm" className="gap-2">
+                {pillar.cta} <ArrowRight className="h-3 w-3" />
+              </Button>
+            </article>
+          ))}
+        </div>
+
+        <div className="mt-10 flex flex-col items-center gap-3 text-center">
+          <p className="max-w-md text-sm text-muted-foreground">
+            Skapa ett konto för att spara analyser, följa marknadspriser över tid och få
+            tillgång till AI-assistenten.
+          </p>
+          <Link to="/auth">
+            <Button size="sm" className="gap-2">
+              Registrera dig kostnadsfritt <ArrowRight className="h-3 w-3" />
+            </Button>
+          </Link>
+        </div>
+      </section>
+
+      {/* ── Trust ──────────────────────────────────────── */}
+      <section className="mx-auto max-w-4xl px-6 pb-12" aria-label="Datakällor">
+        <div className="glass rounded-2xl p-8 md:p-10">
+          <h2 className="mb-6 text-center text-2xl font-bold text-foreground">
+            Verifierad marknadsdata
+          </h2>
+          <div className="grid gap-4 sm:grid-cols-2">
+            {TRUST_POINTS.map((point) => (
+              <div key={point} className="flex items-start gap-3">
+                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                <p className="text-sm text-muted-foreground">{point}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ── Footer ─────────────────────────────────────── */}
+      <footer className="border-t border-border px-6 py-10" role="contentinfo">
+        <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 md:flex-row">
+          <Wordmark />
+          <div className="flex gap-6 text-sm text-muted-foreground">
+            <span className="transition-colors hover:text-foreground">Vanliga frågor</span>
+            <span className="transition-colors hover:text-foreground">Integritetspolicy</span>
+            <span className="transition-colors hover:text-foreground">Din data</span>
+          </div>
+          <p className="text-xs text-muted-foreground">
+            © {new Date().getFullYear()} Vårdbemanning.ai
+          </p>
+        </div>
+      </footer>
+    </div>
+  );
+}
+
+/** Sökpanelen i hero — enbart design, ingen datakoppling ännu. */
+function SearchPanel() {
+  return (
+    <div className="relative mx-auto w-full text-left">
+      <div className="glass-strong overflow-hidden rounded-xl p-6 shadow-2xl md:p-10">
+        <div className="-mx-6 -mt-6 mb-6 h-[2px] bg-foreground/5 md:-mx-10 md:-mt-10">
+          <div className="h-full w-1/5 bg-gradient-to-r from-primary to-accent" />
+        </div>
+
+        <div className="space-y-5">
+          <div className="space-y-1.5">
+            <h2 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+              Vad jobbar du som?
+            </h2>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              Välj yrke så visar vi ersättningsnivån för din kommun.
+            </p>
+          </div>
+
+          <div className="space-y-4">
+            <div className="flex w-full items-center justify-between rounded-lg border border-border bg-input px-4 py-3 text-base text-muted-foreground">
+              Välj yrke...
+              <ArrowRight className="h-4 w-4 opacity-40" />
+            </div>
+            <Button size="lg" className="w-full text-base font-semibold">
+              Jämför min ersättning
+            </Button>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
