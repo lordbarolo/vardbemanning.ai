@@ -8,7 +8,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
-import { HeroCompensationPanel } from "@/components/hero-compensation-panel";
+import { CompensationSearch } from "@/components/compensation-search";
 import logoAsset from "@/assets/vardbemanning-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
@@ -115,7 +115,7 @@ function Index() {
             bemanning. Sök utifrån din roll och uppdragets ort.
           </p>
 
-          <HeroCompensationPanel />
+          <CompensationSearch />
         </div>
         <div className="absolute right-1 bottom-0 left-1 h-[200px] bg-gradient-to-t from-background to-transparent" />
       </section>
@@ -192,4 +192,3 @@ function Index() {
     </div>
   );
 }
-
