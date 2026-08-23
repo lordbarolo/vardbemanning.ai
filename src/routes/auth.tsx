@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Logo } from "@/components/brand/Logo";
 
 export const Route = createFileRoute("/auth")({
   head: () => ({
@@ -65,8 +66,11 @@ function AuthPage() {
     <main className="flex min-h-screen items-center justify-center bg-background px-4">
       <Card className="w-full max-w-sm">
         <CardHeader>
+          <Link to="/" aria-label="Vårdbemanning.ai startsida" className="mb-5 block">
+            <Logo className="h-auto w-52" />
+          </Link>
           <CardTitle>{mode === "signin" ? "Logga in" : "Skapa konto"}</CardTitle>
-          <CardDescription>Vårdbemanning.ai</CardDescription>
+          <CardDescription>Smarta verktyg för vårdkonsulter</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit} className="space-y-4">
