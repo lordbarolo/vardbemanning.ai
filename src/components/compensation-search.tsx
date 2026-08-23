@@ -175,7 +175,13 @@ function Amount({
 }
 
 /** Herosektionens panel — samtliga belopp kommer från hero_compensation. */
-export function CompensationSearch() {
+export function CompensationSearch({
+  defaultRoleName = "Psykiatriker",
+  defaultPlaceName = "Hudiksvall",
+}: {
+  defaultRoleName?: string;
+  defaultPlaceName?: string;
+}) {
   const [roles, setRoles] = useState<Option[]>([]);
   const [places, setPlaces] = useState<Option[]>([]);
   const [listError, setListError] = useState<string | null>(null);
