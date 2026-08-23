@@ -89,7 +89,9 @@ function Index() {
         aria-label="Huvudnavigation"
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
+          <Link to="/" aria-label="Vårdbemanning.ai startsida">
             <Logo />
+          </Link>
           <Link to="/auth">
             <Button variant="ghost" size="sm" className="text-muted-foreground">
               Logga in
