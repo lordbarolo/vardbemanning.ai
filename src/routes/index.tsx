@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { HeroCompensationPanel } from "@/components/hero-compensation-panel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -120,7 +121,7 @@ function Index() {
             Baserat på ramavtal och AI-analys av bemanningsbranschens marginaler.
           </p>
 
-          <SearchPanel />
+          <HeroCompensationPanel />
         </div>
         <div className="absolute right-1 bottom-0 left-1 h-[200px] bg-gradient-to-t from-background to-transparent" />
       </section>
