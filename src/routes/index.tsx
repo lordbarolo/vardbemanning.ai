@@ -9,6 +9,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { Logo } from "@/components/brand/Logo";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -69,16 +70,7 @@ const TRUST_POINTS = [
 ];
 
 function Wordmark() {
-  return (
-    <span className="inline-flex items-center gap-2">
-      <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-sm font-bold text-primary-foreground">
-        V
-      </span>
-      <span className="text-base font-semibold tracking-tight text-foreground">
-        Vårdbemanning<span className="text-primary">.ai</span>
-      </span>
-    </span>
-  );
+  return <Logo className="h-auto w-[clamp(10rem,20vw,13rem)]" />;
 }
 
 function Index() {
