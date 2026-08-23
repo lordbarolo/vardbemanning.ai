@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useState } from "react";
-import { AlertTriangle, Check, ChevronsUpDown, Info, Loader2 } from "lucide-react";
+import { AlertTriangle, Check, ChevronDown, Info, Loader2 } from "lucide-react";
 
-import { Button } from "@/components/ui/button";
 import {
   Command,
   CommandEmpty,
@@ -51,7 +50,7 @@ const pct = new Intl.NumberFormat("sv-SE", {
   maximumFractionDigits: 2,
 });
 
-function Combobox({
+function SelectField({
   label,
   placeholder,
   searchPlaceholder,
@@ -74,7 +73,7 @@ function Combobox({
   const selected = options.find((o) => o.value === value);
 
   return (
-    <div className="space-y-1.5">
+    <div className="space-y-2">
       <span className="eyebrow block text-muted-foreground">{label}</span>
       <Popover open={open} onOpenChange={setOpen}>
         <PopoverTrigger asChild>
@@ -85,13 +84,13 @@ function Combobox({
             aria-label={label}
             disabled={disabled}
             className={cn(
-              "flex w-full items-center justify-between rounded-lg border border-border bg-input px-4 py-3 text-left text-base transition-colors",
+              "flex w-full items-center justify-between rounded-xl border border-border bg-card/60 px-5 py-4 text-left text-lg transition-colors",
               "hover:border-primary/50 focus:outline-none focus-visible:ring-2 focus-visible:ring-ring disabled:opacity-60",
               selected ? "text-foreground" : "text-muted-foreground",
             )}
           >
             <span className="truncate">{selected?.label ?? placeholder}</span>
-            <ChevronsUpDown className="ml-2 h-4 w-4 shrink-0 opacity-40" />
+            <ChevronDown className="ml-3 h-5 w-5 shrink-0 opacity-50" />
           </button>
         </PopoverTrigger>
         <PopoverContent
@@ -130,7 +129,40 @@ function Combobox({
   );
 }
 
-/** Herosektionens sökpanel — alla belopp kommer från hero_compensation. */
+function AmountCard({
+  label,
+  amount,
+  loading,
+}: {
+  label: string;
+  amount: number | null;
+  loading: boolean;
+}) {
+  return (
+    <div className="rounded-xl border border-border bg-card/60 px-5 py-4">
+      <p className="eyebrow mb-1 text-muted-foreground">{label}</p>
+      {loading ? (
+        <Loader2
+          className="my-1 h-8 w-8 animate-spin text-muted-foreground"
+          aria-label="Hämtar"
+        />
+      ) : amount == null ? (
+        <p className="text-4xl font-bold tracking-tight text-muted-foreground/40">
+          –
+        </p>
+      ) : (
+        <p className="text-4xl font-bold tracking-tight text-foreground">
+          {kr.format(amount)}{" "}
+          <span className="text-base font-medium text-muted-foreground">
+            kr/timme
+          </span>
+        </p>
+      )}
+    </div>
+  );
+}
+
+/** Herosektionens panel — alla belopp kommer från hero_compensation. */
 export function HeroCompensationPanel() {
   const [roles, setRoles] = useState<RoleOption[]>([]);
   const [municipalities, setMunicipalities] = useState<MunicipalityOption[]>([]);
@@ -195,184 +227,143 @@ export function HeroCompensationPanel() {
   const selectedRole = roles.find((r) => r.role_code === roleCode) ?? null;
   const selectedMunicipality =
     municipalities.find((m) => m.municipality_code === municipalityCode) ?? null;
-  const ready = Boolean(selectedRole && selectedMunicipality);
 
-  // Nollställ resultatet när valen ändras — aldrig en siffra som inte hör till valet.
+  const roleName = selectedRole?.display_name ?? null;
+  const municipalityName = selectedMunicipality?.name ?? null;
+
   useEffect(() => {
     setResult(null);
     setError(null);
     setShowBasis(false);
-  }, [roleCode, municipalityCode]);
+    if (!roleName || !municipalityName) return;
 
-  async function fetchCompensation() {
-    if (!selectedRole || !selectedMunicipality) return;
+    let active = true;
     setLoading(true);
-    setError(null);
-    setResult(null);
-    const { data, error: rpcError } = await supabase.rpc("hero_compensation", {
-      role_query: selectedRole.display_name,
-      municipality_query: selectedMunicipality.name,
-    });
-    setLoading(false);
-    const row = Array.isArray(data) ? data[0] : data;
-    if (rpcError || !row) {
-      setError(
-        rpcError?.message ??
-          "Ingen ersättning kunde hämtas för den kombinationen.",
-      );
-      return;
-    }
-    setResult(row as HeroCompensation);
-  }
+    void (async () => {
+      const { data, error: rpcError } = await supabase.rpc("hero_compensation", {
+        role_query: roleName,
+        municipality_query: municipalityName,
+      });
+      if (!active) return;
+      setLoading(false);
+      const row = Array.isArray(data) ? data[0] : data;
+      if (rpcError || !row) {
+        setError(
+          rpcError?.message ??
+            "Ingen ersättning kunde hämtas för den kombinationen.",
+        );
+        return;
+      }
+      setResult(row as HeroCompensation);
+    })();
+    return () => {
+      active = false;
+    };
+  }, [roleName, municipalityName]);
 
   const uncertain =
     result != null &&
     (result.role_match !== "exact" || result.municipality_match !== "exact");
 
   return (
-    <div className="relative mx-auto w-full text-left">
-      <div className="glass-strong overflow-hidden rounded-xl p-6 shadow-2xl md:p-10">
-        <div className="-mx-6 -mt-6 mb-6 h-[2px] bg-foreground/5 md:-mx-10 md:-mt-10">
-          <div className="h-full w-1/5 bg-gradient-to-r from-primary to-accent" />
+    <div className="glass-strong rounded-3xl p-6 text-left shadow-2xl md:p-8">
+      <div className="space-y-6">
+        <SelectField
+          label="Roll"
+          placeholder="Välj roll..."
+          searchPlaceholder="Sök roll"
+          emptyText="Ingen roll matchar sökningen."
+          options={roleOptions}
+          value={roleCode}
+          onChange={setRoleCode}
+          disabled={roleOptions.length === 0}
+        />
+        <SelectField
+          label="Ort"
+          placeholder="Välj ort..."
+          searchPlaceholder="Sök kommun"
+          emptyText="Ingen kommun matchar sökningen."
+          options={municipalityOptions}
+          value={municipalityCode}
+          onChange={setMunicipalityCode}
+          disabled={municipalityOptions.length === 0}
+        />
+
+        {optionsError && (
+          <p className="text-sm text-destructive" role="alert">
+            {optionsError}
+          </p>
+        )}
+
+        <div className="space-y-4">
+          <AmountCard
+            label="Som företagare"
+            amount={result?.foretagare_hourly ?? null}
+            loading={loading}
+          />
+          <AmountCard
+            label="Som löntagare"
+            amount={result?.anstalld_gross_hourly ?? null}
+            loading={loading}
+          />
         </div>
 
-        <div className="space-y-5">
-          <div className="space-y-1.5">
-            <h2 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-              AI-indikator för konsultersättning
-            </h2>
+        {uncertain && result && (
+          <div className="flex items-start gap-2 rounded-xl border border-warning/40 bg-warning/10 p-3 text-sm text-warning">
+            <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
+            <span>
+              Osäker träff — beloppet bygger på en gissad matchning (
+              {result.role_name}, {result.municipality_name}). Bekräfta valet
+              innan du använder siffran.
+            </span>
+          </div>
+        )}
+
+        {error ? (
+          <p className="text-sm text-destructive" role="alert">
+            {error}
+          </p>
+        ) : result ? (
+          <div className="space-y-3">
             <p className="text-sm leading-relaxed text-muted-foreground">
-              Välj yrke och ort så visar vi ersättningsnivån direkt.
+              Regionens pris {kr.format(result.region_price)} kr/timme i{" "}
+              {result.municipality_name} ({result.county_name}). Källa:{" "}
+              <span className="underline decoration-muted-foreground/50 underline-offset-4">
+                SKR:s ramavtal 2026
+              </span>
+              .
             </p>
-          </div>
-
-          <div className="grid gap-4 sm:grid-cols-2">
-            <Combobox
-              label="Roll"
-              placeholder="Välj yrke..."
-              searchPlaceholder="Sök yrkesroll"
-              emptyText="Ingen roll matchar sökningen."
-              options={roleOptions}
-              value={roleCode}
-              onChange={setRoleCode}
-              disabled={roleOptions.length === 0}
-            />
-            <Combobox
-              label="Ort"
-              placeholder="Välj kommun..."
-              searchPlaceholder="Sök kommun"
-              emptyText="Ingen kommun matchar sökningen."
-              options={municipalityOptions}
-              value={municipalityCode}
-              onChange={setMunicipalityCode}
-              disabled={municipalityOptions.length === 0}
-            />
-          </div>
-
-          <Button
-            size="lg"
-            className="w-full text-base font-semibold"
-            disabled={!ready || loading}
-            onClick={() => void fetchCompensation()}
-          >
-            {loading ? (
-              <>
-                <Loader2 className="h-4 w-4 animate-spin" /> Hämtar ersättning...
-              </>
-            ) : (
-              "Jämför min ersättning"
-            )}
-          </Button>
-
-          {optionsError && (
-            <p className="text-sm text-destructive" role="alert">
-              {optionsError}
-            </p>
-          )}
-
-          {error && (
-            <p className="text-sm text-destructive" role="alert">
-              {error}
-            </p>
-          )}
-
-          {!result && !loading && !error && (
-            <p className="text-sm text-muted-foreground">
-              {ready
-                ? "Klicka för att hämta aktuell ersättningsnivå."
-                : "Välj både roll och ort för att se ersättningen."}
-            </p>
-          )}
-
-          {result && (
-            <div className="space-y-4">
-              {uncertain && (
-                <div className="flex items-start gap-2 rounded-lg border border-warning/40 bg-warning/10 p-3 text-sm text-warning">
-                  <AlertTriangle className="mt-0.5 h-4 w-4 shrink-0" />
-                  <span>
-                    Osäker träff — beloppet bygger på en gissad matchning
-                    ({result.role_name}, {result.municipality_name}). Bekräfta
-                    valet innan du använder siffran.
-                  </span>
-                </div>
+            <div>
+              <button
+                type="button"
+                onClick={() => setShowBasis((v) => !v)}
+                aria-expanded={showBasis}
+                className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
+              >
+                <Info className="h-4 w-4" />
+                {showBasis ? "Dölj underlaget" : "Visa vad beloppet vilar på"}
+              </button>
+              {showBasis && (
+                <p className="mt-2 rounded-xl border border-border bg-card/60 p-4 text-sm leading-relaxed text-muted-foreground">
+                  Regionens pris {kr.format(result.region_price)} kr.
+                  Bemanningsföretagets marginal{" "}
+                  {pct.format(result.foretagare_margin)} som företagare,{" "}
+                  {pct.format(result.anstalld_margin)} som anställd. Bruttolönen
+                  är det som återstår efter arbetsgivaravgift{" "}
+                  {pct.format(result.employer_social_fee)} och tjänstepension{" "}
+                  {pct.format(result.occupational_pension)}. Zon {result.zone}.
+                </p>
               )}
-
-              <div className="grid gap-4 sm:grid-cols-2">
-                <div className="glass-subtle rounded-xl p-4">
-                  <p className="eyebrow mb-1 text-muted-foreground">
-                    Som företagare
-                  </p>
-                  <p className="text-3xl font-bold text-foreground">
-                    {kr.format(result.foretagare_hourly)}{" "}
-                    <span className="text-base font-medium text-muted-foreground">
-                      kr/tim
-                    </span>
-                  </p>
-                </div>
-                <div className="glass-subtle rounded-xl p-4">
-                  <p className="eyebrow mb-1 text-muted-foreground">
-                    Som löntagare
-                  </p>
-                  <p className="text-3xl font-bold text-foreground">
-                    {kr.format(result.anstalld_gross_hourly)}{" "}
-                    <span className="text-base font-medium text-muted-foreground">
-                      kr/tim brutto
-                    </span>
-                  </p>
-                </div>
-              </div>
-
-              <p className="text-sm text-muted-foreground">
-                Regionens pris {kr.format(result.region_price)} kr/timme i{" "}
-                {result.municipality_name} ({result.county_name}). Källa: SKR:s
-                ramavtal 2026.
-              </p>
-
-              <div>
-                <button
-                  type="button"
-                  onClick={() => setShowBasis((v) => !v)}
-                  aria-expanded={showBasis}
-                  className="inline-flex items-center gap-2 text-sm font-medium text-primary hover:underline"
-                >
-                  <Info className="h-4 w-4" />
-                  {showBasis ? "Dölj underlaget" : "Visa vad beloppet vilar på"}
-                </button>
-                {showBasis && (
-                  <p className="mt-2 rounded-lg border border-border bg-input/60 p-3 text-sm leading-relaxed text-muted-foreground">
-                    Regionens pris {kr.format(result.region_price)} kr.
-                    Bemanningsföretagets marginal{" "}
-                    {pct.format(result.foretagare_margin)} som företagare,{" "}
-                    {pct.format(result.anstalld_margin)} som anställd.
-                    Bruttolönen är det som återstår efter arbetsgivaravgift{" "}
-                    {pct.format(result.employer_social_fee)} och tjänstepension{" "}
-                    {pct.format(result.occupational_pension)}. Zon {result.zone}.
-                  </p>
-                )}
-              </div>
             </div>
-          )}
-        </div>
+          </div>
+        ) : (
+          !loading && (
+            <p className="text-sm text-muted-foreground">
+              Välj roll och ort så visar vi ersättningen. Källa: SKR:s ramavtal
+              2026.
+            </p>
+          )
+        )}
       </div>
     </div>
   );
