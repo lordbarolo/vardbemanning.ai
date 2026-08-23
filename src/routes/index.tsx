@@ -89,9 +89,7 @@ function Index() {
         aria-label="Huvudnavigation"
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <Link to="/" aria-label="Vårdbemanning.ai startsida">
-            <Wordmark />
-          </Link>
+            <Logo />
           <Link to="/auth">
             <Button variant="ghost" size="sm" className="text-muted-foreground">
               Logga in
@@ -178,7 +176,7 @@ function Index() {
       {/* ── Footer ─────────────────────────────────────── */}
       <footer className="border-t border-border px-6 py-10" role="contentinfo">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 md:flex-row">
-          <Wordmark />
+          <Logo />
           <div className="flex gap-6 text-sm text-muted-foreground">
             <span className="transition-colors hover:text-foreground">Vanliga frågor</span>
             <span className="transition-colors hover:text-foreground">Integritetspolicy</span>
