@@ -9,6 +9,7 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { HeroCompensationPanel } from "@/components/hero-compensation-panel";
+import logoAsset from "@/assets/vardbemanning-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -68,16 +69,13 @@ const TRUST_POINTS = [
   "Lika användbart för agenter som för människor",
 ];
 
-function Wordmark() {
+function Logo({ className }: { className?: string }) {
   return (
-    <span className="inline-flex items-center gap-2">
-      <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-sm font-bold text-primary-foreground">
-        V
-      </span>
-      <span className="text-base font-semibold tracking-tight text-foreground">
-        Vårdbemanning<span className="text-primary">.ai</span>
-      </span>
-    </span>
+    <img
+      src={logoAsset.url}
+      alt="Vårdbemanning.ai"
+      className={`h-7 w-auto ${className ?? ""}`}
+    />
   );
 }
 
@@ -92,7 +90,7 @@ function Index() {
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Link to="/" aria-label="Vårdbemanning.ai startsida">
-            <Wordmark />
+            <Logo />
           </Link>
           <Link to="/auth">
             <Button variant="ghost" size="sm" className="text-muted-foreground">
@@ -180,7 +178,7 @@ function Index() {
       {/* ── Footer ─────────────────────────────────────── */}
       <footer className="border-t border-border px-6 py-10" role="contentinfo">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 md:flex-row">
-          <Wordmark />
+          <Logo />
           <div className="flex gap-6 text-sm text-muted-foreground">
             <span className="transition-colors hover:text-foreground">Vanliga frågor</span>
             <span className="transition-colors hover:text-foreground">Integritetspolicy</span>
