@@ -175,7 +175,13 @@ function Amount({
 }
 
 /** Herosektionens panel — samtliga belopp kommer från hero_compensation. */
-export function CompensationSearch() {
+export function CompensationSearch({
+  defaultRoleName = "Psykiatriker",
+  defaultPlaceName = "Hudiksvall",
+}: {
+  defaultRoleName?: string;
+  defaultPlaceName?: string;
+}) {
   const [roles, setRoles] = useState<Option[]>([]);
   const [places, setPlaces] = useState<Option[]>([]);
   const [listError, setListError] = useState<string | null>(null);
@@ -224,6 +230,14 @@ export function CompensationSearch() {
       alive = false;
     };
   }, []);
+
+  useEffect(() => {
+    if (roles.length === 0 || places.length === 0) return;
+    const defaultRole = roles.find((r) => r.name === defaultRoleName) ?? null;
+    const defaultPlace = places.find((p) => p.name === defaultPlaceName) ?? null;
+    setRole(defaultRole);
+    setPlace(defaultPlace);
+  }, [roles, places, defaultRoleName, defaultPlaceName]);
 
   useEffect(() => {
     setData(null);
