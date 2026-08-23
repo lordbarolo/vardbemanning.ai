@@ -104,21 +104,17 @@ function Index() {
 
       {/* ── Hero ───────────────────────────────────────── */}
       <section className="hero-dark relative px-6 pt-12 pb-20" aria-labelledby="hero-heading">
-        <div className="relative z-10 mx-auto max-w-4xl text-center">
+        <div className="relative z-10 mx-auto max-w-xl text-left">
           <h1
             id="hero-heading"
-            className="mb-5 text-5xl leading-[1.1] font-bold tracking-tight"
+            className="mb-5 text-5xl leading-[1.05] font-bold tracking-tight md:text-6xl"
           >
-            Förhandla utifrån data,
-            <br />
-            inte magkänsla
+            Har du rätt lön?
           </h1>
 
-          <p className="text-hero-foreground/70 mx-auto mb-8 max-w-2xl text-lg leading-relaxed md:text-xl">
-            Vi visar aktuella ersättningsnivåer för läkare och sjuksköterskor på
-            bemanningsuppdrag. Sök efter din roll och kommun för att se svaret direkt.
-            {"\n"}
-            Baserat på ramavtal och AI-analys av bemanningsbranschens marginaler.
+          <p className="text-hero-foreground/60 mb-10 text-lg leading-relaxed md:text-xl">
+            Se uppdaterade ersättningar för läkare och sjuksköterskor inom
+            bemanning. Sök utifrån din roll och uppdragets ort.
           </p>
 
           <HeroCompensationPanel />
