@@ -232,6 +232,14 @@ export function CompensationSearch({
   }, []);
 
   useEffect(() => {
+    if (roles.length === 0 || places.length === 0) return;
+    const defaultRole = roles.find((r) => r.name === defaultRoleName) ?? null;
+    const defaultPlace = places.find((p) => p.name === defaultPlaceName) ?? null;
+    setRole(defaultRole);
+    setPlace(defaultPlace);
+  }, [roles, places, defaultRoleName, defaultPlaceName]);
+
+  useEffect(() => {
     setData(null);
     setError(null);
     setOpenBasis(false);
