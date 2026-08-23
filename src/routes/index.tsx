@@ -8,6 +8,8 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { CompensationSearch } from "@/components/compensation-search";
+import logoAsset from "@/assets/vardbemanning-logo.png.asset.json";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -67,16 +69,13 @@ const TRUST_POINTS = [
   "Lika användbart för agenter som för människor",
 ];
 
-function Wordmark() {
+function Logo({ className }: { className?: string }) {
   return (
-    <span className="inline-flex items-center gap-2">
-      <span className="flex h-8 w-8 items-center justify-center rounded-lg bg-gradient-to-br from-primary to-accent text-sm font-bold text-primary-foreground">
-        V
-      </span>
-      <span className="text-base font-semibold tracking-tight text-foreground">
-        Vårdbemanning<span className="text-primary">.ai</span>
-      </span>
-    </span>
+    <img
+      src={logoAsset.url}
+      alt="Vårdbemanning.ai"
+      className={`h-7 w-auto ${className ?? ""}`}
+    />
   );
 }
 
@@ -91,7 +90,7 @@ function Index() {
       >
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Link to="/" aria-label="Vårdbemanning.ai startsida">
-            <Wordmark />
+            <Logo />
           </Link>
           <Link to="/auth">
             <Button variant="ghost" size="sm" className="text-muted-foreground">
@@ -103,24 +102,20 @@ function Index() {
 
       {/* ── Hero ───────────────────────────────────────── */}
       <section className="hero-dark relative px-6 pt-12 pb-20" aria-labelledby="hero-heading">
-        <div className="relative z-10 mx-auto max-w-4xl text-center">
+        <div className="relative z-10 mx-auto max-w-xl text-left">
           <h1
             id="hero-heading"
-            className="mb-5 text-5xl leading-[1.1] font-bold tracking-tight"
+            className="mb-5 text-5xl leading-[1.05] font-bold tracking-tight md:text-6xl"
           >
-            Förhandla utifrån data,
-            <br />
-            inte magkänsla
+            Har du rätt lön?
           </h1>
 
-          <p className="text-hero-foreground/70 mx-auto mb-8 max-w-2xl text-lg leading-relaxed md:text-xl">
-            Vi visar aktuella ersättningsnivåer för läkare och sjuksköterskor på
-            bemanningsuppdrag. Sök efter din roll och kommun för att se svaret direkt.
-            {"\n"}
-            Baserat på ramavtal och AI-analys av bemanningsbranschens marginaler.
+          <p className="text-hero-foreground/60 mb-10 text-lg leading-relaxed md:text-xl">
+            Se uppdaterade ersättningar för läkare och sjuksköterskor inom
+            bemanning. Sök utifrån din roll och uppdragets ort.
           </p>
 
-          <SearchPanel />
+          <CompensationSearch />
         </div>
         <div className="absolute right-1 bottom-0 left-1 h-[200px] bg-gradient-to-t from-background to-transparent" />
       </section>
@@ -183,7 +178,7 @@ function Index() {
       {/* ── Footer ─────────────────────────────────────── */}
       <footer className="border-t border-border px-6 py-10" role="contentinfo">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-4 md:flex-row">
-          <Wordmark />
+          <Logo />
           <div className="flex gap-6 text-sm text-muted-foreground">
             <span className="transition-colors hover:text-foreground">Vanliga frågor</span>
             <span className="transition-colors hover:text-foreground">Integritetspolicy</span>
@@ -194,40 +189,6 @@ function Index() {
           </p>
         </div>
       </footer>
-    </div>
-  );
-}
-
-/** Sökpanelen i hero — enbart design, ingen datakoppling ännu. */
-function SearchPanel() {
-  return (
-    <div className="relative mx-auto w-full text-left">
-      <div className="glass-strong overflow-hidden rounded-xl p-6 shadow-2xl md:p-10">
-        <div className="-mx-6 -mt-6 mb-6 h-[2px] bg-foreground/5 md:-mx-10 md:-mt-10">
-          <div className="h-full w-1/5 bg-gradient-to-r from-primary to-accent" />
-        </div>
-
-        <div className="space-y-5">
-          <div className="space-y-1.5">
-            <h2 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-              Vad jobbar du som?
-            </h2>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              Välj yrke så visar vi ersättningsnivån för din kommun.
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            <div className="flex w-full items-center justify-between rounded-lg border border-border bg-input px-4 py-3 text-base text-muted-foreground">
-              Välj yrke...
-              <ArrowRight className="h-4 w-4 opacity-40" />
-            </div>
-            <Button size="lg" className="w-full text-base font-semibold">
-              Jämför min ersättning
-            </Button>
-          </div>
-        </div>
-      </div>
     </div>
   );
 }
