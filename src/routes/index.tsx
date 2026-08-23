@@ -8,6 +8,7 @@ import {
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { HeroCompensationPanel } from "@/components/hero-compensation-panel";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -120,7 +121,7 @@ function Index() {
             Baserat på ramavtal och AI-analys av bemanningsbranschens marginaler.
           </p>
 
-          <SearchPanel />
+          <HeroCompensationPanel />
         </div>
         <div className="absolute right-1 bottom-0 left-1 h-[200px] bg-gradient-to-t from-background to-transparent" />
       </section>
@@ -198,36 +199,3 @@ function Index() {
   );
 }
 
-/** Sökpanelen i hero — enbart design, ingen datakoppling ännu. */
-function SearchPanel() {
-  return (
-    <div className="relative mx-auto w-full text-left">
-      <div className="glass-strong overflow-hidden rounded-xl p-6 shadow-2xl md:p-10">
-        <div className="-mx-6 -mt-6 mb-6 h-[2px] bg-foreground/5 md:-mx-10 md:-mt-10">
-          <div className="h-full w-1/5 bg-gradient-to-r from-primary to-accent" />
-        </div>
-
-        <div className="space-y-5">
-          <div className="space-y-1.5">
-            <h2 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-              Vad jobbar du som?
-            </h2>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              Välj yrke så visar vi ersättningsnivån för din kommun.
-            </p>
-          </div>
-
-          <div className="space-y-4">
-            <div className="flex w-full items-center justify-between rounded-lg border border-border bg-input px-4 py-3 text-base text-muted-foreground">
-              Välj yrke...
-              <ArrowRight className="h-4 w-4 opacity-40" />
-            </div>
-            <Button size="lg" className="w-full text-base font-semibold">
-              Jämför min ersättning
-            </Button>
-          </div>
-        </div>
-      </div>
-    </div>
-  );
-}
