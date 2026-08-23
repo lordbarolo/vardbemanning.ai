@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   CheckCircle2,
+  ChevronDown,
   FileSearch,
   MessageSquare,
   ShieldCheck,
@@ -102,31 +103,37 @@ function Index() {
       </nav>
 
       {/* ── Hero ───────────────────────────────────────── */}
-      <section className="hero-dark relative px-6 pt-12 pb-20" aria-labelledby="hero-heading">
-        <div className="relative z-10 mx-auto max-w-4xl text-center">
-          <h1
-            id="hero-heading"
-            className="mb-5 text-5xl leading-[1.1] font-bold tracking-tight"
-          >
-            Förhandla utifrån data,
-            <br />
-            inte magkänsla
-          </h1>
+      <section className="hero-dark relative overflow-hidden px-5 pt-14 pb-20 sm:px-6 md:pt-20 md:pb-24" aria-labelledby="hero-heading">
+        <div className="relative z-10 mx-auto max-w-6xl">
+          <div className="max-w-3xl">
+            <a
+              href="#services"
+              className="mb-7 inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/5 px-3 py-1.5 text-[11px] font-semibold text-success transition-colors hover:bg-success/10 sm:text-xs"
+            >
+              Smarta verktyg för läkare och sjuksköterskor
+              <ArrowRight className="h-3 w-3" aria-hidden="true" />
+            </a>
 
-          <p className="text-hero-foreground/70 mx-auto mb-8 max-w-2xl text-lg leading-relaxed md:text-xl">
-            Vi visar aktuella ersättningsnivåer för läkare och sjuksköterskor på
-            bemanningsuppdrag. Sök efter din roll och kommun för att se svaret direkt.
-            {"\n"}
-            Baserat på ramavtal och AI-analys av bemanningsbranschens marginaler.
-          </p>
+            <h1
+              id="hero-heading"
+              className="mb-5 max-w-2xl text-[2.65rem] leading-[1.08] font-bold text-hero-foreground sm:text-6xl md:text-7xl"
+            >
+              Har du rätt lön?
+            </h1>
+
+            <p className="mb-10 max-w-2xl text-base leading-7 text-hero-foreground/65 sm:text-lg md:mb-12 md:text-xl md:leading-8">
+              Se aktuella ersättningsnivåer för läkare och sjuksköterskor inom bemanning.
+              Sök utifrån din roll och uppdragets kommun.
+            </p>
+          </div>
 
           <SearchPanel />
         </div>
-        <div className="absolute right-1 bottom-0 left-1 h-[200px] bg-gradient-to-t from-background to-transparent" />
       </section>
 
       {/* ── Tre pelare ─────────────────────────────────── */}
       <section
+        id="services"
         className="relative z-20 mx-auto max-w-6xl px-6 pt-4 pb-12"
         aria-label="Tjänster"
       >
@@ -201,33 +208,68 @@ function Index() {
 /** Sökpanelen i hero — enbart design, ingen datakoppling ännu. */
 function SearchPanel() {
   return (
-    <div className="relative mx-auto w-full text-left">
-      <div className="glass-strong overflow-hidden rounded-xl p-6 shadow-2xl md:p-10">
-        <div className="-mx-6 -mt-6 mb-6 h-[2px] bg-foreground/5 md:-mx-10 md:-mt-10">
-          <div className="h-full w-1/5 bg-gradient-to-r from-primary to-accent" />
+    <div className="relative max-w-4xl rounded-2xl border border-border/80 bg-card/90 p-5 text-left shadow-2xl backdrop-blur-xl sm:p-7 md:p-8">
+      <div className="mb-7">
+        <h2 className="mb-1 text-xs font-bold uppercase text-success">
+          AI-indikator för konsultersättning
+        </h2>
+        <p className="text-sm leading-relaxed text-muted-foreground">
+          Välj roll och kommun för att se möjlig ersättning.
+        </p>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        <div className="space-y-2">
+          <p className="text-[10px] font-bold uppercase text-muted-foreground">Roll</p>
+          <Button
+            type="button"
+            variant="outline"
+            className="h-12 w-full justify-between bg-input px-4 text-sm font-medium text-muted-foreground hover:bg-input hover:text-foreground"
+            aria-label="Välj roll"
+          >
+            Välj roll
+            <ChevronDown className="h-4 w-4 opacity-50" aria-hidden="true" />
+          </Button>
         </div>
+        <div className="space-y-2">
+          <p className="text-[10px] font-bold uppercase text-muted-foreground">Kommun</p>
+          <Button
+            type="button"
+            variant="outline"
+            className="h-12 w-full justify-between bg-input px-4 text-sm font-medium text-muted-foreground hover:bg-input hover:text-foreground"
+            aria-label="Välj kommun"
+          >
+            Välj kommun
+            <ChevronDown className="h-4 w-4 opacity-50" aria-hidden="true" />
+          </Button>
+        </div>
+      </div>
 
-        <div className="space-y-5">
-          <div className="space-y-1.5">
-            <h2 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-              Vad jobbar du som?
-            </h2>
-            <p className="text-sm leading-relaxed text-muted-foreground">
-              Välj yrke så visar vi ersättningsnivån för din kommun.
-            </p>
+      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+        <div className="rounded-xl border border-border/70 bg-background/55 p-4 sm:p-5">
+          <p className="mb-2 text-[10px] font-bold uppercase text-muted-foreground">
+            Som företagare
+          </p>
+          <div className="flex min-h-9 items-baseline gap-2">
+            <span className="text-3xl font-semibold text-foreground">—</span>
+            <span className="text-xs text-muted-foreground">kr/timme</span>
           </div>
-
-          <div className="space-y-4">
-            <div className="flex w-full items-center justify-between rounded-lg border border-border bg-input px-4 py-3 text-base text-muted-foreground">
-              Välj yrke...
-              <ArrowRight className="h-4 w-4 opacity-40" />
-            </div>
-            <Button size="lg" className="w-full text-base font-semibold">
-              Jämför min ersättning
-            </Button>
+        </div>
+        <div className="rounded-xl border border-border/70 bg-background/55 p-4 sm:p-5">
+          <p className="mb-2 text-[10px] font-bold uppercase text-muted-foreground">
+            Som löntagare
+          </p>
+          <div className="flex min-h-9 items-baseline gap-2">
+            <span className="text-3xl font-semibold text-foreground">—</span>
+            <span className="text-xs text-muted-foreground">kr/timme brutto</span>
           </div>
         </div>
       </div>
+
+      <p className="mt-5 border-t border-border/60 pt-4 text-xs leading-relaxed text-muted-foreground">
+        Beräkningen visas när du har valt roll och kommun. Underlaget bygger på
+        officiella ramavtalspriser och visar vilka marginaler och avgifter som används.
+      </p>
     </div>
   );
 }
