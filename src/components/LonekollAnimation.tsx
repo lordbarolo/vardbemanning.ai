@@ -206,13 +206,13 @@ export default function LonekollAnimation({
       if (playing) return;
       playing = true;
       if (fromTheTop) rewind();
-      root.dataset.playing = "true";
+      root.dataset["playing"] = "true";
       cancelAnimationFrame(raf);
       raf = requestAnimationFrame(tick);
     };
     const stop = () => {
       playing = false;
-      root.dataset.playing = "false";
+      root.dataset["playing"] = "false";
       cancelAnimationFrame(raf);
     };
 
@@ -233,7 +233,7 @@ export default function LonekollAnimation({
 
     const io = new IntersectionObserver(
       ([e]) => {
-        inView = e.isIntersecting;
+        inView = !!e?.isIntersecting;
         if (inView) start(true);
         else stop();
       },
@@ -273,7 +273,7 @@ export default function LonekollAnimation({
       <div
         className="lk-frame"
         role="img"
-        aria-label={`Demo av lönekollen: rollen ${ROLES[SEL_ROLE]} väljs, sedan kommunen ${MUNICIPALITIES[SEL_MUN].name} som ligger i zon ${ZONE}. Regionens pris är ${REGION} kronor i timmen, ${FORETAGARE} kronor som företagare och ${LONTAGARE} kronor som löntagare.`}
+        aria-label={`Demo av lönekollen: rollen ${ROLES[SEL_ROLE]} väljs, sedan kommunen ${MUNICIPALITIES[SEL_MUN]!.name} som ligger i zon ${ZONE}. Regionens pris är ${REGION} kronor i timmen, ${FORETAGARE} kronor som företagare och ${LONTAGARE} kronor som löntagare.`}
       >
         <span className="lk-glow" aria-hidden="true" />
 
@@ -291,7 +291,7 @@ export default function LonekollAnimation({
               </span>
               <span className="lk-a lk-pill" style={a("lk-in63", BEATS.pillKommun)}>
                 <b>Kommun</b>
-                {MUNICIPALITIES[SEL_MUN].name}
+                {MUNICIPALITIES[SEL_MUN]!.name}
               </span>
             </span>
           </div>
@@ -312,7 +312,7 @@ export default function LonekollAnimation({
                   <span
                     key={r}
                     className={`lk-a lk-chip${i === SEL_ROLE ? " is-target" : ""}`}
-                    style={a("lk-in39", BEATS.chips[i])}
+                    style={a("lk-in39", BEATS.chips[i]!)}
                   >
                     {i === SEL_ROLE && (
                       <>
@@ -354,7 +354,7 @@ export default function LonekollAnimation({
                     <span
                       key={m.name}
                       className={`lk-a lk-opt${i === SEL_MUN ? " is-target" : ""}`}
-                      style={a("lk-fade42", BEATS.optRows[i])}
+                      style={a("lk-fade42", BEATS.optRows[i]!)}
                     >
                       {i === SEL_MUN && (
                         <span
@@ -392,7 +392,7 @@ export default function LonekollAnimation({
             <div className="lk-screen lk-screen--res">
               <div className="lk-a lk-card" style={a("lk-in50", BEATS.card)}>
                 <p className="lk-card-eyebrow">
-                  {ROLES[SEL_ROLE]} · {MUNICIPALITIES[SEL_MUN].name} · Zon {ZONE}
+                  {ROLES[SEL_ROLE]} · {MUNICIPALITIES[SEL_MUN]!.name} · Zon {ZONE}
                 </p>
 
                 <p className="lk-big">
@@ -412,7 +412,7 @@ export default function LonekollAnimation({
                         <span
                           className={`lk-a lk-fill is-${r.tone}`}
                           style={{
-                            ...a("lk-bar", BEATS.bars[i]),
+                            ...a("lk-bar", BEATS.bars[i]!),
                             width: `${r.w}%`,
                           }}
                         />
@@ -457,7 +457,7 @@ export default function LonekollAnimation({
                   className="lk-a lk-step-on"
                   style={a(
                     i === 2 ? "lk-fade52" : "lk-fade42",
-                    [BEATS.step1, BEATS.step2, BEATS.step3][i],
+                    [BEATS.step1, BEATS.step2, BEATS.step3][i]!,
                   )}
                 >
                   <i>{i + 1}</i>
