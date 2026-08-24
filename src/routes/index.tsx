@@ -2,7 +2,6 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import {
   ArrowRight,
   CheckCircle2,
-  ChevronDown,
   FileSearch,
   MessageSquare,
   ShieldCheck,
@@ -11,6 +10,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/brand/Logo";
 import { Hero } from "@/components/home/Hero";
+import { SearchPanel } from "@/components/home/SearchPanel";
 import { useAuth } from "@/hooks/useAuth";
 
 export const Route = createFileRoute("/")({
@@ -178,75 +178,6 @@ function Index() {
           </p>
         </div>
       </footer>
-    </div>
-  );
-}
-
-/** Sökpanelen i hero — enbart design, ingen datakoppling ännu. */
-function SearchPanel() {
-  return (
-    <div className="relative max-w-4xl rounded-2xl border border-border/80 bg-card/90 p-5 text-left shadow-2xl backdrop-blur-xl sm:p-7 md:p-8">
-      <div className="mb-7">
-        <h2 className="mb-1 text-xs font-bold uppercase text-success">
-          AI-indikator för konsultersättning
-        </h2>
-        <p className="text-sm leading-relaxed text-muted-foreground">
-          Välj roll och kommun för att se möjlig ersättning.
-        </p>
-      </div>
-
-      <div className="grid gap-4 sm:grid-cols-2">
-        <div className="space-y-2">
-          <p className="text-[10px] font-bold uppercase text-muted-foreground">Roll</p>
-          <Button
-            type="button"
-            variant="outline"
-            className="h-12 w-full justify-between bg-input px-4 text-sm font-medium text-muted-foreground hover:bg-input hover:text-foreground"
-            aria-label="Välj roll"
-          >
-            Välj roll
-            <ChevronDown className="h-4 w-4 opacity-50" aria-hidden="true" />
-          </Button>
-        </div>
-        <div className="space-y-2">
-          <p className="text-[10px] font-bold uppercase text-muted-foreground">Kommun</p>
-          <Button
-            type="button"
-            variant="outline"
-            className="h-12 w-full justify-between bg-input px-4 text-sm font-medium text-muted-foreground hover:bg-input hover:text-foreground"
-            aria-label="Välj kommun"
-          >
-            Välj kommun
-            <ChevronDown className="h-4 w-4 opacity-50" aria-hidden="true" />
-          </Button>
-        </div>
-      </div>
-
-      <div className="mt-5 grid gap-3 sm:grid-cols-2">
-        <div className="rounded-xl border border-border/70 bg-background/55 p-4 sm:p-5">
-          <p className="mb-2 text-[10px] font-bold uppercase text-muted-foreground">
-            Som företagare
-          </p>
-          <div className="flex min-h-9 items-baseline gap-2">
-            <span className="text-3xl font-semibold text-foreground">—</span>
-            <span className="text-xs text-muted-foreground">kr/timme</span>
-          </div>
-        </div>
-        <div className="rounded-xl border border-border/70 bg-background/55 p-4 sm:p-5">
-          <p className="mb-2 text-[10px] font-bold uppercase text-muted-foreground">
-            Som löntagare
-          </p>
-          <div className="flex min-h-9 items-baseline gap-2">
-            <span className="text-3xl font-semibold text-foreground">—</span>
-            <span className="text-xs text-muted-foreground">kr/timme brutto</span>
-          </div>
-        </div>
-      </div>
-
-      <p className="mt-5 border-t border-border/60 pt-4 text-xs leading-relaxed text-muted-foreground">
-        Beräkningen visas när du har valt roll och kommun. Underlaget bygger på
-        officiella ramavtalspriser och visar vilka marginaler och avgifter som används.
-      </p>
     </div>
   );
 }
