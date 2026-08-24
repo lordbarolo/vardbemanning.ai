@@ -110,7 +110,9 @@ function Index() {
       <Hero rightSlot={<SearchPanel />} />
 
       {/* ── Lönekollen ─────────────────────────────────── */}
-      <LonekollAnimation />
+      <section className="mx-auto w-full max-w-6xl px-6 py-10">
+        <LonekollenHero />
+      </section>
 
       {/* ── Tre pelare ─────────────────────────────────── */}
       <section
