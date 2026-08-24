@@ -1,4 +1,5 @@
-import { createFileRoute, useNavigate } from "@tanstack/react-router";
+import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
+import { useQueryClient } from "@tanstack/react-query";
 
 import { supabase } from "@/integrations/supabase/client";
 import { Button } from "@/components/ui/button";
@@ -22,11 +23,14 @@ export const Route = createFileRoute("/_authenticated/dashboard")({
 
 function Dashboard() {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const { user } = Route.useRouteContext();
 
   async function signOut() {
+    await queryClient.cancelQueries();
+    queryClient.clear();
     await supabase.auth.signOut();
-    navigate({ to: "/auth" });
+    navigate({ to: "/auth", replace: true });
   }
 
   return (
@@ -34,9 +38,16 @@ function Dashboard() {
       <h1 className="text-2xl font-semibold text-foreground">Min sida</h1>
       <p className="mt-2 text-sm text-muted-foreground">Inloggad som {user.email}</p>
       <p className="mt-6 text-sm text-muted-foreground">
-        Backend är kopplad till ditt egna Supabase-projekt. Nästa steg: designtokens, tabeller och
-        AI-assistent.
+        Här samlas dina uppgifter, dokument och AI-assistenten.
       </p>
+      <div className="mt-6">
+        <Link
+          to="/profil"
+          className="inline-flex items-center justify-center rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition-colors hover:bg-primary/90"
+        >
+          Min profil
+        </Link>
+      </div>
       <Button className="mt-8" variant="outline" onClick={signOut}>
         Logga ut
       </Button>

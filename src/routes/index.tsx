@@ -11,6 +11,7 @@ import {
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/brand/Logo";
 import { Hero } from "@/components/home/Hero";
+import { useAuth } from "@/hooks/useAuth";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -75,6 +76,7 @@ function Wordmark() {
 }
 
 function Index() {
+  const { isAuthenticated } = useAuth();
   return (
     <div className="min-h-screen bg-background">
       {/* ── Nav ────────────────────────────────────────── */}
@@ -87,11 +89,19 @@ function Index() {
           <Link to="/" aria-label="Vårdbemanning.ai startsida">
             <Wordmark />
           </Link>
-          <Link to="/auth">
-            <Button variant="ghost" size="sm" className="text-muted-foreground">
-              Logga in
-            </Button>
-          </Link>
+          {isAuthenticated ? (
+            <Link to="/dashboard">
+              <Button variant="ghost" size="sm" className="text-muted-foreground">
+                Min sida
+              </Button>
+            </Link>
+          ) : (
+            <Link to="/auth">
+              <Button variant="ghost" size="sm" className="text-muted-foreground">
+                Logga in
+              </Button>
+            </Link>
+          )}
         </div>
       </nav>
 
