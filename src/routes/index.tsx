@@ -87,11 +87,19 @@ function Index() {
           <Link to="/" aria-label="Vårdbemanning.ai startsida">
             <Wordmark />
           </Link>
-          <Link to="/auth">
-            <Button variant="ghost" size="sm" className="text-muted-foreground">
-              Logga in
-            </Button>
-          </Link>
+          {isAuthenticated ? (
+            <Link to="/dashboard">
+              <Button variant="ghost" size="sm" className="text-muted-foreground">
+                Min sida
+              </Button>
+            </Link>
+          ) : (
+            <Link to="/auth">
+              <Button variant="ghost" size="sm" className="text-muted-foreground">
+                Logga in
+              </Button>
+            </Link>
+          )}
         </div>
       </nav>
 
