@@ -165,7 +165,10 @@ export default function LonekollenHero({
     return () => io.disconnect();
   }, []);
 
-  const roll = CUES["Roll"]!, zon = CUES["Zon"]!, belopp = CUES["Belopp"]!, notis = CUES["Notis"]!;
+  const roll: number = CUES["Roll"] ?? 0,
+    zon: number = CUES["Zon"] ?? 0,
+    belopp: number = CUES["Belopp"] ?? 0,
+    notis: number = CUES["Notis"] ?? 0;
   const D = MOTION.draw;
   const worldO = D(T, 0.45, 0.5);
   const cam = interpolate(
