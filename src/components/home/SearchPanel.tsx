@@ -1,14 +1,16 @@
-import { useEffect, useRef, useState } from "react";
-import { Loader2, Search } from "lucide-react";
+import { useCallback, useEffect, useRef, useState } from "react";
+import { Loader2, RefreshCw, Search } from "lucide-react";
 
 import {
   fetchHeroCompensation,
   formatSek,
   searchMunicipalities,
   searchRoles,
+  SOURCE_UNAVAILABLE_MESSAGE,
   type HeroCompensation,
   type MunicipalityHit,
   type RoleHit,
+  type SourceResult,
 } from "@/lib/compensation";
 
 type ComboProps<T> = {
@@ -18,7 +20,7 @@ type ComboProps<T> = {
   value: string;
   onChange: (value: string) => void;
   onSelect: (item: T) => void;
-  search: (q: string) => Promise<T[]>;
+  search: (q: string) => Promise<SourceResult<T[]>>;
   getKey: (item: T) => string;
   getLabel: (item: T) => string;
   getHint: (item: T) => string;
@@ -37,9 +39,11 @@ function Combobox<T>({
   getHint,
 }: ComboProps<T>) {
   const [items, setItems] = useState<T[]>([]);
+  const [failed, setFailed] = useState(false);
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const skipRef = useRef(false);
+  const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
     if (skipRef.current) {
@@ -49,27 +53,32 @@ function Combobox<T>({
     const q = value.trim();
     if (q.length < 2) {
       setItems([]);
+      setFailed(false);
       return;
     }
     let active = true;
     setLoading(true);
     const timer = setTimeout(() => {
       search(q)
-        .then((hits) => {
+        .then((result) => {
           if (!active) return;
-          setItems(hits);
+          if (result.status === "unavailable") {
+            setItems([]);
+            setFailed(true);
+          } else {
+            setItems(result.status === "ok" ? result.data : []);
+            setFailed(false);
+          }
           setOpen(true);
         })
-        .catch(() => active && setItems([]))
         .finally(() => active && setLoading(false));
     }, 220);
     return () => {
       active = false;
       clearTimeout(timer);
       setLoading(false);
-      clearTimeout(timer);
     };
-  }, [value, search]);
+  }, [value, search, attempt]);
 
   return (
     <div className="relative space-y-2">
@@ -85,7 +94,7 @@ function Combobox<T>({
           value={value}
           autoComplete="off"
           onChange={(e) => onChange(e.target.value)}
-          onFocus={() => items.length > 0 && setOpen(true)}
+          onFocus={() => (items.length > 0 || failed) && setOpen(true)}
           onBlur={() => setTimeout(() => setOpen(false), 150)}
           placeholder={placeholder}
           className="h-12 w-full rounded-md border border-border bg-input px-4 pr-10 text-sm font-medium text-foreground outline-none placeholder:text-muted-foreground focus:border-primary"
@@ -99,25 +108,39 @@ function Combobox<T>({
         </span>
       </div>
 
-      {open && items.length > 0 && (
+      {open && (failed || items.length > 0) && (
         <ul className="absolute z-40 mt-1 max-h-60 w-full overflow-auto rounded-md border border-border bg-card p-1 shadow-2xl">
-          {items.map((item) => (
-            <li key={getKey(item)}>
+          {failed ? (
+            <li>
               <button
                 type="button"
                 onMouseDown={(e) => e.preventDefault()}
-                onClick={() => {
-                  skipRef.current = true;
-                  onSelect(item);
-                  setOpen(false);
-                }}
-                className="flex w-full flex-col items-start rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+                onClick={() => setAttempt((n) => n + 1)}
+                className="flex w-full items-center gap-2 rounded px-3 py-2 text-left text-xs text-foreground hover:bg-muted"
               >
-                <span>{getLabel(item)}</span>
-                <span className="text-xs text-muted-foreground">{getHint(item)}</span>
+                <RefreshCw className="h-3 w-3" aria-hidden="true" />
+                Kunde inte hämta förslag — försök igen
               </button>
             </li>
-          ))}
+          ) : (
+            items.map((item) => (
+              <li key={getKey(item)}>
+                <button
+                  type="button"
+                  onMouseDown={(e) => e.preventDefault()}
+                  onClick={() => {
+                    skipRef.current = true;
+                    onSelect(item);
+                    setOpen(false);
+                  }}
+                  className="flex w-full flex-col items-start rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+                >
+                  <span>{getLabel(item)}</span>
+                  <span className="text-xs text-muted-foreground">{getHint(item)}</span>
+                </button>
+              </li>
+            ))
+          )}
         </ul>
       )}
     </div>
@@ -129,34 +152,67 @@ export function SearchPanel() {
   const [role, setRole] = useState("");
   const [municipality, setMunicipality] = useState("");
   const [result, setResult] = useState<HeroCompensation | null>(null);
-  const [error, setError] = useState("");
+  const [notFound, setNotFound] = useState(false);
+  const [unavailable, setUnavailable] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [attempt, setAttempt] = useState(0);
+
+  const retry = useCallback(() => setAttempt((n) => n + 1), []);
 
   useEffect(() => {
     const r = role.trim();
     const m = municipality.trim();
     if (r.length < 2 || m.length < 2) {
       setResult(null);
+      setNotFound(false);
+      setUnavailable(false);
       return;
     }
     let active = true;
+    let autoRetry: ReturnType<typeof setTimeout> | undefined;
+    let didAutoRetry = false;
     setLoading(true);
-    setError("");
-    const timer = setTimeout(() => {
+
+    const run = () => {
       fetchHeroCompensation(r, m)
-        .then((row) => {
+        .then((res) => {
           if (!active) return;
-          setResult(row);
-          if (!row) setError("Ingen träff på den kombinationen av roll och kommun.");
+          if (res.status === "unavailable") {
+            // Aldrig ett gammalt eller gissat belopp kvar på skärmen.
+            setResult(null);
+            setNotFound(false);
+            if (!didAutoRetry) {
+              didAutoRetry = true;
+              autoRetry = setTimeout(run, 1200);
+              return;
+            }
+            setUnavailable(true);
+          } else if (res.status === "empty") {
+            setResult(null);
+            setNotFound(true);
+            setUnavailable(false);
+          } else {
+            setResult(res.data);
+            setNotFound(false);
+            setUnavailable(false);
+          }
+          setLoading(false);
         })
-        .catch((e) => active && setError(e instanceof Error ? e.message : "Något gick fel"))
-        .finally(() => active && setLoading(false));
-    }, 300);
+        .catch(() => {
+          if (!active) return;
+          setResult(null);
+          setUnavailable(true);
+          setLoading(false);
+        });
+    };
+
+    const timer = setTimeout(run, 300);
     return () => {
       active = false;
       clearTimeout(timer);
+      if (autoRetry) clearTimeout(autoRetry);
     };
-  }, [role, municipality]);
+  }, [role, municipality, attempt]);
 
   const uncertain =
     result && (result.role_match !== "exact" || result.municipality_match !== "exact");
@@ -213,8 +269,27 @@ export function SearchPanel() {
         </p>
       )}
 
-      {error && !loading && (
-        <p className="mt-4 text-xs text-destructive">{error}</p>
+      {unavailable && !loading && (
+        <div
+          role="status"
+          className="mt-4 flex flex-col gap-2 rounded-md border border-destructive/40 bg-destructive/10 px-3 py-3 text-xs text-foreground sm:flex-row sm:items-center sm:justify-between"
+        >
+          <span>{SOURCE_UNAVAILABLE_MESSAGE}</span>
+          <button
+            type="button"
+            onClick={retry}
+            className="inline-flex shrink-0 items-center gap-1.5 rounded border border-border px-2.5 py-1 font-medium text-foreground hover:bg-muted"
+          >
+            <RefreshCw className="h-3 w-3" aria-hidden="true" />
+            Försök igen
+          </button>
+        </div>
+      )}
+
+      {notFound && !loading && (
+        <p className="mt-4 text-xs text-muted-foreground">
+          Ingen träff på den kombinationen av roll och kommun.
+        </p>
       )}
 
       <div className="mt-5 grid gap-3 sm:grid-cols-2">
@@ -252,6 +327,12 @@ export function SearchPanel() {
             {Math.round(result.anstalld_margin * 100)} % (löntagare), arbetsgivaravgift{" "}
             {(result.employer_social_fee * 100).toFixed(2).replace(".", ",")} % och
             tjänstepension {(result.occupational_pension * 100).toFixed(1).replace(".", ",")} %.
+          </p>
+        ) : unavailable ? (
+          <p>
+            Beloppen visas igen så snart avtalsdatan är nåbar. Vi visar aldrig
+            uppskattade eller sparade priser — bara det som går att härleda till
+            ramavtalet.
           </p>
         ) : (
           <p>
