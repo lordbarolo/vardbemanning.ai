@@ -11,6 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/brand/Logo";
 import { Hero } from "@/components/home/Hero";
 import { SearchPanel } from "@/components/home/SearchPanel";
+import LonekollAnimation from "@/components/LonekollAnimation";
 import { useAuth } from "@/hooks/useAuth";
 
 export const Route = createFileRoute("/")({
@@ -107,6 +108,9 @@ function Index() {
 
       {/* ── Hero ───────────────────────────────────────── */}
       <Hero rightSlot={<SearchPanel />} />
+
+      {/* ── Lönekollen ─────────────────────────────────── */}
+      <LonekollAnimation />
 
       {/* ── Tre pelare ─────────────────────────────────── */}
       <section
