@@ -292,7 +292,14 @@ export function SearchPanel() {
         </p>
       )}
 
-      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+      {result && (
+        <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+          Regionpris {formatSek(result.region_price)} kr/tim ·{" "}
+          {result.contract_region}, zon {result.zone}
+        </p>
+      )}
+
+      <div className="mt-2 grid gap-3 sm:grid-cols-2">
         <div className="rounded-xl border border-border/70 bg-background/55 p-4 sm:p-5">
           <p className="mb-2 text-[10px] font-bold uppercase text-muted-foreground">
             Som företagare
@@ -317,12 +324,10 @@ export function SearchPanel() {
         </div>
       </div>
 
-      <div className="mt-5 border-t border-border/60 pt-4 text-xs leading-relaxed text-muted-foreground">
+      <div className="mt-4 border-t border-border/60 pt-4 text-xs leading-relaxed text-muted-foreground">
         {result ? (
           <p>
-            Regionpris {formatSek(result.region_price)} kr/tim ·{" "}
-            {result.contract_region}, zon {result.zone} · artikelnr{" "}
-            {result.article_number}. Marginal{" "}
+            Artikelnr {result.article_number}. Marginal{" "}
             {Math.round(result.foretagare_margin * 100)} % (företagare) respektive{" "}
             {Math.round(result.anstalld_margin * 100)} % (löntagare), arbetsgivaravgift{" "}
             {(result.employer_social_fee * 100).toFixed(2).replace(".", ",")} % och
