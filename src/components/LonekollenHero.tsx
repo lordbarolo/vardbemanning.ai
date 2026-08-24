@@ -160,12 +160,12 @@ export default function LonekollenHero({
   useEffect(() => {
     const el = wrap.current;
     if (!el) return;
-    const io = new IntersectionObserver((e) => setVisible(e[0].isIntersecting), { threshold: 0.05 });
+    const io = new IntersectionObserver((e) => setVisible(!!e[0]?.isIntersecting), { threshold: 0.05 });
     io.observe(el);
     return () => io.disconnect();
   }, []);
 
-  const roll = CUES.Roll, zon = CUES.Zon, belopp = CUES.Belopp, notis = CUES.Notis;
+  const roll = CUES["Roll"]!, zon = CUES["Zon"]!, belopp = CUES["Belopp"]!, notis = CUES["Notis"]!;
   const D = MOTION.draw;
   const worldO = D(T, 0.45, 0.5);
   const cam = interpolate(
