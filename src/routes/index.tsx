@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/brand/Logo";
 import { Hero } from "@/components/home/Hero";
 import { SearchPanel } from "@/components/home/SearchPanel";
-import LonekollAnimation from "@/components/LonekollAnimation";
+import LonekollenHero from "@/components/LonekollenHero";
 import { useAuth } from "@/hooks/useAuth";
 
 export const Route = createFileRoute("/")({
@@ -110,7 +110,9 @@ function Index() {
       <Hero rightSlot={<SearchPanel />} />
 
       {/* ── Lönekollen ─────────────────────────────────── */}
-      <LonekollAnimation />
+      <section className="mx-auto w-full max-w-6xl px-6 py-10">
+        <LonekollenHero />
+      </section>
 
       {/* ── Tre pelare ─────────────────────────────────── */}
       <section
