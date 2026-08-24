@@ -33,14 +33,14 @@ const animate =
 const interpolate =
   (stops: number[], values: number[], ease: Ease = Easing.easeInOutCubic) =>
   (T: number) => {
-    if (T <= stops[0]) return values[0];
+    if (T <= stops[0]!) return values[0]!;
     for (let i = 0; i < stops.length - 1; i++) {
-      if (T <= stops[i + 1]) {
-        const p = (T - stops[i]) / (stops[i + 1] - stops[i]);
-        return lerp(values[i], values[i + 1], ease(clamp(p, 0, 1)));
+      if (T <= stops[i + 1]!) {
+        const p = (T - stops[i]!) / (stops[i + 1]! - stops[i]!);
+        return lerp(values[i]!, values[i + 1]!, ease(clamp(p, 0, 1)));
       }
     }
-    return values[values.length - 1];
+    return values[values.length - 1]!;
   };
 
 /* Tidslinje — samma scenlängder som källanimationen */
