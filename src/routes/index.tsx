@@ -10,6 +10,7 @@ import {
 
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/brand/Logo";
+import { Hero } from "@/components/home/Hero";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -95,33 +96,7 @@ function Index() {
       </nav>
 
       {/* ── Hero ───────────────────────────────────────── */}
-      <section className="hero-dark relative overflow-hidden px-5 pt-14 pb-20 sm:px-6 md:pt-20 md:pb-24" aria-labelledby="hero-heading">
-        <div className="relative z-10 mx-auto max-w-6xl">
-          <div className="max-w-3xl">
-            <a
-              href="#services"
-              className="mb-7 inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/5 px-3 py-1.5 text-[11px] font-semibold text-success transition-colors hover:bg-success/10 sm:text-xs"
-            >
-              Smarta verktyg för läkare och sjuksköterskor
-              <ArrowRight className="h-3 w-3" aria-hidden="true" />
-            </a>
-
-            <h1
-              id="hero-heading"
-              className="mb-5 max-w-2xl text-[2.65rem] leading-[1.08] font-bold text-hero-foreground sm:text-6xl md:text-7xl"
-            >
-              Har du rätt lön?
-            </h1>
-
-            <p className="mb-10 max-w-2xl text-base leading-7 text-hero-foreground/65 sm:text-lg md:mb-12 md:text-xl md:leading-8">
-              Se aktuella ersättningsnivåer för läkare och sjuksköterskor inom bemanning.
-              Sök utifrån din roll och uppdragets kommun.
-            </p>
-          </div>
-
-          <SearchPanel />
-        </div>
-      </section>
+      <Hero rightSlot={<SearchPanel />} />
 
       {/* ── Tre pelare ─────────────────────────────────── */}
       <section
