@@ -77,44 +77,6 @@ function Index() {
       {/* ── Lönekollen ─────────────────────────────────── */}
       <LonekollenHero />
 
-      {/* ── Tre pelare ─────────────────────────────────── */}
-      <section
-        id="services"
-        className="relative z-20 mx-auto max-w-6xl px-6 pt-4 pb-12"
-        aria-label="Tjänster"
-      >
-        <div className="grid gap-6 md:grid-cols-3">
-          {PILLARS.map((pillar) => (
-            <article
-              key={pillar.id}
-              className="glass glow-hover rounded-2xl p-6 shadow-lg md:p-8"
-              data-service={pillar.id}
-            >
-              <pillar.icon className="mb-4 h-8 w-8 text-primary" />
-              <p className="mb-1 text-sm font-semibold text-primary">{pillar.question}</p>
-              <h2 className="mb-3 text-xl font-bold text-foreground">{pillar.title}</h2>
-              <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
-                {pillar.description}
-              </p>
-              <Button variant="outline" size="sm" className="gap-2">
-                {pillar.cta} <ArrowRight className="h-3 w-3" />
-              </Button>
-            </article>
-          ))}
-        </div>
-
-        <div className="mt-10 flex flex-col items-center gap-3 text-center">
-          <p className="max-w-md text-sm text-muted-foreground">
-            Skapa ett konto för att spara analyser, följa marknadspriser över tid och få
-            tillgång till AI-assistenten.
-          </p>
-          <Link to="/auth">
-            <Button size="sm" className="gap-2">
-              Registrera dig kostnadsfritt <ArrowRight className="h-3 w-3" />
-            </Button>
-          </Link>
-        </div>
-      </section>
 
       {/* ── Trust ──────────────────────────────────────── */}
       <section className="mx-auto max-w-4xl px-6 pb-12" aria-label="Datakällor">
