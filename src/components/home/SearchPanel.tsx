@@ -85,7 +85,7 @@ function Combobox<T>({
       <div className="group relative">
         <label
           htmlFor={id}
-          className="pointer-events-none absolute left-4 top-2 z-10 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground"
+          className="pointer-events-none absolute left-4 top-2 z-10 text-xs font-semibold uppercase tracking-wide text-foreground/70"
         >
           {label}
         </label>
@@ -97,7 +97,7 @@ function Combobox<T>({
           onFocus={() => (items.length > 0 || failed) && setOpen(true)}
           onBlur={() => setTimeout(() => setOpen(false), 150)}
           placeholder={placeholder}
-          className="h-[4.25rem] w-full rounded-xl border border-border/70 bg-secondary/40 px-4 pb-2 pt-7 pr-10 text-base font-medium text-foreground outline-none transition-all placeholder:font-normal placeholder:text-muted-foreground/70 hover:bg-secondary/60 focus:border-primary/60 focus:ring-2 focus:ring-primary/40"
+          className="h-[4.25rem] w-full rounded-xl border border-border/70 bg-secondary/40 px-4 pb-2 pt-7 pr-10 text-base font-medium text-foreground outline-none transition-all placeholder:font-normal placeholder:text-muted-foreground hover:bg-secondary/60 focus:border-primary/60 focus:ring-2 focus:ring-primary/40"
         />
         <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground">
           {loading ? (
@@ -223,7 +223,7 @@ export function SearchPanel() {
   return (
     <div className="relative max-w-4xl rounded-2xl border border-border/80 bg-card/90 p-5 text-left shadow-2xl backdrop-blur-xl sm:p-7 md:p-8">
       <div className="mb-7">
-        <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-success">
+        <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-success">
           <span className="relative flex h-2 w-2">
             <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
             <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
@@ -233,7 +233,7 @@ export function SearchPanel() {
         <h2 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
           Se din marknadslön
         </h2>
-        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+        <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-muted-foreground">
           Få en estimering baserad på roll och geografi.
         </p>
       </div>
@@ -273,7 +273,7 @@ export function SearchPanel() {
       </div>
 
       {uncertain && (
-        <p className="mt-4 rounded-md border border-warning/40 bg-warning/10 px-3 py-2 text-xs text-foreground">
+        <p className="mt-4 rounded-md border border-warning/40 bg-warning/10 px-3 py-2 text-sm text-foreground">
           Osäker träff: vi tolkade sökningen som{" "}
           <strong>{result.role_name}</strong> i <strong>{result.municipality_name}</strong>.
           Kontrollera att det stämmer innan du använder beloppet.
@@ -283,7 +283,7 @@ export function SearchPanel() {
       {unavailable && !loading && (
         <div
           role="status"
-          className="mt-4 flex flex-col gap-2 rounded-md border border-destructive/40 bg-destructive/10 px-3 py-3 text-xs text-foreground sm:flex-row sm:items-center sm:justify-between"
+          className="mt-4 flex flex-col gap-2 rounded-md border border-destructive/40 bg-destructive/10 px-3 py-3 text-sm text-foreground sm:flex-row sm:items-center sm:justify-between"
         >
           <span>{SOURCE_UNAVAILABLE_MESSAGE}</span>
           <button
@@ -298,13 +298,13 @@ export function SearchPanel() {
       )}
 
       {notFound && !loading && (
-        <p className="mt-4 text-xs text-muted-foreground">
+        <p className="mt-4 text-sm text-muted-foreground">
           Ingen träff på den kombinationen av roll och kommun.
         </p>
       )}
 
       {result && (
-        <p className="mt-4 text-xs leading-relaxed text-muted-foreground">
+        <p className="mt-4 text-sm leading-relaxed text-foreground/80">
           Regionpris {formatSek(result.region_price)} kr/tim ·{" "}
           {result.contract_region}, zon {result.zone}
         </p>
@@ -312,31 +312,31 @@ export function SearchPanel() {
 
       <div className="mt-2 grid gap-3 sm:grid-cols-2">
         <div className="rounded-xl border border-primary/40 bg-gradient-to-br from-primary/20 to-primary/5 p-4 sm:p-5">
-          <p className="mb-2 text-[11px] font-bold uppercase tracking-wide text-foreground/80">
+          <p className="mb-2 text-xs font-bold uppercase tracking-wide text-foreground/90">
             Som företagare
           </p>
           <div className="flex min-h-9 items-baseline gap-2">
             <span className="text-4xl font-semibold tracking-tight text-foreground">
               {loading ? "…" : result ? formatSek(result.foretagare_hourly) : "—"}
             </span>
-            <span className="text-sm text-muted-foreground">kr/timme</span>
+            <span className="text-sm font-medium text-muted-foreground">kr/timme</span>
           </div>
         </div>
         <div className="rounded-xl border border-border/70 bg-background/55 p-4 sm:p-5">
-          <p className="mb-2 text-[11px] font-bold uppercase tracking-wide text-muted-foreground">
+          <p className="mb-2 text-xs font-bold uppercase tracking-wide text-foreground/70">
             Som löntagare
           </p>
           <div className="flex min-h-9 items-baseline gap-2">
             <span className="text-4xl font-semibold tracking-tight text-foreground">
               {loading ? "…" : result ? formatSek(result.anstalld_gross_hourly) : "—"}
             </span>
-            <span className="text-sm text-muted-foreground">kr/timme brutto</span>
+            <span className="text-sm font-medium text-muted-foreground">kr/timme brutto</span>
           </div>
         </div>
       </div>
 
 
-      <div className="mt-4 border-t border-border/60 pt-4 text-xs leading-relaxed text-muted-foreground">
+      <div className="mt-4 border-t border-border/60 pt-4 text-[0.8125rem] leading-relaxed text-muted-foreground">
         {result ? (
           <p>
             Artikelnr {result.article_number}. Marginal{" "}
