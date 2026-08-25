@@ -330,7 +330,7 @@ export default function LonekollenHero({
               <div style={{ width: 48, height: 48, borderRadius: "50%", background: accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, fontWeight: 800, color: INK, flexShrink: 0 }}>↑</div>
               <div>
                 <div style={{ fontSize: 23, fontWeight: 700 }}>+4,2 % prisjustering</div>
-                <div style={{ fontSize: 17, color: DIM, marginTop: 3 }}>Notis skickad till dig</div>
+                <div style={{ fontSize: 19, color: DIM, marginTop: 3 }}>Anestesiläkare, zon 3</div>
               </div>
             </div>
 
