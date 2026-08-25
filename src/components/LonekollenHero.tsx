@@ -290,10 +290,11 @@ export default function LonekollenHero({
                   )}
                   <div style={{ fontSize: 31, fontWeight: 700 }}>{z.t}</div>
                   <div style={{ fontSize: 20, color: DIM, marginTop: 6 }}>{z.s}</div>
-                  <div style={{ fontFamily: MONO, fontSize: 35, fontWeight: 600, marginTop: 40 }}>
+                  <div style={{ fontFamily: MONO, fontSize: 35, fontWeight: 600, marginTop: 26, lineHeight: 1.1 }}>
                     {fmt(z.r)} <span style={{ fontSize: 19, color: DIM }}>kr/h</span>
                   </div>
-                  <div style={{ fontSize: 15, color: DIM, marginTop: 4 }}>regionpris</div>
+                  <div style={{ fontSize: 15, color: DIM, marginTop: 4, lineHeight: 1.2 }}>regionpris</div>
+
                 </div>
               );
             })}
