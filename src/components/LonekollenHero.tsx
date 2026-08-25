@@ -160,7 +160,7 @@ export default function LonekollenHero({
   useEffect(() => {
     const el = wrap.current;
     if (!el) return;
-    const io = new IntersectionObserver((e) => setVisible(e[0].isIntersecting), { threshold: 0.05 });
+    const io = new IntersectionObserver((e) => setVisible(e[0]?.isIntersecting ?? true), { threshold: 0.05 });
     io.observe(el);
     return () => io.disconnect();
   }, []);
