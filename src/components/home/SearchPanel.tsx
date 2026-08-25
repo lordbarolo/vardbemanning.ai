@@ -311,29 +311,30 @@ export function SearchPanel() {
       )}
 
       <div className="mt-2 grid gap-3 sm:grid-cols-2">
-        <div className="rounded-xl border border-border/70 bg-background/55 p-4 sm:p-5">
-          <p className="mb-2 text-[10px] font-bold uppercase text-muted-foreground">
+        <div className="rounded-xl border border-primary/40 bg-gradient-to-br from-primary/20 to-primary/5 p-4 sm:p-5">
+          <p className="mb-2 text-[11px] font-bold uppercase tracking-wide text-foreground/80">
             Som företagare
           </p>
           <div className="flex min-h-9 items-baseline gap-2">
-            <span className="text-3xl font-semibold text-foreground">
+            <span className="text-4xl font-semibold tracking-tight text-foreground">
               {loading ? "…" : result ? formatSek(result.foretagare_hourly) : "—"}
             </span>
-            <span className="text-xs text-muted-foreground">kr/timme</span>
+            <span className="text-sm text-muted-foreground">kr/timme</span>
           </div>
         </div>
         <div className="rounded-xl border border-border/70 bg-background/55 p-4 sm:p-5">
-          <p className="mb-2 text-[10px] font-bold uppercase text-muted-foreground">
+          <p className="mb-2 text-[11px] font-bold uppercase tracking-wide text-muted-foreground">
             Som löntagare
           </p>
           <div className="flex min-h-9 items-baseline gap-2">
-            <span className="text-3xl font-semibold text-foreground">
+            <span className="text-4xl font-semibold tracking-tight text-foreground">
               {loading ? "…" : result ? formatSek(result.anstalld_gross_hourly) : "—"}
             </span>
-            <span className="text-xs text-muted-foreground">kr/timme brutto</span>
+            <span className="text-sm text-muted-foreground">kr/timme brutto</span>
           </div>
         </div>
       </div>
+
 
       <div className="mt-4 border-t border-border/60 pt-4 text-xs leading-relaxed text-muted-foreground">
         {result ? (
