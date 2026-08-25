@@ -1,11 +1,5 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
-import {
-  ArrowRight,
-  CheckCircle2,
-  FileSearch,
-  MessageSquare,
-  ShieldCheck,
-} from "lucide-react";
+import { CheckCircle2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Logo } from "@/components/brand/Logo";
@@ -35,35 +29,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const PILLARS = [
-  {
-    id: "salary-analysis",
-    question: "Tjänar jag rätt?",
-    title: "Ersättningsanalys",
-    description:
-      "Jämför din ersättning med ramavtalspriserna i realtid. 290 kommuner, alla specialiseringar — för konsulter och de som vill bli det.",
-    icon: ShieldCheck,
-    cta: "Analysera din ersättning",
-  },
-  {
-    id: "invoice-audit",
-    question: "Fakturerar jag rätt?",
-    title: "Fakturagranskning",
-    description:
-      "AI-assistenten granskar dina fakturor retroaktivt för att se om du missat att fakturera för redan arbetad tid. Finns det avvikelser hittar vi dem.",
-    icon: FileSearch,
-    cta: "Granska fakturor",
-  },
-  {
-    id: "negotiation-agent",
-    question: "Förhandlar jag rätt?",
-    title: "Förhandlingsassistent",
-    description:
-      "Ställ frågor om marknadspriser, avtalsvillkor och förhandlingsstrategier. Assistenten ger dig underlag inför ditt nästa konsultuppdrag.",
-    icon: MessageSquare,
-    cta: "Starta förhandling",
-  },
-] as const;
 
 const TRUST_POINTS = [
   "Baserat på officiella ramavtal",
@@ -112,44 +77,6 @@ function Index() {
       {/* ── Lönekollen ─────────────────────────────────── */}
       <LonekollenHero />
 
-      {/* ── Tre pelare ─────────────────────────────────── */}
-      <section
-        id="services"
-        className="relative z-20 mx-auto max-w-6xl px-6 pt-4 pb-12"
-        aria-label="Tjänster"
-      >
-        <div className="grid gap-6 md:grid-cols-3">
-          {PILLARS.map((pillar) => (
-            <article
-              key={pillar.id}
-              className="glass glow-hover rounded-2xl p-6 shadow-lg md:p-8"
-              data-service={pillar.id}
-            >
-              <pillar.icon className="mb-4 h-8 w-8 text-primary" />
-              <p className="mb-1 text-sm font-semibold text-primary">{pillar.question}</p>
-              <h2 className="mb-3 text-xl font-bold text-foreground">{pillar.title}</h2>
-              <p className="mb-6 text-sm leading-relaxed text-muted-foreground">
-                {pillar.description}
-              </p>
-              <Button variant="outline" size="sm" className="gap-2">
-                {pillar.cta} <ArrowRight className="h-3 w-3" />
-              </Button>
-            </article>
-          ))}
-        </div>
-
-        <div className="mt-10 flex flex-col items-center gap-3 text-center">
-          <p className="max-w-md text-sm text-muted-foreground">
-            Skapa ett konto för att spara analyser, följa marknadspriser över tid och få
-            tillgång till AI-assistenten.
-          </p>
-          <Link to="/auth">
-            <Button size="sm" className="gap-2">
-              Registrera dig kostnadsfritt <ArrowRight className="h-3 w-3" />
-            </Button>
-          </Link>
-        </div>
-      </section>
 
       {/* ── Trust ──────────────────────────────────────── */}
       <section className="mx-auto max-w-4xl px-6 pb-12" aria-label="Datakällor">
