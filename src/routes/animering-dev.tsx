@@ -35,14 +35,25 @@ function AnimeringDev() {
       {/* Övergångssektionen: mörk topp → ljus botten */}
       <section
         aria-label="Lönekollen-animation"
+        className="relative isolate"
         style={{
           background:
-            "linear-gradient(180deg, hsl(260 60% 4%) 0%, hsl(260 56% 5%) 50%, hsl(259 45% 12%) 75%, hsl(256 38% 46%) 90%, hsl(250 40% 96%) 100%)",
+            "linear-gradient(180deg, hsl(260 60% 4%) 0%, hsl(260 58% 4.4%) 55%, hsl(259 45% 12%) 76%, hsl(256 38% 46%) 90%, hsl(250 40% 96%) 100%)",
         }}
       >
+        {/* Mjuk skarv mot hero: samma färg som herons botten, tonar ut nedåt */}
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute inset-x-0 top-0 z-10 h-56"
+          style={{
+            background:
+              "linear-gradient(180deg, hsl(260 60% 4%) 0%, hsl(260 60% 4% / 0.85) 35%, hsl(260 60% 4% / 0.45) 65%, hsl(260 60% 4% / 0) 100%)",
+          }}
+        />
 
         <LonekollenHeroDawn />
       </section>
+
 
       {/* Platshållare för kommande ljusa sektioner */}
       <section

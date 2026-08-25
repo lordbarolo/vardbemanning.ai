@@ -308,9 +308,10 @@ export default function LonekollenHeroDawn({
     <div ref={wrap} className={className} style={{ width: "100%", aspectRatio: "16 / 9", overflow: "hidden" }}>
       <div style={{ width: 1920, height: 1080, transform: "scale(" + scale + ")", transformOrigin: "top left", position: "relative" }}>
         <div style={{ position: "absolute", inset: 0, overflow: "hidden", fontFamily: F }}>
-          {/* Glow lever i den mörka övre halvan och tonar ut nedåt */}
-          <div style={{ position: "absolute", left: 140 + 90 * wob, top: -240 + 40 * wob, width: 760, height: 760, borderRadius: "50%", background: `radial-gradient(circle, ${rgba(PRIMARY, 0.22 * glowStrength)} 0%, transparent 68%)` }} />
-          <div style={{ position: "absolute", right: 60 - 90 * wob, top: -140 - 30 * wob, width: 720, height: 720, borderRadius: "50%", background: `radial-gradient(circle, ${rgba(ACCENT, 0.12 * glowStrength)} 0%, transparent 66%)` }} />
+          {/* Glow ligger helt innanför ytan så inga hårda kanter uppstår vid skarven */}
+          <div style={{ position: "absolute", left: 140 + 90 * wob, top: 60 + 40 * wob, width: 760, height: 760, borderRadius: "50%", background: `radial-gradient(circle, ${rgba(PRIMARY, 0.20 * glowStrength)} 0%, transparent 70%)` }} />
+          <div style={{ position: "absolute", right: 100 - 90 * wob, top: 40 - 30 * wob, width: 720, height: 720, borderRadius: "50%", background: `radial-gradient(circle, ${rgba(ACCENT, 0.11 * glowStrength)} 0%, transparent 68%)` }} />
+
 
 
           <div style={{ position: "absolute", inset: 0, opacity: worldO, transform: "scale(" + cam + ")", transformOrigin: "960px 560px" }}>
