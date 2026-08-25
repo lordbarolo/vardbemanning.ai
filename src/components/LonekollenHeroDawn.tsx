@@ -306,18 +306,19 @@ export default function LonekollenHeroDawn({
   return (
     <div ref={wrap} className={className} style={{ width: "100%", aspectRatio: "16 / 9", overflow: "hidden" }}>
       <div style={{ width: 1920, height: 1080, transform: "scale(" + scale + ")", transformOrigin: "top left", position: "relative" }}>
-        <div style={{ position: "absolute", inset: 0, overflow: "hidden", fontFamily: F, color: INK }}>
-          {/* Glow som tonar ut när scenen ljusnar */}
-          <div style={{ position: "absolute", left: 140 + 90 * wob, top: -180 + 40 * wob, width: 760, height: 760, borderRadius: "50%", background: `radial-gradient(circle, ${rgba(PRIMARY, 0.26 * glowStrength + 0.03)} 0%, transparent 68%)` }} />
-          <div style={{ position: "absolute", right: 80 - 90 * wob, bottom: -220 - 40 * wob, width: 860, height: 860, borderRadius: "50%", background: `radial-gradient(circle, ${rgba(ACCENT, 0.2 * glowStrength + 0.03)} 0%, transparent 68%)` }} />
+        <div style={{ position: "absolute", inset: 0, overflow: "hidden", fontFamily: F }}>
+          {/* Glow lever i den mörka övre halvan och tonar ut nedåt */}
+          <div style={{ position: "absolute", left: 140 + 90 * wob, top: -180 + 40 * wob, width: 760, height: 760, borderRadius: "50%", background: `radial-gradient(circle, ${rgba(PRIMARY, 0.26 * glowStrength)} 0%, transparent 68%)` }} />
+          <div style={{ position: "absolute", right: 80 - 90 * wob, bottom: -220 - 40 * wob, width: 860, height: 860, borderRadius: "50%", background: `radial-gradient(circle, ${rgba(ACCENT, 0.14 * glowStrength)} 0%, transparent 68%)` }} />
 
           <div style={{ position: "absolute", inset: 0, opacity: worldO, transform: "scale(" + cam + ")", transformOrigin: "960px 560px" }}>
             <div style={{ position: "absolute", left: 0, right: 0, textAlign: "center", transform: "translateY(" + hUp + "px) scale(" + hSc + ")", top: 230, transformOrigin: "50% 0%" }}>
-              <div style={{ ...MOTION.enter(T, 0.8), fontSize: 116, fontWeight: 800, letterSpacing: -3.4, lineHeight: 1.0, color: INK }}>Vad är din tid värd?</div>
-              <div style={{ ...MOTION.enter(T, 1.15), opacity: Easing.easeOutCubic(P(T, 1.15, 0.6)) * (1 - D(T, roll - 0.4, 0.4)), fontSize: 32, color: DIM, marginTop: 26, fontWeight: 600 }}>
+              <div style={{ ...MOTION.enter(T, 0.8), fontSize: 116, fontWeight: 800, letterSpacing: -3.4, lineHeight: 1.0, color: tone(230 + hUp).ink }}>Vad är din tid värd?</div>
+              <div style={{ ...MOTION.enter(T, 1.15), opacity: Easing.easeOutCubic(P(T, 1.15, 0.6)) * (1 - D(T, roll - 0.4, 0.4)), fontSize: 32, color: tone(370).dim, marginTop: 26, fontWeight: 600 }}>
                 Transparent lönedata från regionernas ramavtal.
               </div>
             </div>
+
 
             {CHIPS.map((c, i) => {
               const r = chipRect(i);
