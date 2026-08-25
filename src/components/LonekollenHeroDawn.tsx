@@ -217,13 +217,14 @@ export default function LonekollenHeroDawn({
   const bgLum = (y: number) =>
     clamp(
       interpolate(
-        [0, 0.18, 0.45, 0.72, 1],
-        [0.0, 0.05, 0.18, 0.62, 1.0],
+        [0, 0.5, 0.75, 0.9, 1],
+        [0.0, 0.02, 0.09, 0.45, 1.0],
         Easing.easeInOutCubic
       )(clamp(y / 1080, 0, 1)),
       0,
       1
     );
+
 
   const tone = (y: number) => {
     const l = bgLum(y);
@@ -308,8 +309,9 @@ export default function LonekollenHeroDawn({
       <div style={{ width: 1920, height: 1080, transform: "scale(" + scale + ")", transformOrigin: "top left", position: "relative" }}>
         <div style={{ position: "absolute", inset: 0, overflow: "hidden", fontFamily: F }}>
           {/* Glow lever i den mörka övre halvan och tonar ut nedåt */}
-          <div style={{ position: "absolute", left: 140 + 90 * wob, top: -180 + 40 * wob, width: 760, height: 760, borderRadius: "50%", background: `radial-gradient(circle, ${rgba(PRIMARY, 0.26 * glowStrength)} 0%, transparent 68%)` }} />
-          <div style={{ position: "absolute", right: 80 - 90 * wob, bottom: -220 - 40 * wob, width: 860, height: 860, borderRadius: "50%", background: `radial-gradient(circle, ${rgba(ACCENT, 0.14 * glowStrength)} 0%, transparent 68%)` }} />
+          <div style={{ position: "absolute", left: 140 + 90 * wob, top: -240 + 40 * wob, width: 760, height: 760, borderRadius: "50%", background: `radial-gradient(circle, ${rgba(PRIMARY, 0.22 * glowStrength)} 0%, transparent 68%)` }} />
+          <div style={{ position: "absolute", right: 60 - 90 * wob, top: -140 - 30 * wob, width: 720, height: 720, borderRadius: "50%", background: `radial-gradient(circle, ${rgba(ACCENT, 0.12 * glowStrength)} 0%, transparent 66%)` }} />
+
 
           <div style={{ position: "absolute", inset: 0, opacity: worldO, transform: "scale(" + cam + ")", transformOrigin: "960px 560px" }}>
             <div style={{ position: "absolute", left: 0, right: 0, textAlign: "center", transform: "translateY(" + hUp + "px) scale(" + hSc + ")", top: 230, transformOrigin: "50% 0%" }}>
