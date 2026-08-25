@@ -354,14 +354,16 @@ export default function LonekollenHeroDawn({
               const inP = MOTION.pop(T, zon + 0.3 + i * 0.15);
               const outP = D(T, belopp - 0.05, 0.5);
               const sel = i === 2 && selZone;
+              const top = ZONE_Y - 24 * outP - (sel ? 8 : 0);
+              const tn = tone(top + ZONE_H / 2);
               return (
                 <div
                   key={z.t}
                   style={{
-                    position: "absolute", left: zoneX(i), top: ZONE_Y - 24 * outP - (sel ? 8 : 0),
-                    width: ZONE_W, height: ZONE_H, borderRadius: 22, background: CARD,
-                    border: sel ? "3px solid " + PRIMARY : "2px solid " + LINE,
-                    boxShadow: sel ? `0 20px 46px ${rgba(PRIMARY, 0.4)}` : shadowSoft,
+                    position: "absolute", left: zoneX(i), top,
+                    width: ZONE_W, height: ZONE_H, borderRadius: 22, background: tn.card,
+                    border: sel ? "3px solid " + PRIMARY : "2px solid " + tn.line,
+                    boxShadow: sel ? `0 20px 46px ${rgba(PRIMARY, 0.4)}` : tn.shadow,
                     padding: "30px 34px", boxSizing: "border-box",
                     opacity: inP.opacity * (1 - outP), transform: inP.transform,
                   }}
@@ -371,58 +373,69 @@ export default function LonekollenHeroDawn({
                       HÖGST ERSÄTTNING
                     </div>
                   )}
-                  <div style={{ fontSize: 31, fontWeight: 700, color: INK }}>{z.t}</div>
-                  <div style={{ fontSize: 20, color: DIM, marginTop: 6 }}>{z.s}</div>
-                  <div style={{ fontFamily: MONO, fontSize: 35, fontWeight: 600, marginTop: 26, lineHeight: 1.1, color: INK }}>
-                    {fmt(z.r)} <span style={{ fontSize: 19, color: DIM }}>kr/h</span>
+                  <div style={{ fontSize: 31, fontWeight: 700, color: tn.ink }}>{z.t}</div>
+                  <div style={{ fontSize: 20, color: tn.dim, marginTop: 6 }}>{z.s}</div>
+                  <div style={{ fontFamily: MONO, fontSize: 35, fontWeight: 600, marginTop: 26, lineHeight: 1.1, color: tn.ink }}>
+                    {fmt(z.r)} <span style={{ fontSize: 19, color: tn.dim }}>kr/h</span>
                   </div>
-                  <div style={{ fontSize: 18, color: DIM, marginTop: 4, lineHeight: 1.2 }}>regionpris</div>
+                  <div style={{ fontSize: 18, color: tn.dim, marginTop: 4, lineHeight: 1.2 }}>regionpris</div>
                 </div>
               );
             })}
 
-            <div style={{ ...MOTION.pop(T, belopp + 0.3, 0.6), position: "absolute", left: 580, top: 348, width: 760, height: 452, borderRadius: 26, background: CARD, border: "2px solid " + LINE, boxShadow: shadowSoft, padding: "42px 48px", boxSizing: "border-box" }}>
-              <div style={{ fontFamily: MONO, fontSize: 18, letterSpacing: 3, fontWeight: 600, color: DIM }}>DIN ERSÄTTNING · ZON 3</div>
-              <div style={{ display: "flex", alignItems: "baseline", gap: 18, marginTop: 18 }}>
-                <div style={{ fontFamily: MONO, fontSize: 118, fontWeight: 700, letterSpacing: -3, fontVariantNumeric: "tabular-nums", color: INK }}>{fmt(bigV)}</div>
-                <div style={{ fontSize: 34, color: DIM, fontWeight: 500 }}>kr/h</div>
-              </div>
-              <div style={{ marginTop: 30, display: "flex", flexDirection: "column", gap: 20 }}>
-                <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-                  <div style={{ width: 160, fontSize: 21, fontWeight: 600, color: INK }}>Företagare</div>
-                  <div style={{ width: 360, height: 14, borderRadius: 7, background: TRACK }}>
-                    <div style={{ width: 360 * (1572.56 / 1787) * bar1, height: 14, borderRadius: 7, background: PRIMARY }} />
+            {(() => {
+              const tn = tone(348 + 452 / 2);
+              return (
+                <div style={{ ...MOTION.pop(T, belopp + 0.3, 0.6), position: "absolute", left: 580, top: 348, width: 760, height: 452, borderRadius: 26, background: tn.card, border: "2px solid " + tn.line, boxShadow: tn.shadow, padding: "42px 48px", boxSizing: "border-box" }}>
+                  <div style={{ fontFamily: MONO, fontSize: 18, letterSpacing: 3, fontWeight: 600, color: tn.dim }}>DIN ERSÄTTNING · ZON 3</div>
+                  <div style={{ display: "flex", alignItems: "baseline", gap: 18, marginTop: 18 }}>
+                    <div style={{ fontFamily: MONO, fontSize: 118, fontWeight: 700, letterSpacing: -3, fontVariantNumeric: "tabular-nums", color: tn.ink }}>{fmt(bigV)}</div>
+                    <div style={{ fontSize: 34, color: tn.dim, fontWeight: 500 }}>kr/h</div>
                   </div>
-                  <div style={{ fontFamily: MONO, fontSize: 21, fontWeight: 600, fontVariantNumeric: "tabular-nums", color: INK }}>{fmt(1572.56 * bar1)}</div>
-                </div>
-                <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-                  <div style={{ width: 160, fontSize: 21, fontWeight: 600, color: DIM }}>Regionpris</div>
-                  <div style={{ width: 360, height: 14, borderRadius: 7, background: TRACK }}>
-                    <div style={{ width: 360 * bar2, height: 14, borderRadius: 7, background: mix("#5B4B92", "#B9AEE4", L) }} />
+                  <div style={{ marginTop: 30, display: "flex", flexDirection: "column", gap: 20 }}>
+                    <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+                      <div style={{ width: 160, fontSize: 21, fontWeight: 600, color: tn.ink }}>Företagare</div>
+                      <div style={{ width: 360, height: 14, borderRadius: 7, background: tn.track }}>
+                        <div style={{ width: 360 * (1572.56 / 1787) * bar1, height: 14, borderRadius: 7, background: PRIMARY }} />
+                      </div>
+                      <div style={{ fontFamily: MONO, fontSize: 21, fontWeight: 600, fontVariantNumeric: "tabular-nums", color: tn.ink }}>{fmt(1572.56 * bar1)}</div>
+                    </div>
+                    <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
+                      <div style={{ width: 160, fontSize: 21, fontWeight: 600, color: tn.dim }}>Regionpris</div>
+                      <div style={{ width: 360, height: 14, borderRadius: 7, background: tn.track }}>
+                        <div style={{ width: 360 * bar2, height: 14, borderRadius: 7, background: mix("#6B5BA8", "#B9AEE4", tn.l) }} />
+                      </div>
+                      <div style={{ fontFamily: MONO, fontSize: 21, fontWeight: 600, fontVariantNumeric: "tabular-nums", color: tn.ink }}>{fmt(lonV)}</div>
+                    </div>
                   </div>
-                  <div style={{ fontFamily: MONO, fontSize: 21, fontWeight: 600, fontVariantNumeric: "tabular-nums", color: INK }}>{fmt(lonV)}</div>
+                  <div style={{ ...MOTION.enter(T, belopp + 2.4, 0.5), fontSize: 20, color: tn.dim, marginTop: 28, lineHeight: 1.3 }}>
+                    Anestesiläkare · Källa: SKR:s ramavtal 2026
+                  </div>
                 </div>
-              </div>
-              <div style={{ ...MOTION.enter(T, belopp + 2.4, 0.5), fontSize: 20, color: DIM, marginTop: 28, lineHeight: 1.3 }}>
-                Anestesiläkare · Källa: SKR:s ramavtal 2026
-              </div>
-            </div>
+              );
+            })()}
 
-            <div style={{ ...MOTION.pop(T, notis + 0.35, 0.55), position: "absolute", left: 1206, top: 300, width: 392, height: 108, borderRadius: 20, background: CARD, border: "2px solid " + LINE, boxShadow: shadowSoft, display: "flex", alignItems: "center", gap: 20, padding: "0 26px", boxSizing: "border-box" }}>
-              <div style={{ width: 48, height: 48, borderRadius: "50%", background: PRIMARY, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, fontWeight: 800, color: ON_PRIMARY, flexShrink: 0 }}>↑</div>
-              <div>
-                <div style={{ fontSize: 23, fontWeight: 700, color: INK }}>+4,2 % prisjustering</div>
-                <div style={{ fontSize: 19, color: DIM, marginTop: 3 }}>Anestesiläkare, zon 3</div>
-              </div>
-            </div>
+            {(() => {
+              const tn = tone(300 + 54);
+              return (
+                <div style={{ ...MOTION.pop(T, notis + 0.35, 0.55), position: "absolute", left: 1206, top: 300, width: 392, height: 108, borderRadius: 20, background: tn.card, border: "2px solid " + tn.line, boxShadow: tn.shadow, display: "flex", alignItems: "center", gap: 20, padding: "0 26px", boxSizing: "border-box" }}>
+                  <div style={{ width: 48, height: 48, borderRadius: "50%", background: PRIMARY, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, fontWeight: 800, color: ON_PRIMARY, flexShrink: 0 }}>↑</div>
+                  <div>
+                    <div style={{ fontSize: 23, fontWeight: 700, color: tn.ink }}>+4,2 % prisjustering</div>
+                    <div style={{ fontSize: 19, color: tn.dim, marginTop: 3 }}>Anestesiläkare, zon 3</div>
+                  </div>
+                </div>
+              );
+            })()}
 
             {ring(clickChip, chipX(SEL) + CHIP_W / 2 + 8, CHIP_Y + CHIP_H / 2 + 8)}
             {ring(clickZone, zoneX(2) + ZONE_W / 2 + 10, ZONE_Y + ZONE_H / 2 + 16)}
 
-            <div style={{ position: "absolute", left: curX, top: curY, opacity: curO, transform: "translate(-50%,-50%) scale(" + curS + ")", width: 26, height: 26, borderRadius: "50%", background: CARD, border: "2.5px solid " + rgba(PRIMARY, 0.7), boxShadow: shadowSoft }} />
+            <div style={{ position: "absolute", left: curX, top: curY, opacity: curO, transform: "translate(-50%,-50%) scale(" + curS + ")", width: 26, height: 26, borderRadius: "50%", background: tone(curY).card, border: "2.5px solid " + rgba(PRIMARY, 0.7), boxShadow: tone(curY).shadow }} />
           </div>
-          {captions && <Captions T={T} items={captionItems} color={INK} />}
+          {captions && <Captions T={T} items={captionItems} color={tone(918).ink} />}
         </div>
+
       </div>
     </div>
   );
