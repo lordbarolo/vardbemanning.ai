@@ -307,7 +307,7 @@ export default function LonekollenHero({
               </div>
               <div style={{ marginTop: 30, display: "flex", flexDirection: "column", gap: 20 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-                  <div style={{ width: 132, fontSize: 19, color: DIM }}>Företagare</div>
+                  <div style={{ width: 160, fontSize: 21, fontWeight: 600, color: INK }}>Företagare</div>
                   <div style={{ width: 360, height: 14, borderRadius: 7, background: "#EAF4F6" }}>
                     <div style={{ width: 360 * (1572.56 / 1787) * bar1, height: 14, borderRadius: 7, background: accent }} />
                   </div>
