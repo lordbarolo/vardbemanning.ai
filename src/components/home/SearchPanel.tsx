@@ -223,13 +223,21 @@ export function SearchPanel() {
   return (
     <div className="relative max-w-4xl rounded-2xl border border-border/80 bg-card/90 p-5 text-left shadow-2xl backdrop-blur-xl sm:p-7 md:p-8">
       <div className="mb-7">
-        <h2 className="mb-1 text-xs font-bold uppercase text-success">
-          AI-indikator för konsultersättning
+        <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-3 py-1 text-[11px] font-semibold uppercase tracking-wide text-success">
+          <span className="relative flex h-2 w-2">
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
+          </span>
+          AI-analyserad avtalsdata
+        </span>
+        <h2 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
+          Se din marknadslön
         </h2>
-        <p className="text-sm leading-relaxed text-muted-foreground">
-          Välj roll och kommun för att se möjlig ersättning.
+        <p className="mt-1 text-sm leading-relaxed text-muted-foreground">
+          Få en estimering baserad på roll och geografi.
         </p>
       </div>
+
 
       <div className="grid gap-4 sm:grid-cols-2">
         <Combobox<RoleHit>
