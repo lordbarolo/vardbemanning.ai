@@ -209,21 +209,40 @@ export default function LonekollenHeroDawn({
   const D = MOTION.draw;
 
   /* Ljushetskurva: mörk i öppningen, ljus i slutet, tillbaka till mörk inför loopen */
-  const L = interpolate(
-    [0, zon - 0.2, belopp + 0.3, notis + 0.6, AT - 0.8, AT],
-    [0, 0.12, 0.55, 0.95, 0.95, 0],
-    Easing.easeInOutCubic
-  )(T);
+  /**
+   * Ljushet följer bakgrunden, inte klockan: sektionens gradient går från mörk
+   * topp till ljus botten, så varje element färgas efter sitt eget y-läge.
+   * Det håller kontrasten korrekt i varje bildruta.
+   */
+  const bgLum = (y: number) =>
+    clamp(
+      interpolate(
+        [0, 0.18, 0.45, 0.72, 1],
+        [0.0, 0.05, 0.18, 0.62, 1.0],
+        Easing.easeInOutCubic
+      )(clamp(y / 1080, 0, 1)),
+      0,
+      1
+    );
 
-  const INK = mix(DARK.ink, LIGHT.ink, L);
-  const DIM = mix(DARK.dim, LIGHT.dim, L);
-  const LINE = mix(DARK.line, LIGHT.line, L);
-  const CARD = mix(DARK.card, LIGHT.card, L);
-  const TRACK = mix(DARK.track, LIGHT.track, L);
-  const shadowSoft = L < 0.5
-    ? `0 18px 44px ${rgba("#05030F", 0.55 * (1 - L) + 0.1)}`
-    : `0 14px 34px rgba(23, 17, 37, ${0.06 + 0.04 * (1 - L)})`;
-  const glowStrength = 1 - L;
+  const tone = (y: number) => {
+    const l = bgLum(y);
+    return {
+      l,
+      ink: mix(DARK.ink, LIGHT.ink, l),
+      dim: mix(DARK.dim, LIGHT.dim, l),
+      line: mix(DARK.line, LIGHT.line, l),
+      card: mix(DARK.card, LIGHT.card, l),
+      track: mix(DARK.track, LIGHT.track, l),
+      shadow:
+        l < 0.5
+          ? `0 18px 44px ${rgba("#05030F", 0.5 * (1 - l) + 0.12)}`
+          : `0 14px 34px rgba(23, 17, 37, ${0.06 + 0.06 * (1 - l)})`,
+    };
+  };
+
+  const glowStrength = 1;
+
 
   const worldO = D(T, 0.45, 0.5);
   const cam = interpolate(
