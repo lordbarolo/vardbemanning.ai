@@ -111,8 +111,8 @@ function Captions({ T, items }: { T: number; items: { at: number; until?: number
   return (
     <div
       style={{
-        position: "absolute", left: 0, right: 0, bottom: "18%", textAlign: "center",
-        font: "600 26px " + F, color: "#3E6069", opacity: o,
+        position: "absolute", left: 0, right: 0, bottom: "15%", textAlign: "center",
+        font: "600 36px " + F, color: INK, letterSpacing: -0.5, opacity: o,
       }}
     >
       {active.text}
