@@ -325,16 +325,18 @@ export default function LonekollenHeroDawn({
               const inP = MOTION.pop(T, roll + 0.25 + i * 0.12);
               const outO = i === SEL ? 1 : 1 - D(T, zon - 0.15, 0.45);
               const sel = i === SEL && selChip;
+              const top = r.top - (i === SEL ? 0 : 22 * D(T, zon - 0.15, 0.45));
+              const tn = tone(top + r.height / 2);
               return (
                 <div
                   key={c}
                   style={{
-                    position: "absolute", left: r.left, top: r.top - (i === SEL ? 0 : 22 * D(T, zon - 0.15, 0.45)),
+                    position: "absolute", left: r.left, top,
                     width: r.width, height: r.height, borderRadius: 999, display: "flex", alignItems: "center",
                     justifyContent: "center", fontSize: r.fs, fontWeight: 600,
-                    background: sel ? PRIMARY : CARD, color: sel ? ON_PRIMARY : INK,
-                    border: "2px solid " + (sel ? PRIMARY : LINE),
-                    boxShadow: sel ? `0 12px 30px ${rgba(PRIMARY, 0.45)}` : shadowSoft,
+                    background: sel ? PRIMARY : tn.card, color: sel ? ON_PRIMARY : tn.ink,
+                    border: "2px solid " + (sel ? PRIMARY : tn.line),
+                    boxShadow: sel ? `0 12px 30px ${rgba(PRIMARY, 0.45)}` : tn.shadow,
                     opacity: inP.opacity * outO, transform: inP.transform,
                   }}
                 >
@@ -343,9 +345,10 @@ export default function LonekollenHeroDawn({
               );
             })}
 
-            <div style={{ ...MOTION.pop(T, belopp + 0.15), position: "absolute", left: 998, top: 250, width: 246, height: 48, borderRadius: 999, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 19, fontWeight: 600, background: CARD, color: INK, border: "2px solid " + LINE, boxShadow: shadowSoft }}>
+            <div style={{ ...MOTION.pop(T, belopp + 0.15), position: "absolute", left: 998, top: 250, width: 246, height: 48, borderRadius: 999, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 19, fontWeight: 600, background: tone(274).card, color: tone(274).ink, border: "2px solid " + tone(274).line, boxShadow: tone(274).shadow }}>
               Zon 3 · Glesbygd
             </div>
+
 
             {ZONES.map((z, i) => {
               const inP = MOTION.pop(T, zon + 0.3 + i * 0.15);
