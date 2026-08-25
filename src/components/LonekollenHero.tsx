@@ -314,7 +314,7 @@ export default function LonekollenHero({
                   <div style={{ fontFamily: MONO, fontSize: 21, fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{fmt(1572.56 * bar1)}</div>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-                  <div style={{ width: 132, fontSize: 19, color: DIM }}>Regionpris</div>
+                  <div style={{ width: 160, fontSize: 21, fontWeight: 600, color: DIM }}>Regionpris</div>
                   <div style={{ width: 360, height: 14, borderRadius: 7, background: "#EAF4F6" }}>
                     <div style={{ width: 360 * bar2, height: 14, borderRadius: 7, background: "#9BC7CE" }} />
                   </div>
