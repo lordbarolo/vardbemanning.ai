@@ -111,8 +111,8 @@ function Captions({ T, items }: { T: number; items: { at: number; until?: number
   return (
     <div
       style={{
-        position: "absolute", left: 0, right: 0, bottom: "18%", textAlign: "center",
-        font: "600 26px " + F, color: "#3E6069", opacity: o,
+        position: "absolute", left: 0, right: 0, bottom: "15%", textAlign: "center",
+        font: "600 36px " + F, color: INK, letterSpacing: -0.5, opacity: o,
       }}
     >
       {active.text}
@@ -293,37 +293,36 @@ export default function LonekollenHero({
                   <div style={{ fontFamily: MONO, fontSize: 35, fontWeight: 600, marginTop: 26, lineHeight: 1.1 }}>
                     {fmt(z.r)} <span style={{ fontSize: 19, color: DIM }}>kr/h</span>
                   </div>
-                  <div style={{ fontSize: 15, color: DIM, marginTop: 4, lineHeight: 1.2 }}>regionpris</div>
+                  <div style={{ fontSize: 18, color: DIM, marginTop: 4, lineHeight: 1.2 }}>regionpris</div>
 
                 </div>
               );
             })}
 
             <div style={{ ...MOTION.pop(T, belopp + 0.3, 0.6), position: "absolute", left: 580, top: 348, width: 760, height: 452, borderRadius: 26, background: "#FFFFFF", border: "2px solid " + LINE, boxShadow: "0 26px 64px rgba(7,51,61,0.09)", padding: "42px 48px", boxSizing: "border-box" }}>
-              <div style={{ fontFamily: MONO, fontSize: 16, letterSpacing: 3, color: DIM }}>SMARTA VERKTYG FÖR LÄKARE &amp; SJUKSKÖTERSKOR</div>
+              <div style={{ fontFamily: MONO, fontSize: 18, letterSpacing: 3, fontWeight: 600, color: DIM }}>DIN ERSÄTTNING · ZON 3</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 18, marginTop: 18 }}>
                 <div style={{ fontFamily: MONO, fontSize: 118, fontWeight: 700, letterSpacing: -3, fontVariantNumeric: "tabular-nums" }}>{fmt(bigV)}</div>
                 <div style={{ fontSize: 34, color: DIM, fontWeight: 500 }}>kr/h</div>
-                <div style={{ fontSize: 22, color: DIM, marginLeft: "auto", maxWidth: 260, textAlign: "right", lineHeight: 1.25 }}>Ersättningar baserat på SKR:s bemanningsavtal</div>
               </div>
               <div style={{ marginTop: 30, display: "flex", flexDirection: "column", gap: 20 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-                  <div style={{ width: 132, fontSize: 19, color: DIM }}>Företagare</div>
+                  <div style={{ width: 160, fontSize: 21, fontWeight: 600, color: INK }}>Företagare</div>
                   <div style={{ width: 360, height: 14, borderRadius: 7, background: "#EAF4F6" }}>
                     <div style={{ width: 360 * (1572.56 / 1787) * bar1, height: 14, borderRadius: 7, background: accent }} />
                   </div>
                   <div style={{ fontFamily: MONO, fontSize: 21, fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{fmt(1572.56 * bar1)}</div>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
-                  <div style={{ width: 132, fontSize: 19, color: DIM }}>Regionpris</div>
+                  <div style={{ width: 160, fontSize: 21, fontWeight: 600, color: DIM }}>Regionpris</div>
                   <div style={{ width: 360, height: 14, borderRadius: 7, background: "#EAF4F6" }}>
                     <div style={{ width: 360 * bar2, height: 14, borderRadius: 7, background: "#9BC7CE" }} />
                   </div>
                   <div style={{ fontFamily: MONO, fontSize: 21, fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{fmt(lonV)}</div>
                 </div>
               </div>
-              <div style={{ ...MOTION.enter(T, belopp + 2.4, 0.5), fontSize: 16, color: DIM, marginTop: 30 }}>
-                Specialistläkare anestesi och intensivvård · Källa: SKR:s ramavtal 2026
+              <div style={{ ...MOTION.enter(T, belopp + 2.4, 0.5), fontSize: 20, color: DIM, marginTop: 28, lineHeight: 1.3 }}>
+                Anestesiläkare · Källa: SKR:s ramavtal 2026
               </div>
             </div>
 
@@ -331,7 +330,7 @@ export default function LonekollenHero({
               <div style={{ width: 48, height: 48, borderRadius: "50%", background: accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, fontWeight: 800, color: INK, flexShrink: 0 }}>↑</div>
               <div>
                 <div style={{ fontSize: 23, fontWeight: 700 }}>+4,2 % prisjustering</div>
-                <div style={{ fontSize: 17, color: DIM, marginTop: 3 }}>Notis skickad till dig</div>
+                <div style={{ fontSize: 19, color: DIM, marginTop: 3 }}>Anestesiläkare, zon 3</div>
               </div>
             </div>
 
