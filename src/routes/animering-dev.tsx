@@ -37,9 +37,10 @@ function AnimeringDev() {
         aria-label="Lönekollen-animation"
         style={{
           background:
-            "linear-gradient(180deg, hsl(260 60% 4%) 0%, hsl(259 45% 8%) 18%, hsl(257 32% 20%) 45%, hsl(254 30% 60%) 72%, hsl(250 40% 96%) 100%)",
+            "linear-gradient(180deg, hsl(260 60% 4%) 0%, hsl(260 56% 5%) 50%, hsl(259 45% 12%) 75%, hsl(256 38% 46%) 90%, hsl(250 40% 96%) 100%)",
         }}
       >
+
         <LonekollenHeroDawn />
       </section>
 
