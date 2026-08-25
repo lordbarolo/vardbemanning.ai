@@ -1,0 +1,265 @@
+yrkeskod,roll,kategori,zon,artikelnummer,timpris
+11000,Legitimerad läkare,lakare,1,111000,847.00
+11000,Legitimerad läkare,lakare,2,211000,1040.00
+11000,Legitimerad läkare,lakare,3,311000,1233.00
+12000,ST-läkare,lakare,1,112000,847.00
+12000,ST-läkare,lakare,2,212000,1040.00
+12000,ST-läkare,lakare,3,312000,1233.00
+13010,Specialistläkare barn- och ungdomsmedicin,lakare,1,113010,1238.00
+13010,Specialistläkare barn- och ungdomsmedicin,lakare,2,213010,1513.00
+13010,Specialistläkare barn- och ungdomsmedicin,lakare,3,313010,1787.00
+13012,Specialistläkare barn- och ungdomsallergologi,lakare,1,113012,1238.00
+13012,Specialistläkare barn- och ungdomsallergologi,lakare,2,213012,1513.00
+13012,Specialistläkare barn- och ungdomsallergologi,lakare,3,313012,1787.00
+13013,Specialistläkare barn- och ungdomshematologi och onkologi,lakare,1,113013,1238.00
+13013,Specialistläkare barn- och ungdomshematologi och onkologi,lakare,2,213013,1513.00
+13013,Specialistläkare barn- och ungdomshematologi och onkologi,lakare,3,313013,1787.00
+13014,Specialistläkare barn- och ungdomskardiologi,lakare,1,113014,1238.00
+13014,Specialistläkare barn- och ungdomskardiologi,lakare,2,213014,1513.00
+13014,Specialistläkare barn- och ungdomskardiologi,lakare,3,313014,1787.00
+13015,Specialistläkare barn- och ungdomsneurologi med habilitering,lakare,1,113015,1238.00
+13015,Specialistläkare barn- och ungdomsneurologi med habilitering,lakare,2,213015,1513.00
+13015,Specialistläkare barn- och ungdomsneurologi med habilitering,lakare,3,313015,1787.00
+13016,Specialistläkare neonatologi,lakare,1,113016,1238.00
+13016,Specialistläkare neonatologi,lakare,2,213016,1513.00
+13016,Specialistläkare neonatologi,lakare,3,313016,1787.00
+13110,Specialistläkare klinisk fysiologi,lakare,1,113110,1238.00
+13110,Specialistläkare klinisk fysiologi,lakare,2,213110,1513.00
+13110,Specialistläkare klinisk fysiologi,lakare,3,313110,1787.00
+13120,Specialistläkare radiologi,lakare,1,113120,1457.00
+13120,Specialistläkare radiologi,lakare,2,213120,1678.00
+13120,Specialistläkare radiologi,lakare,3,313120,1953.00
+13122,Specialistläkare neuroradiologi,lakare,1,113122,1457.00
+13122,Specialistläkare neuroradiologi,lakare,2,213122,1678.00
+13122,Specialistläkare neuroradiologi,lakare,3,313122,1953.00
+13200,Specialistläkare allmänmedicin,lakare,1,113200,1238.00
+13200,Specialistläkare allmänmedicin,lakare,2,213200,1513.00
+13200,Specialistläkare allmänmedicin,lakare,3,313200,1787.00
+13210,Specialistläkare akutsjukvård,lakare,1,113210,1238.00
+13210,Specialistläkare akutsjukvård,lakare,2,213210,1513.00
+13210,Specialistläkare akutsjukvård,lakare,3,313210,1787.00
+13220,Specialistläkare arbets- och miljömedicin,lakare,1,113220,1238.00
+13220,Specialistläkare arbets- och miljömedicin,lakare,2,213220,1513.00
+13220,Specialistläkare arbets- och miljömedicin,lakare,3,313220,1787.00
+13230,Specialistläkare hud- och könssjukdomar,lakare,1,113230,1457.00
+13230,Specialistläkare hud- och könssjukdomar,lakare,2,213230,1678.00
+13230,Specialistläkare hud- och könssjukdomar,lakare,3,313230,1953.00
+13240,Specialistläkare infektionssjukdomar,lakare,1,113240,1238.00
+13240,Specialistläkare infektionssjukdomar,lakare,2,213240,1513.00
+13240,Specialistläkare infektionssjukdomar,lakare,3,313240,1787.00
+13250,Specialistläkare klinisk farmakologi,lakare,1,113250,1238.00
+13250,Specialistläkare klinisk farmakologi,lakare,2,213250,1513.00
+13250,Specialistläkare klinisk farmakologi,lakare,3,313250,1787.00
+13260,Specialistläkare klinisk genetik,lakare,1,113260,1238.00
+13260,Specialistläkare klinisk genetik,lakare,2,213260,1513.00
+13260,Specialistläkare klinisk genetik,lakare,3,313260,1787.00
+13270,Specialistläkare onkologi,lakare,1,113270,1238.00
+13270,Specialistläkare onkologi,lakare,2,213270,1513.00
+13270,Specialistläkare onkologi,lakare,3,313270,1787.00
+13280,Specialistläkare reumatologi,lakare,1,113280,1238.00
+13280,Specialistläkare reumatologi,lakare,2,213280,1513.00
+13280,Specialistläkare reumatologi,lakare,3,313280,1787.00
+13290,Specialistläkare rättsmedicin,lakare,1,113290,1568.00
+13290,Specialistläkare rättsmedicin,lakare,2,213290,1787.00
+13290,Specialistläkare rättsmedicin,lakare,3,313290,2062.00
+13300,Specialistläkare socialmedicin,lakare,1,113300,1238.00
+13300,Specialistläkare socialmedicin,lakare,2,213300,1513.00
+13300,Specialistläkare socialmedicin,lakare,3,313300,1787.00
+13310,Specialistläkare endokrinologi och diabetologi,lakare,1,113310,1238.00
+13310,Specialistläkare endokrinologi och diabetologi,lakare,2,213310,1513.00
+13310,Specialistläkare endokrinologi och diabetologi,lakare,3,313310,1787.00
+13320,Specialistläkare medicinsk gastroenterologi och hepatologi,lakare,1,113320,1238.00
+13320,Specialistläkare medicinsk gastroenterologi och hepatologi,lakare,2,213320,1513.00
+13320,Specialistläkare medicinsk gastroenterologi och hepatologi,lakare,3,313320,1787.00
+13330,Specialistläkare geriatrik,lakare,1,113330,1238.00
+13330,Specialistläkare geriatrik,lakare,2,213330,1513.00
+13330,Specialistläkare geriatrik,lakare,3,313330,1787.00
+13340,Specialistläkare hematologi,lakare,1,113340,1238.00
+13340,Specialistläkare hematologi,lakare,2,213340,1513.00
+13340,Specialistläkare hematologi,lakare,3,313340,1787.00
+13350,Specialistläkare internmedicin,lakare,1,113350,1238.00
+13350,Specialistläkare internmedicin,lakare,2,213350,1513.00
+13350,Specialistläkare internmedicin,lakare,3,313350,1787.00
+13360,Specialistläkare kardiologi,lakare,1,113360,1238.00
+13360,Specialistläkare kardiologi,lakare,2,213360,1513.00
+13360,Specialistläkare kardiologi,lakare,3,313360,1787.00
+13370,Specialistläkare lungsjukdomar,lakare,1,113370,1238.00
+13370,Specialistläkare lungsjukdomar,lakare,2,213370,1513.00
+13370,Specialistläkare lungsjukdomar,lakare,3,313370,1787.00
+13380,Specialistläkare njurmedicin,lakare,1,113380,1238.00
+13380,Specialistläkare njurmedicin,lakare,2,213380,1513.00
+13380,Specialistläkare njurmedicin,lakare,3,313380,1787.00
+13400,Specialistläkare anestesi och intensivvård,lakare,1,113400,1238.00
+13400,Specialistläkare anestesi och intensivvård,lakare,2,213400,1513.00
+13400,Specialistläkare anestesi och intensivvård,lakare,3,313400,1787.00
+13410,Specialistläkare barn- och ungdomskirurgi,lakare,1,113410,1238.00
+13410,Specialistläkare barn- och ungdomskirurgi,lakare,2,213410,1513.00
+13410,Specialistläkare barn- och ungdomskirurgi,lakare,3,313410,1787.00
+13420,Specialistläkare handkirurgi,lakare,1,113420,1238.00
+13420,Specialistläkare handkirurgi,lakare,2,213420,1513.00
+13420,Specialistläkare handkirurgi,lakare,3,313420,1787.00
+13430,Specialistläkare kirurgi,lakare,1,113430,1238.00
+13430,Specialistläkare kirurgi,lakare,2,213430,1513.00
+13430,Specialistläkare kirurgi,lakare,3,313430,1787.00
+13440,Specialistläkare kärlkirurgi,lakare,1,113440,1238.00
+13440,Specialistläkare kärlkirurgi,lakare,2,213440,1513.00
+13440,Specialistläkare kärlkirurgi,lakare,3,313440,1787.00
+13450,Specialistläkare obstetrik och gynekologi,lakare,1,113450,1238.00
+13450,Specialistläkare obstetrik och gynekologi,lakare,2,213450,1513.00
+13450,Specialistläkare obstetrik och gynekologi,lakare,3,313450,1787.00
+13460,Specialistläkare Ortopedi,lakare,1,113460,1238.00
+13460,Specialistläkare Ortopedi,lakare,2,213460,1513.00
+13460,Specialistläkare Ortopedi,lakare,3,313460,1787.00
+13470,Specialistläkare plastikkirurgi,lakare,1,113470,1238.00
+13470,Specialistläkare plastikkirurgi,lakare,2,213470,1513.00
+13470,Specialistläkare plastikkirurgi,lakare,3,313470,1787.00
+13480,Specialistläkare thoraxkirurgi,lakare,1,113480,1238.00
+13480,Specialistläkare thoraxkirurgi,lakare,2,213480,1513.00
+13480,Specialistläkare thoraxkirurgi,lakare,3,313480,1787.00
+13490,Specialistläkare urologi,lakare,1,113490,1238.00
+13490,Specialistläkare urologi,lakare,2,213490,1513.00
+13490,Specialistläkare urologi,lakare,3,313490,1787.00
+13500,Specialistläkare ögonsjukdomar,lakare,1,113500,1457.00
+13500,Specialistläkare ögonsjukdomar,lakare,2,213500,1678.00
+13500,Specialistläkare ögonsjukdomar,lakare,3,313500,1953.00
+13510,"Specialistläkare öron-, näs- och halssjukdomar",lakare,1,113510,1238.00
+13510,"Specialistläkare öron-, näs- och halssjukdomar",lakare,2,213510,1513.00
+13510,"Specialistläkare öron-, näs- och halssjukdomar",lakare,3,313510,1787.00
+13512,Specialistläkare hörsel- och balansrubbningar,lakare,1,113512,1238.00
+13512,Specialistläkare hörsel- och balansrubbningar,lakare,2,213512,1513.00
+13512,Specialistläkare hörsel- och balansrubbningar,lakare,3,313512,1787.00
+13513,Specialistläkare röst- och talrubbningar,lakare,1,113513,1238.00
+13513,Specialistläkare röst- och talrubbningar,lakare,2,213513,1513.00
+13513,Specialistläkare röst- och talrubbningar,lakare,3,313513,1787.00
+13520,Specialistläkare klinisk immunologi och transfusionsmedicin,lakare,1,113520,1238.00
+13520,Specialistläkare klinisk immunologi och transfusionsmedicin,lakare,2,213520,1513.00
+13520,Specialistläkare klinisk immunologi och transfusionsmedicin,lakare,3,313520,1787.00
+13530,Specialistläkare klinisk kemi,lakare,1,113530,1238.00
+13530,Specialistläkare klinisk kemi,lakare,2,213530,1513.00
+13530,Specialistläkare klinisk kemi,lakare,3,313530,1787.00
+13540,Specialistläkare klinisk mikrobiologi,lakare,1,113540,1238.00
+13540,Specialistläkare klinisk mikrobiologi,lakare,2,213540,1513.00
+13540,Specialistläkare klinisk mikrobiologi,lakare,3,313540,1787.00
+13550,Specialistläkare klinisk patologi,lakare,1,113550,1568.00
+13550,Specialistläkare klinisk patologi,lakare,2,213550,1787.00
+13550,Specialistläkare klinisk patologi,lakare,3,313550,2062.00
+13560,Specialistläkare klinisk neurofysiologi,lakare,1,113560,1238.00
+13560,Specialistläkare klinisk neurofysiologi,lakare,2,213560,1513.00
+13560,Specialistläkare klinisk neurofysiologi,lakare,3,313560,1787.00
+13570,Specialistläkare neurokirurgi,lakare,1,113570,1238.00
+13570,Specialistläkare neurokirurgi,lakare,2,213570,1513.00
+13570,Specialistläkare neurokirurgi,lakare,3,313570,1787.00
+13580,Specialistläkare neurologi,lakare,1,113580,1238.00
+13580,Specialistläkare neurologi,lakare,2,213580,1513.00
+13580,Specialistläkare neurologi,lakare,3,313580,1787.00
+13590,Specialistläkare rehabiliteringsmedicin,lakare,1,113590,1238.00
+13590,Specialistläkare rehabiliteringsmedicin,lakare,2,213590,1513.00
+13590,Specialistläkare rehabiliteringsmedicin,lakare,3,313590,1787.00
+13600,Specialistläkare barn- och ungdomspsykiatri,lakare,1,113600,1457.00
+13600,Specialistläkare barn- och ungdomspsykiatri,lakare,2,213600,1678.00
+13600,Specialistläkare barn- och ungdomspsykiatri,lakare,3,313600,1953.00
+13610,Specialistläkare psykiatri,lakare,1,113610,1457.00
+13610,Specialistläkare psykiatri,lakare,2,213610,1678.00
+13610,Specialistläkare psykiatri,lakare,3,313610,1953.00
+13612,Specialistläkare rättspsykiatri,lakare,1,113612,1457.00
+13612,Specialistläkare rättspsykiatri,lakare,2,213612,1678.00
+13612,Specialistläkare rättspsykiatri,lakare,3,313612,1953.00
+13900,Specialistläkare allergologi,lakare,1,113900,1238.00
+13900,Specialistläkare allergologi,lakare,2,213900,1513.00
+13900,Specialistläkare allergologi,lakare,3,313900,1787.00
+13910,Specialistläkare arbetsmedicin,lakare,1,113910,1238.00
+13910,Specialistläkare arbetsmedicin,lakare,2,213910,1513.00
+13910,Specialistläkare arbetsmedicin,lakare,3,313910,1787.00
+13920,Specialistläkare beroendemedicin,lakare,1,113920,1238.00
+13920,Specialistläkare beroendemedicin,lakare,2,213920,1513.00
+13920,Specialistläkare beroendemedicin,lakare,3,313920,1787.00
+13930,Specialistläkare gynekologisk onkologi,lakare,1,113930,1238.00
+13930,Specialistläkare gynekologisk onkologi,lakare,2,213930,1513.00
+13930,Specialistläkare gynekologisk onkologi,lakare,3,313930,1787.00
+13940,Specialistläkare nuklearmedicin,lakare,1,113940,1238.00
+13940,Specialistläkare nuklearmedicin,lakare,2,213940,1513.00
+13940,Specialistläkare nuklearmedicin,lakare,3,313940,1787.00
+13950,Specialistläkare palliativ medicin,lakare,1,113950,1238.00
+13950,Specialistläkare palliativ medicin,lakare,2,213950,1513.00
+13950,Specialistläkare palliativ medicin,lakare,3,313950,1787.00
+13960,Specialistläkare skolhälsovård,lakare,1,113960,1238.00
+13960,Specialistläkare skolhälsovård,lakare,2,213960,1513.00
+13960,Specialistläkare skolhälsovård,lakare,3,313960,1787.00
+13970,Specialistläkare smärtlindring,lakare,1,113970,1238.00
+13970,Specialistläkare smärtlindring,lakare,2,213970,1513.00
+13970,Specialistläkare smärtlindring,lakare,3,313970,1787.00
+13980,Specialistläkare vårdhygien,lakare,1,113980,1238.00
+13980,Specialistläkare vårdhygien,lakare,2,213980,1513.00
+13980,Specialistläkare vårdhygien,lakare,3,313980,1787.00
+13990,Specialistläkare äldrepsykiatri,lakare,1,113990,1457.00
+13990,Specialistläkare äldrepsykiatri,lakare,2,213990,1678.00
+13990,Specialistläkare äldrepsykiatri,lakare,3,313990,1953.00
+13998,"Specialistläkare, annan specificerad (Timprisreducering -10%)",lakare,1,113998,1114.00
+13998,"Specialistläkare, annan specificerad (Timprisreducering -10%)",lakare,2,213998,1362.00
+13998,"Specialistläkare, annan specificerad (Timprisreducering -10%)",lakare,3,313998,1608.00
+31000,Sjuksköterska,sjukskoterska,1,131000,616.00
+31000,Sjuksköterska,sjukskoterska,2,231000,660.00
+31000,Sjuksköterska,sjukskoterska,3,331000,715.00
+32000,Barnmorska,sjukskoterska,1,132000,770.00
+32000,Barnmorska,sjukskoterska,2,232000,824.00
+32000,Barnmorska,sjukskoterska,3,332000,880.00
+33010,Specialistsjuksköterska akutsjukvård,sjukskoterska,1,133010,715.00
+33010,Specialistsjuksköterska akutsjukvård,sjukskoterska,2,233010,770.00
+33010,Specialistsjuksköterska akutsjukvård,sjukskoterska,3,333010,824.00
+33020,Specialistsjuksköterska ambulanssjukvård,sjukskoterska,1,133020,715.00
+33020,Specialistsjuksköterska ambulanssjukvård,sjukskoterska,2,233020,770.00
+33020,Specialistsjuksköterska ambulanssjukvård,sjukskoterska,3,333020,824.00
+33030,Specialistsjuksköterska anestesi,sjukskoterska,1,133030,770.00
+33030,Specialistsjuksköterska anestesi,sjukskoterska,2,233030,824.00
+33030,Specialistsjuksköterska anestesi,sjukskoterska,3,333030,880.00
+33040,Specialistsjuksköterska barn och ungdom,sjukskoterska,1,133040,715.00
+33040,Specialistsjuksköterska barn och ungdom,sjukskoterska,2,233040,770.00
+33040,Specialistsjuksköterska barn och ungdom,sjukskoterska,3,333040,824.00
+33050,Specialistsjuksköterska diabetesvård,sjukskoterska,1,133050,715.00
+33050,Specialistsjuksköterska diabetesvård,sjukskoterska,2,233050,770.00
+33050,Specialistsjuksköterska diabetesvård,sjukskoterska,3,333050,824.00
+33060,Distriktssjuksköterska,sjukskoterska,1,133060,770.00
+33060,Distriktssjuksköterska,sjukskoterska,2,233060,824.00
+33060,Distriktssjuksköterska,sjukskoterska,3,333060,880.00
+33070,Specialistsjuksköterska företagshälsovård,sjukskoterska,1,133070,715.00
+33070,Specialistsjuksköterska företagshälsovård,sjukskoterska,2,233070,770.00
+33070,Specialistsjuksköterska företagshälsovård,sjukskoterska,3,333070,824.00
+33080,Specialistsjuksköterska hjärtsjukvård,sjukskoterska,1,133080,715.00
+33080,Specialistsjuksköterska hjärtsjukvård,sjukskoterska,2,233080,770.00
+33080,Specialistsjuksköterska hjärtsjukvård,sjukskoterska,3,333080,824.00
+33090,Specialistsjuksköterska infektionssjukvård,sjukskoterska,1,133090,715.00
+33090,Specialistsjuksköterska infektionssjukvård,sjukskoterska,2,233090,770.00
+33090,Specialistsjuksköterska infektionssjukvård,sjukskoterska,3,333090,824.00
+33100,Specialistsjuksköterska intensivvård,sjukskoterska,1,133100,770.00
+33100,Specialistsjuksköterska intensivvård,sjukskoterska,2,233100,824.00
+33100,Specialistsjuksköterska intensivvård,sjukskoterska,3,333100,880.00
+33110,Specialistsjuksköterska kirurgisk vård,sjukskoterska,1,133110,715.00
+33110,Specialistsjuksköterska kirurgisk vård,sjukskoterska,2,233110,770.00
+33110,Specialistsjuksköterska kirurgisk vård,sjukskoterska,3,333110,824.00
+33120,Specialistsjuksköterska medicinsk vård,sjukskoterska,1,133120,715.00
+33120,Specialistsjuksköterska medicinsk vård,sjukskoterska,2,233120,770.00
+33120,Specialistsjuksköterska medicinsk vård,sjukskoterska,3,333120,824.00
+33130,Specialistsjuksköterska onkologisk vård,sjukskoterska,1,133130,715.00
+33130,Specialistsjuksköterska onkologisk vård,sjukskoterska,2,233130,770.00
+33130,Specialistsjuksköterska onkologisk vård,sjukskoterska,3,333130,824.00
+33140,Specialistsjuksköterska operationssjukvård,sjukskoterska,1,133140,770.00
+33140,Specialistsjuksköterska operationssjukvård,sjukskoterska,2,233140,824.00
+33140,Specialistsjuksköterska operationssjukvård,sjukskoterska,3,333140,880.00
+33160,Specialistsjuksköterska palliativ vård,sjukskoterska,1,133160,715.00
+33160,Specialistsjuksköterska palliativ vård,sjukskoterska,2,233160,770.00
+33160,Specialistsjuksköterska palliativ vård,sjukskoterska,3,333160,824.00
+33180,Specialistsjuksköterska psykiatrisk vård,sjukskoterska,1,133180,715.00
+33180,Specialistsjuksköterska psykiatrisk vård,sjukskoterska,2,233180,770.00
+33180,Specialistsjuksköterska psykiatrisk vård,sjukskoterska,3,333180,824.00
+33190,Skolsköterska,sjukskoterska,1,133190,715.00
+33190,Skolsköterska,sjukskoterska,2,233190,770.00
+33190,Skolsköterska,sjukskoterska,3,333190,824.00
+33200,Specialistsjuksköterska vård av äldre,sjukskoterska,1,133200,715.00
+33200,Specialistsjuksköterska vård av äldre,sjukskoterska,2,233200,770.00
+33200,Specialistsjuksköterska vård av äldre,sjukskoterska,3,333200,824.00
+33210,Specialistsjuksköterska ögonsjukvård,sjukskoterska,1,133210,715.00
+33210,Specialistsjuksköterska ögonsjukvård,sjukskoterska,2,233210,770.00
+33210,Specialistsjuksköterska ögonsjukvård,sjukskoterska,3,333210,824.00
+43400,Röntgensjuksköterska,sjukskoterska,1,143400,616.00
+43400,Röntgensjuksköterska,sjukskoterska,2,243400,660.00
+43400,Röntgensjuksköterska,sjukskoterska,3,343400,715.00
