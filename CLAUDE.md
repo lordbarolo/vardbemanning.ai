@@ -54,3 +54,16 @@ borttagna buckets eller projekt utan att först namnge dem och få ja.
 Frontend och backend delar repo. Sökvägsuppdelningen står i
 `docs/ANSVARSFORDELNING.md` och är bindande åt båda håll: den här agenten rör
 inte `src/**`, `public/**` eller byggkonfigurationen.
+
+## Git-rutin (obligatorisk)
+
+- Vid sessionsstart körs `git pull --ff-only` automatiskt via SessionStart-hooken
+  i `.claude/settings.json`. Misslyckas den (divergens eller nätverk): lös det
+  innan något annat görs — börja aldrig arbeta i en osynkad arbetskopia.
+- Avsluta varje arbetspass med kommandot `/klart` (committa + pusha).
+  Lämna aldrig ett pass med ocommittade ändringar.
+- En push till `main` deployar `supabase/migrations/**` direkt mot
+  produktionsdatabasen via Supabase GitHub-integration. Visa därför alltid
+  migrations-SQL för ägaren och invänta ja innan push.
+- Backend-README ligger i `docs/BACKEND.md`; rotens `README.md` ägs av Lovable
+  sedan repona slogs ihop.
