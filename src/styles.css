@@ -302,8 +302,52 @@
     transparent 55deg
   );
   filter: blur(40px);
-  mask-image: linear-gradient(180deg, #000 0%, #000 45%, transparent 72%);
 }
+
+/* Sektion som ramar in animeringen i samma miljö som hero */
+.anim-stage {
+  position: relative;
+  overflow: hidden;
+  background: var(--hero);
+  color: var(--hero-foreground);
+}
+
+.anim-stage__glow {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(
+      70% 55% at 15% 0%,
+      color-mix(in oklab, var(--primary) 22%, transparent) 0%,
+      transparent 65%
+    ),
+    radial-gradient(
+      65% 60% at 88% 100%,
+      color-mix(in oklab, var(--accent) 18%, transparent) 0%,
+      transparent 62%
+    );
+}
+
+.anim-stage__inner {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 75rem);
+  margin-inline: auto;
+  padding: 4rem 1.25rem 5rem;
+}
+
+.anim-stage__frame {
+  position: relative;
+  border-radius: 1.5rem;
+  overflow: hidden;
+  border: 1px solid color-mix(in oklab, var(--hero-foreground) 12%, transparent);
+  box-shadow:
+    0 40px 120px -40px color-mix(in oklab, var(--primary) 55%, transparent),
+    0 2px 0 0 color-mix(in oklab, var(--hero-foreground) 8%, transparent) inset;
+}
+
+
 
 
 .hero-package__inner {
