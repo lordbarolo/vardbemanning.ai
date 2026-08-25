@@ -81,14 +81,14 @@ function Combobox<T>({
   }, [value, search, attempt]);
 
   return (
-    <div className="relative space-y-2">
-      <label
-        htmlFor={id}
-        className="text-[10px] font-bold uppercase text-muted-foreground"
-      >
-        {label}
-      </label>
-      <div className="relative">
+    <div className="relative">
+      <div className="group relative">
+        <label
+          htmlFor={id}
+          className="pointer-events-none absolute left-4 top-2 z-10 text-[11px] font-semibold uppercase tracking-wide text-muted-foreground"
+        >
+          {label}
+        </label>
         <input
           id={id}
           value={value}
@@ -97,28 +97,28 @@ function Combobox<T>({
           onFocus={() => (items.length > 0 || failed) && setOpen(true)}
           onBlur={() => setTimeout(() => setOpen(false), 150)}
           placeholder={placeholder}
-          className="h-12 w-full rounded-md border border-border bg-input px-4 pr-10 text-sm font-medium text-foreground outline-none placeholder:text-muted-foreground focus:border-primary"
+          className="h-[4.25rem] w-full rounded-xl border border-border/70 bg-secondary/40 px-4 pb-2 pt-7 pr-10 text-base font-medium text-foreground outline-none transition-all placeholder:font-normal placeholder:text-muted-foreground/70 hover:bg-secondary/60 focus:border-primary/60 focus:ring-2 focus:ring-primary/40"
         />
-        <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground">
+        <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground">
           {loading ? (
             <Loader2 className="h-4 w-4 animate-spin" aria-hidden="true" />
           ) : (
-            <Search className="h-4 w-4 opacity-50" aria-hidden="true" />
+            <Search className="h-4 w-4" aria-hidden="true" />
           )}
         </span>
       </div>
 
       {open && (failed || items.length > 0) && (
-        <ul className="absolute z-40 mt-1 max-h-60 w-full overflow-auto rounded-md border border-border bg-card p-1 shadow-2xl">
+        <ul className="absolute z-40 mt-1 max-h-60 w-full overflow-auto rounded-xl border border-border bg-popover p-1 shadow-2xl">
           {failed ? (
             <li>
               <button
                 type="button"
                 onMouseDown={(e) => e.preventDefault()}
                 onClick={() => setAttempt((n) => n + 1)}
-                className="flex w-full items-center gap-2 rounded px-3 py-2 text-left text-xs text-foreground hover:bg-muted"
+                className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
               >
-                <RefreshCw className="h-3 w-3" aria-hidden="true" />
+                <RefreshCw className="h-3.5 w-3.5" aria-hidden="true" />
                 Kunde inte hämta förslag — försök igen
               </button>
             </li>
@@ -133,10 +133,12 @@ function Combobox<T>({
                     onSelect(item);
                     setOpen(false);
                   }}
-                  className="flex w-full flex-col items-start rounded px-3 py-2 text-left text-sm text-foreground hover:bg-muted"
+                  className="flex w-full flex-col items-start rounded-lg px-3 py-2 text-left text-sm font-medium text-foreground hover:bg-muted"
                 >
                   <span>{getLabel(item)}</span>
-                  <span className="text-xs text-muted-foreground">{getHint(item)}</span>
+                  <span className="text-xs font-normal text-muted-foreground">
+                    {getHint(item)}
+                  </span>
                 </button>
               </li>
             ))
@@ -146,6 +148,7 @@ function Combobox<T>({
     </div>
   );
 }
+
 
 /** Sökpanelen i hero — kopplad mot hero_compensation i databasen. */
 export function SearchPanel() {
