@@ -300,11 +300,10 @@ export default function LonekollenHero({
             })}
 
             <div style={{ ...MOTION.pop(T, belopp + 0.3, 0.6), position: "absolute", left: 580, top: 348, width: 760, height: 452, borderRadius: 26, background: "#FFFFFF", border: "2px solid " + LINE, boxShadow: "0 26px 64px rgba(7,51,61,0.09)", padding: "42px 48px", boxSizing: "border-box" }}>
-              <div style={{ fontFamily: MONO, fontSize: 16, letterSpacing: 3, color: DIM }}>SMARTA VERKTYG FÖR LÄKARE &amp; SJUKSKÖTERSKOR</div>
+              <div style={{ fontFamily: MONO, fontSize: 18, letterSpacing: 3, fontWeight: 600, color: DIM }}>DIN ERSÄTTNING · ZON 3</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 18, marginTop: 18 }}>
                 <div style={{ fontFamily: MONO, fontSize: 118, fontWeight: 700, letterSpacing: -3, fontVariantNumeric: "tabular-nums" }}>{fmt(bigV)}</div>
                 <div style={{ fontSize: 34, color: DIM, fontWeight: 500 }}>kr/h</div>
-                <div style={{ fontSize: 22, color: DIM, marginLeft: "auto", maxWidth: 260, textAlign: "right", lineHeight: 1.25 }}>Ersättningar baserat på SKR:s bemanningsavtal</div>
               </div>
               <div style={{ marginTop: 30, display: "flex", flexDirection: "column", gap: 20 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
