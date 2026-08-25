@@ -56,7 +56,7 @@ function AnimeringDev() {
           </h1>
           <p className="mt-4 text-base" style={{ color: "hsl(258 15% 40%)" }}>
             Platshållare för de sektioner som kommer under animeringen. Animationen
-            landar i exakt den här bakgrunden, så skarven ska inte gå att se.
+            ligger inramad i samma mörka miljö som hero.
           </p>
           <Link
             to="/"
