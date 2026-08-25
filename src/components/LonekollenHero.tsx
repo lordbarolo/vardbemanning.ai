@@ -321,8 +321,8 @@ export default function LonekollenHero({
                   <div style={{ fontFamily: MONO, fontSize: 21, fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{fmt(lonV)}</div>
                 </div>
               </div>
-              <div style={{ ...MOTION.enter(T, belopp + 2.4, 0.5), fontSize: 16, color: DIM, marginTop: 30 }}>
-                Specialistläkare anestesi och intensivvård · Källa: SKR:s ramavtal 2026
+              <div style={{ ...MOTION.enter(T, belopp + 2.4, 0.5), fontSize: 20, color: DIM, marginTop: 28, lineHeight: 1.3 }}>
+                Anestesiläkare · Källa: SKR:s ramavtal 2026
               </div>
             </div>
 
