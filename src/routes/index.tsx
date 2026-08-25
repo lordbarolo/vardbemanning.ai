@@ -29,35 +29,6 @@ export const Route = createFileRoute("/")({
   component: Index,
 });
 
-const PILLARS = [
-  {
-    id: "salary-analysis",
-    question: "Tjänar jag rätt?",
-    title: "Ersättningsanalys",
-    description:
-      "Jämför din ersättning med ramavtalspriserna i realtid. 290 kommuner, alla specialiseringar — för konsulter och de som vill bli det.",
-    icon: ShieldCheck,
-    cta: "Analysera din ersättning",
-  },
-  {
-    id: "invoice-audit",
-    question: "Fakturerar jag rätt?",
-    title: "Fakturagranskning",
-    description:
-      "AI-assistenten granskar dina fakturor retroaktivt för att se om du missat att fakturera för redan arbetad tid. Finns det avvikelser hittar vi dem.",
-    icon: FileSearch,
-    cta: "Granska fakturor",
-  },
-  {
-    id: "negotiation-agent",
-    question: "Förhandlar jag rätt?",
-    title: "Förhandlingsassistent",
-    description:
-      "Ställ frågor om marknadspriser, avtalsvillkor och förhandlingsstrategier. Assistenten ger dig underlag inför ditt nästa konsultuppdrag.",
-    icon: MessageSquare,
-    cta: "Starta förhandling",
-  },
-] as const;
 
 const TRUST_POINTS = [
   "Baserat på officiella ramavtal",
