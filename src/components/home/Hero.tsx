@@ -16,7 +16,7 @@ type HeroProps = {
 export function Hero({
   title = "Har du rätt lön?",
   subtitle =
-    "Se uppdaterade ersättningar för läkare och sjuksköterskor inom bemanning. Sök utifrån din roll och uppdragets kommun.",
+    "Se uppdaterade ersättningar för läkare och sjuksköterskor inom bemanning. Sök utifrån din roll och uppdragsort.",
   badge = "Smarta verktyg för läkare och sjuksköterskor",
   badgeHref = "#services",
   cta = "Se din ersättning",
