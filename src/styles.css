@@ -332,9 +332,14 @@
 .anim-stage__inner {
   position: relative;
   z-index: 1;
-  width: min(100%, 58rem);
-  margin-inline: auto;
-  padding: 7rem 1.5rem 8rem;
+  width: 100%;
+  padding: 2rem 1rem;
+}
+
+@media (min-width: 48rem) {
+  .anim-stage__inner {
+    padding: 3rem 2rem;
+  }
 }
 
 .anim-stage__frame {
