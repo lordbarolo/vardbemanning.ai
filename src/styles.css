@@ -460,8 +460,10 @@
 @media (min-width: 64rem) {
   .hero-package__inner {
     grid-template-columns: minmax(0, 1.05fr) minmax(26rem, 0.95fr);
+    align-items: start;
     gap: 3.5rem;
     min-height: 38rem;
+    padding-top: 4.5rem;
   }
 
   .hero-package__title {
