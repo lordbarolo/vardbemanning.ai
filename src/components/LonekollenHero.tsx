@@ -234,7 +234,17 @@ export default function LonekollenHero({
           <div style={{ position: "absolute", right: 80 - 90 * wob, bottom: -220 - 40 * wob, width: 860, height: 860, borderRadius: "50%", background: "radial-gradient(circle, " + accent + "1c 0%, transparent 68%)" }} />
           <div style={{ position: "absolute", inset: 0, opacity: worldO, transform: "scale(" + cam + ")", transformOrigin: "960px 560px" }}>
             <div style={{ position: "absolute", left: 0, right: 0, textAlign: "center", transform: "translateY(" + hUp + "px) scale(" + hSc + ")", top: 230, transformOrigin: "50% 0%" }}>
-              <div style={{ ...MOTION.enter(T, 0.8), fontSize: 116, fontWeight: 800, letterSpacing: -3.4, lineHeight: 1.0 }}>Vad är din tid värd?</div>
+              <div style={{ ...MOTION.enter(T, 0.8), fontSize: 116, fontWeight: 800, letterSpacing: -3.4, lineHeight: 1.0 }}>
+                Vad {""}
+                <span style={{ display: "inline-block", transform: "scale(0.88)", transformOrigin: "center 18%" }}>ä</span>
+                r d
+                <span style={{ display: "inline-block", transform: "scale(0.88)", transformOrigin: "center 18%" }}>i</span>
+                n t
+                <span style={{ display: "inline-block", transform: "scale(0.88)", transformOrigin: "center 18%" }}>i</span>
+                d v{""}
+                <span style={{ display: "inline-block", transform: "scale(0.88)", transformOrigin: "center 18%" }}>ä</span>
+                rd?
+              </div>
               <div style={{ ...MOTION.enter(T, 1.15), opacity: Easing.easeOutCubic(P(T, 1.15, 0.6)) * (1 - D(T, roll - 0.4, 0.4)), fontSize: 32, color: "#3E6069", marginTop: 26, fontWeight: 600 }}>
                 Transparent lönedata från regionernas ramavtal.
               </div>
