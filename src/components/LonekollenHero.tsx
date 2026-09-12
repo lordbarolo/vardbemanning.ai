@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 
 const F = "'Schibsted Grotesk','Helvetica Neue',Helvetica,sans-serif";
 const MONO = "'IBM Plex Mono',monospace";
-const INK = "#07333D", DIM = "#5C7F86", BG = "#F4FAFB", LINE = "#DCEBEE";
+const INK = "#0A0A0A", DIM = "#666666", BG = "#FFFFFF", LINE = "#E4E4E4";
 
 const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));
 const P = (T: number, s: number, d: number) => clamp((T - s) / d, 0, 1);
@@ -121,7 +121,7 @@ function Captions({ T, items }: { T: number; items: { at: number; until?: number
 }
 
 export default function LonekollenHero({
-  accent = "#00D2E6",
+  accent = "#EDE4D4",
   captions = true,
   className,
 }: {
@@ -259,7 +259,7 @@ export default function LonekollenHero({
                 </span>
                 rd?
               </div>
-              <div style={{ ...MOTION.enter(T, 1.15), opacity: Easing.easeOutCubic(P(T, 1.15, 0.6)) * (1 - D(T, roll - 0.4, 0.4)), fontSize: 32, color: "#3E6069", marginTop: 26, fontWeight: 600 }}>
+              <div style={{ ...MOTION.enter(T, 1.15), opacity: Easing.easeOutCubic(P(T, 1.15, 0.6)) * (1 - D(T, roll - 0.4, 0.4)), fontSize: 32, color: DIM, marginTop: 26, fontWeight: 600 }}>
                 Transparent lönedata från regionernas ramavtal.
               </div>
             </div>
@@ -332,15 +332,15 @@ export default function LonekollenHero({
               <div style={{ marginTop: 30, display: "flex", flexDirection: "column", gap: 20 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
                   <div style={{ width: 160, fontSize: 21, fontWeight: 600, color: INK }}>Företagare</div>
-                  <div style={{ width: 360, height: 14, borderRadius: 7, background: "#EAF4F6" }}>
+                  <div style={{ width: 360, height: 14, borderRadius: 7, background: "#F0F0F0" }}>
                     <div style={{ width: 360 * (1572.56 / 1787) * bar1, height: 14, borderRadius: 7, background: accent }} />
                   </div>
                   <div style={{ fontFamily: MONO, fontSize: 21, fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{fmt(1572.56 * bar1)}</div>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
                   <div style={{ width: 160, fontSize: 21, fontWeight: 600, color: DIM }}>Regionpris</div>
-                  <div style={{ width: 360, height: 14, borderRadius: 7, background: "#EAF4F6" }}>
-                    <div style={{ width: 360 * bar2, height: 14, borderRadius: 7, background: "#9BC7CE" }} />
+                  <div style={{ width: 360, height: 14, borderRadius: 7, background: "#F0F0F0" }}>
+                    <div style={{ width: 360 * bar2, height: 14, borderRadius: 7, background: "#B5B5B5" }} />
                   </div>
                   <div style={{ fontFamily: MONO, fontSize: 21, fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{fmt(lonV)}</div>
                 </div>
