@@ -44,7 +44,7 @@ function Wordmark() {
 function Index() {
   const { isAuthenticated } = useAuth();
   return (
-    <div className="min-h-screen bg-background">
+    <div className="mono-home min-h-screen bg-background">
       {/* ── Nav ────────────────────────────────────────── */}
       <nav
         className="sticky top-0 z-50 border-b border-border bg-background/70 backdrop-blur-md"
@@ -87,7 +87,7 @@ function Index() {
           <div className="grid gap-4 sm:grid-cols-2">
             {TRUST_POINTS.map((point) => (
               <div key={point} className="flex items-start gap-3">
-                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-primary" />
+                <CheckCircle2 className="mt-0.5 h-5 w-5 shrink-0 text-foreground" />
                 <p className="text-sm text-muted-foreground">{point}</p>
               </div>
             ))}

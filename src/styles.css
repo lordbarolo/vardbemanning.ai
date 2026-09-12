@@ -46,6 +46,7 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-button-outline: var(--button-outline);
+  --color-cream: var(--cream);
   --color-ring-offset-background: var(--background);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
@@ -96,6 +97,7 @@
   --border: hsl(260 30% 18%);
   --input: hsl(260 30% 14%);
   --button-outline: hsl(38 18% 78%);
+  --cream: hsl(40 33% 88%);
   --ring: hsl(256 100% 67%);
 
   --cyan: hsl(190 95% 55%);
@@ -135,6 +137,29 @@
   color-scheme: dark;
 }
 
+/* Startsida: strikt svart/vitt med krämfärgade CTA:er och konturer. */
+.mono-home {
+  --background: hsl(0 0% 0%);
+  --foreground: hsl(0 0% 100%);
+  --card: hsl(0 0% 4%);
+  --card-foreground: hsl(0 0% 100%);
+  --popover: hsl(0 0% 4%);
+  --popover-foreground: hsl(0 0% 100%);
+  --primary: hsl(0 0% 100%);
+  --primary-foreground: hsl(0 0% 0%);
+  --secondary: hsl(0 0% 9%);
+  --secondary-foreground: hsl(0 0% 100%);
+  --muted: hsl(0 0% 12%);
+  --muted-foreground: hsl(0 0% 70%);
+  --accent: hsl(0 0% 100%);
+  --accent-foreground: hsl(0 0% 0%);
+  --border: hsl(38 20% 78% / 0.35);
+  --input: hsl(0 0% 12%);
+  --ring: var(--cream);
+  --hero: hsl(0 0% 0%);
+  --hero-foreground: hsl(0 0% 100%);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -164,18 +189,18 @@
     z-index: -1;
     pointer-events: none;
     background:
-      radial-gradient(ellipse 80% 40% at 20% 0%, hsl(var(--glow-violet) / 0.14) 0%, transparent 65%),
-      radial-gradient(ellipse 70% 35% at 90% 8%, hsl(var(--glow-pink) / 0.1) 0%, transparent 60%),
-      radial-gradient(ellipse 90% 40% at 50% 100%, hsl(var(--glow-cyan) / 0.06) 0%, transparent 65%),
+      radial-gradient(ellipse 80% 40% at 20% 0%, hsl(0 0% 100% / 0.05) 0%, transparent 65%),
+      radial-gradient(ellipse 70% 35% at 90% 8%, hsl(0 0% 100% / 0.04) 0%, transparent 60%),
+      radial-gradient(ellipse 90% 40% at 50% 100%, hsl(0 0% 100% / 0.03) 0%, transparent 65%),
       var(--background);
   }
 
   @media (min-width: 768px) {
     body::before {
       background:
-        radial-gradient(ellipse 60% 50% at 15% 0%, hsl(var(--glow-violet) / 0.22) 0%, transparent 60%),
-        radial-gradient(ellipse 55% 45% at 90% 10%, hsl(var(--glow-pink) / 0.16) 0%, transparent 55%),
-        radial-gradient(ellipse 70% 50% at 50% 100%, hsl(var(--glow-cyan) / 0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 15% 0%, hsl(0 0% 100% / 0.07) 0%, transparent 60%),
+        radial-gradient(ellipse 55% 45% at 90% 10%, hsl(0 0% 100% / 0.05) 0%, transparent 55%),
+        radial-gradient(ellipse 70% 50% at 50% 100%, hsl(0 0% 100% / 0.04) 0%, transparent 60%),
         var(--background);
     }
   }
@@ -213,24 +238,24 @@
 }
 
 @utility glass {
-  background: hsl(260 40% 9% / 0.65);
+  background: hsl(0 0% 4% / 0.65);
   backdrop-filter: blur(10px) saturate(130%);
   -webkit-backdrop-filter: blur(10px) saturate(130%);
-  border: 1px solid hsl(260 30% 18% / 0.6);
+  border: 1px solid hsl(38 20% 78% / 0.28);
 }
 
 @utility glass-strong {
-  background: hsl(260 40% 9% / 0.85);
+  background: hsl(0 0% 4% / 0.85);
   backdrop-filter: blur(14px) saturate(140%);
   -webkit-backdrop-filter: blur(14px) saturate(140%);
-  border: 1px solid hsl(260 30% 18% / 0.7);
+  border: 1px solid hsl(38 20% 78% / 0.32);
 }
 
 @utility glass-subtle {
-  background: hsl(260 40% 12% / 0.5);
+  background: hsl(0 0% 8% / 0.5);
   backdrop-filter: blur(8px);
   -webkit-backdrop-filter: blur(8px);
-  border: 1px solid hsl(260 30% 18% / 0.4);
+  border: 1px solid hsl(38 20% 78% / 0.2);
 }
 
 @utility glow-hover {
@@ -426,15 +451,15 @@
   height: 2.75rem;
   margin-top: 1.75rem;
   border-radius: 9999px;
-  background: var(--hero-foreground);
-  color: var(--hero);
+  background: var(--cream);
+  color: hsl(0 0% 0%);
   font-family: var(--font-hero);
   font-weight: 600;
   animation: hero-package-fade-up 550ms 240ms ease both;
 }
 
 .hero-package__cta:hover {
-  background: color-mix(in oklab, var(--hero-foreground) 90%, transparent);
+  background: color-mix(in oklab, var(--cream) 88%, transparent);
 }
 
 .hero-package__right {

@@ -7,7 +7,7 @@ import { useEffect, useRef, useState } from "react";
 
 const F = "'Schibsted Grotesk','Helvetica Neue',Helvetica,sans-serif";
 const MONO = "'IBM Plex Mono',monospace";
-const INK = "#07333D", DIM = "#5C7F86", BG = "#F4FAFB", LINE = "#DCEBEE";
+const INK = "#0A0A0A", DIM = "#666666", BG = "#FFFFFF", LINE = "#E4E4E4";
 
 const clamp = (v: number, a: number, b: number) => Math.min(b, Math.max(a, v));
 const P = (T: number, s: number, d: number) => clamp((T - s) / d, 0, 1);
@@ -121,7 +121,7 @@ function Captions({ T, items }: { T: number; items: { at: number; until?: number
 }
 
 export default function LonekollenHero({
-  accent = "#00D2E6",
+  accent = "#EDE4D4",
   captions = true,
   className,
 }: {
@@ -259,7 +259,7 @@ export default function LonekollenHero({
                 </span>
                 rd?
               </div>
-              <div style={{ ...MOTION.enter(T, 1.15), opacity: Easing.easeOutCubic(P(T, 1.15, 0.6)) * (1 - D(T, roll - 0.4, 0.4)), fontSize: 32, color: "#3E6069", marginTop: 26, fontWeight: 600 }}>
+              <div style={{ ...MOTION.enter(T, 1.15), opacity: Easing.easeOutCubic(P(T, 1.15, 0.6)) * (1 - D(T, roll - 0.4, 0.4)), fontSize: 32, color: DIM, marginTop: 26, fontWeight: 600 }}>
                 Transparent lönedata från regionernas ramavtal.
               </div>
             </div>
@@ -278,7 +278,7 @@ export default function LonekollenHero({
                     justifyContent: "center", fontSize: r.fs, fontWeight: 600,
                     background: sel ? accent : "#FFFFFF", color: INK,
                     border: "2px solid " + (sel ? accent : LINE),
-                    boxShadow: sel ? "0 12px 30px " + accent + "55" : "0 8px 24px rgba(7,51,61,0.06)",
+                    boxShadow: sel ? "0 12px 30px " + accent + "55" : "0 8px 24px rgba(10,10,10,0.06)",
                     opacity: inP.opacity * outO, transform: inP.transform,
                   }}
                 >
@@ -287,7 +287,7 @@ export default function LonekollenHero({
               );
             })}
 
-            <div style={{ ...MOTION.pop(T, belopp + 0.15), position: "absolute", left: 998, top: 250, width: 246, height: 48, borderRadius: 999, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 19, fontWeight: 600, background: "#FFFFFF", border: "2px solid " + LINE, boxShadow: "0 8px 24px rgba(7,51,61,0.06)" }}>
+            <div style={{ ...MOTION.pop(T, belopp + 0.15), position: "absolute", left: 998, top: 250, width: 246, height: 48, borderRadius: 999, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 19, fontWeight: 600, background: "#FFFFFF", border: "2px solid " + LINE, boxShadow: "0 8px 24px rgba(10,10,10,0.06)" }}>
               Zon 3 · Glesbygd
             </div>
 
@@ -302,7 +302,7 @@ export default function LonekollenHero({
                     position: "absolute", left: zoneX(i), top: ZONE_Y - 24 * outP - (sel ? 8 : 0),
                     width: ZONE_W, height: ZONE_H, borderRadius: 22, background: "#FFFFFF",
                     border: sel ? "3px solid " + accent : "2px solid " + LINE,
-                    boxShadow: sel ? "0 20px 46px " + accent + "44" : "0 12px 30px rgba(7,51,61,0.07)",
+                    boxShadow: sel ? "0 20px 46px " + accent + "44" : "0 12px 30px rgba(10,10,10,0.07)",
                     padding: "30px 34px", boxSizing: "border-box",
                     opacity: inP.opacity * (1 - outP), transform: inP.transform,
                   }}
@@ -323,7 +323,7 @@ export default function LonekollenHero({
               );
             })}
 
-            <div style={{ ...MOTION.pop(T, belopp + 0.3, 0.6), position: "absolute", left: 580, top: 348, width: 760, height: 452, borderRadius: 26, background: "#FFFFFF", border: "2px solid " + LINE, boxShadow: "0 26px 64px rgba(7,51,61,0.09)", padding: "42px 48px", boxSizing: "border-box" }}>
+            <div style={{ ...MOTION.pop(T, belopp + 0.3, 0.6), position: "absolute", left: 580, top: 348, width: 760, height: 452, borderRadius: 26, background: "#FFFFFF", border: "2px solid " + LINE, boxShadow: "0 26px 64px rgba(10,10,10,0.09)", padding: "42px 48px", boxSizing: "border-box" }}>
               <div style={{ fontFamily: MONO, fontSize: 18, letterSpacing: 3, fontWeight: 600, color: DIM }}>DIN ERSÄTTNING · ZON 3</div>
               <div style={{ display: "flex", alignItems: "baseline", gap: 18, marginTop: 18 }}>
                 <div style={{ fontFamily: MONO, fontSize: 118, fontWeight: 700, letterSpacing: -3, fontVariantNumeric: "tabular-nums" }}>{fmt(bigV)}</div>
@@ -332,15 +332,15 @@ export default function LonekollenHero({
               <div style={{ marginTop: 30, display: "flex", flexDirection: "column", gap: 20 }}>
                 <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
                   <div style={{ width: 160, fontSize: 21, fontWeight: 600, color: INK }}>Företagare</div>
-                  <div style={{ width: 360, height: 14, borderRadius: 7, background: "#EAF4F6" }}>
+                  <div style={{ width: 360, height: 14, borderRadius: 7, background: "#F0F0F0" }}>
                     <div style={{ width: 360 * (1572.56 / 1787) * bar1, height: 14, borderRadius: 7, background: accent }} />
                   </div>
                   <div style={{ fontFamily: MONO, fontSize: 21, fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{fmt(1572.56 * bar1)}</div>
                 </div>
                 <div style={{ display: "flex", alignItems: "center", gap: 20 }}>
                   <div style={{ width: 160, fontSize: 21, fontWeight: 600, color: DIM }}>Regionpris</div>
-                  <div style={{ width: 360, height: 14, borderRadius: 7, background: "#EAF4F6" }}>
-                    <div style={{ width: 360 * bar2, height: 14, borderRadius: 7, background: "#9BC7CE" }} />
+                  <div style={{ width: 360, height: 14, borderRadius: 7, background: "#F0F0F0" }}>
+                    <div style={{ width: 360 * bar2, height: 14, borderRadius: 7, background: "#B5B5B5" }} />
                   </div>
                   <div style={{ fontFamily: MONO, fontSize: 21, fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{fmt(lonV)}</div>
                 </div>
@@ -350,7 +350,7 @@ export default function LonekollenHero({
               </div>
             </div>
 
-            <div style={{ ...MOTION.pop(T, notis + 0.35, 0.55), position: "absolute", left: 1206, top: 300, width: 392, height: 108, borderRadius: 20, background: "#FFFFFF", border: "2px solid " + LINE, boxShadow: "0 22px 52px rgba(7,51,61,0.14)", display: "flex", alignItems: "center", gap: 20, padding: "0 26px", boxSizing: "border-box" }}>
+            <div style={{ ...MOTION.pop(T, notis + 0.35, 0.55), position: "absolute", left: 1206, top: 300, width: 392, height: 108, borderRadius: 20, background: "#FFFFFF", border: "2px solid " + LINE, boxShadow: "0 22px 52px rgba(10,10,10,0.14)", display: "flex", alignItems: "center", gap: 20, padding: "0 26px", boxSizing: "border-box" }}>
               <div style={{ width: 48, height: 48, borderRadius: "50%", background: accent, display: "flex", alignItems: "center", justifyContent: "center", fontSize: 24, fontWeight: 800, color: INK, flexShrink: 0 }}>↑</div>
               <div>
                 <div style={{ fontSize: 23, fontWeight: 700 }}>+4,2 % prisjustering</div>
@@ -361,7 +361,7 @@ export default function LonekollenHero({
             {ring(clickChip, chipX(SEL) + CHIP_W / 2 + 8, CHIP_Y + CHIP_H / 2 + 8)}
             {ring(clickZone, zoneX(2) + ZONE_W / 2 + 10, ZONE_Y + ZONE_H / 2 + 16)}
 
-            <div style={{ position: "absolute", left: curX, top: curY, opacity: curO, transform: "translate(-50%,-50%) scale(" + curS + ")", width: 26, height: 26, borderRadius: "50%", background: "#FFFFFF", border: "2.5px solid rgba(7,51,61,0.4)", boxShadow: "0 8px 20px rgba(7,51,61,0.3)" }} />
+            <div style={{ position: "absolute", left: curX, top: curY, opacity: curO, transform: "translate(-50%,-50%) scale(" + curS + ")", width: 26, height: 26, borderRadius: "50%", background: "#FFFFFF", border: "2.5px solid rgba(10,10,10,0.4)", boxShadow: "0 8px 20px rgba(10,10,10,0.3)" }} />
           </div>
           {captions && <Captions T={T} items={captionItems} />}
         </div>
