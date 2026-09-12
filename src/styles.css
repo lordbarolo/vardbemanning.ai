@@ -46,6 +46,7 @@
   --color-input: var(--input);
   --color-ring: var(--ring);
   --color-button-outline: var(--button-outline);
+  --color-cream: var(--cream);
   --color-ring-offset-background: var(--background);
   --color-chart-1: var(--chart-1);
   --color-chart-2: var(--chart-2);
@@ -96,6 +97,7 @@
   --border: hsl(260 30% 18%);
   --input: hsl(260 30% 14%);
   --button-outline: hsl(38 18% 78%);
+  --cream: hsl(40 33% 88%);
   --ring: hsl(256 100% 67%);
 
   --cyan: hsl(190 95% 55%);
