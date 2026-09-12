@@ -97,7 +97,7 @@ function Combobox<T>({
           onFocus={() => (items.length > 0 || failed) && setOpen(true)}
           onBlur={() => setTimeout(() => setOpen(false), 150)}
           placeholder={placeholder}
-          className="h-[4.25rem] w-full rounded-xl border border-border/70 bg-secondary/40 px-4 pb-2 pt-7 pr-10 text-base font-medium text-foreground outline-none transition-all placeholder:font-normal placeholder:text-muted-foreground hover:bg-secondary/60 focus:border-primary/60 focus:ring-2 focus:ring-primary/40"
+          className="h-[4.25rem] w-full rounded-xl border border-border/70 bg-secondary/40 px-4 pb-2 pt-7 pr-10 text-base font-medium text-foreground outline-none transition-all placeholder:font-normal placeholder:text-muted-foreground hover:bg-secondary/60 focus:border-cream/70 focus:ring-2 focus:ring-cream/30"
         />
         <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground">
           {loading ? (
@@ -223,10 +223,10 @@ export function SearchPanel() {
   return (
     <div className="relative max-w-4xl rounded-2xl border border-border/80 bg-card/90 p-5 text-left shadow-2xl backdrop-blur-xl sm:p-7 md:p-8">
       <div className="mb-7">
-        <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-success/30 bg-success/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-success">
+        <span className="mb-3 inline-flex items-center gap-2 rounded-full border border-cream/50 bg-cream/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-foreground">
           <span className="relative flex h-2 w-2">
-            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-success opacity-75" />
-            <span className="relative inline-flex h-2 w-2 rounded-full bg-success" />
+            <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-cream opacity-75" />
+            <span className="relative inline-flex h-2 w-2 rounded-full bg-cream" />
           </span>
           AI-analyserad avtalsdata
         </span>
@@ -311,7 +311,7 @@ export function SearchPanel() {
       )}
 
       <div className="mt-2 grid gap-3 sm:grid-cols-2">
-        <div className="rounded-xl border border-primary/40 bg-gradient-to-br from-primary/20 to-primary/5 p-4 sm:p-5">
+        <div className="rounded-xl border border-cream/60 bg-cream/5 p-4 sm:p-5">
           <p className="mb-2 text-xs font-bold uppercase tracking-wide text-foreground/90">
             Som företagare
           </p>
