@@ -378,7 +378,7 @@
   margin-bottom: 1.5rem;
   padding: 1px;
   border-radius: 9999px;
-  background: linear-gradient(100deg, var(--success), var(--cyan) 35%, var(--primary) 70%, var(--success));
+  background: hsl(38 22% 78% / 0.55);
   text-decoration: none;
   animation: hero-package-fade-up 550ms ease both;
 }
