@@ -137,6 +137,29 @@
   color-scheme: dark;
 }
 
+/* Startsida: strikt svart/vitt med krämfärgade CTA:er och konturer. */
+.mono-home {
+  --background: hsl(0 0% 0%);
+  --foreground: hsl(0 0% 100%);
+  --card: hsl(0 0% 4%);
+  --card-foreground: hsl(0 0% 100%);
+  --popover: hsl(0 0% 4%);
+  --popover-foreground: hsl(0 0% 100%);
+  --primary: hsl(0 0% 100%);
+  --primary-foreground: hsl(0 0% 0%);
+  --secondary: hsl(0 0% 9%);
+  --secondary-foreground: hsl(0 0% 100%);
+  --muted: hsl(0 0% 12%);
+  --muted-foreground: hsl(0 0% 70%);
+  --accent: hsl(0 0% 100%);
+  --accent-foreground: hsl(0 0% 0%);
+  --border: hsl(38 20% 78% / 0.35);
+  --input: hsl(0 0% 12%);
+  --ring: var(--cream);
+  --hero: hsl(0 0% 0%);
+  --hero-foreground: hsl(0 0% 100%);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);
@@ -166,9 +189,9 @@
     z-index: -1;
     pointer-events: none;
     background:
-      radial-gradient(ellipse 80% 40% at 20% 0%, hsl(var(--glow-violet) / 0.14) 0%, transparent 65%),
-      radial-gradient(ellipse 70% 35% at 90% 8%, hsl(var(--glow-pink) / 0.1) 0%, transparent 60%),
-      radial-gradient(ellipse 90% 40% at 50% 100%, hsl(var(--glow-cyan) / 0.06) 0%, transparent 65%),
+      radial-gradient(ellipse 80% 40% at 20% 0%, hsl(0 0% 100% / 0.05) 0%, transparent 65%),
+      radial-gradient(ellipse 70% 35% at 90% 8%, hsl(0 0% 100% / 0.04) 0%, transparent 60%),
+      radial-gradient(ellipse 90% 40% at 50% 100%, hsl(0 0% 100% / 0.03) 0%, transparent 65%),
       var(--background);
   }
 
