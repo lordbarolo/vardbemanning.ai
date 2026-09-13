@@ -1,73 +1,93 @@
-# Animeringen som övergång: mörk hero → ljusare sektioner
+# Assistenten: "Jag vill ta uppdrag i Hälsingland vecka 40–44"
 
-## Idén
+Målbilden är en assistent i appen som tar en fritextfråga och svarar med
+ersättning, leverantörer och avtalsrisker. Nedan står vad som faktiskt finns i
+projektet idag och vad som saknas.
 
-Animeringen ska inte välja sida. I stället blir den själva bryggan: den börjar i heros mörka Deep Space-rymd och landar i det ljusa, lugnare läge som sektionerna under kommer att ha. Tittaren märker aldrig var mörkret slutade — bara att sidan har öppnat sig.
+(En notis om namnet: du skriver "Compcare", men det här projektet är
+Vårdbemanning.ai. Jag bygger det här, i den här appen.)
 
-Två saker rör sig samtidigt:
+## Vad vi redan har
 
-1. **Sektionen** går uppifrån mörk till ljus i sin egen bakgrund (rumslig övergång).
-2. **Animationen** startar mörk i sina första scener och ljusnar under tidslinjen (tidsmässig övergång).
+- **Priser per roll och ort.** Avtalsdatan (RS 2022-03983) ligger i databasen:
+  88 roller, 290 kommuner, 3 zoner, giltig 2026-01-01–2026-12-31.
+- **Sökning i fritext.** Funktioner som tolkar "Ögonläkare" och "Torsby" och
+  säger om träffen var exakt eller gissad.
+- **Ersättningsberäkning.** Ett anrop ger regionpris, ersättning för företagare
+  respektive anställd, plus marginalerna och avgifterna beräkningen vilar på.
+- **Inloggning och profiler**, samt startsidans sökformulär som redan använder
+  allt ovan.
 
-Tillsammans ger de en känsla av gryning snarare än en hård kant mellan två teman.
+## Vad som saknas
 
-## Så byggs den rumsliga övergången
+| Del av frågan | Status |
+|---|---|
+| "Hälsingland vecka 40–44" | Saknas. Hälsingland är ett landskap, inte en kommun — ingen koppling finns. Veckonummer tolkas inte heller. |
+| Vilka bemanningsföretag har avtal med regionen | **Saknas helt.** Ingen leverantörsdata finns i projektet. |
+| Vilka leverantörer är historiskt starka på rollen/sjukhuset | **Saknas helt.** Ingen uppdragshistorik, inga sjukhus. |
+| Ersättning om företaget behåller 10 % | Delvis. Priset finns; men dagens beräkning använder avtalets marginalantaganden, inte en marginal du själv ställer in. |
+| Risker i ramavtalet som förs över på konsulten | **Saknas helt.** Inga avtalstexter eller riskanalyser finns lagrade. |
+| Själva assistenten (chatt) | Saknas. Appen har bara ett sökformulär. |
 
-Animeringen ligger i en sektion vars bakgrund är en vertikal gradient:
+## Förslag: bygg i tre steg
 
-```text
-   hero slut     ┌───────────────────────┐  hsl(260 60% 4%)   mörk, samma som hero
-                 │                       │
-                 │      ANIMERINGEN      │  hsl(258 40% 12%)  glöd tonar ut
-                 │                       │  hsl(250 25% 40%)  vändpunkt
-                 │                       │
-   nästa sektion └───────────────────────┘  ljus botten
-```
+### Steg 1 — assistenten, på den data vi har (kan byggas nu)
 
-- Toppen matchar hero exakt, så skarven försvinner.
-- Mitten är där violett/rosa glow lever kvar men försvagas.
-- Botten möter det ljusa temat som kommande sektioner får.
-- Ett mjukt övergångsfält (feather) i över- och underkant hindrar synliga band.
-- Animeringens egen bakgrund blir transparent så att sektionens gradient syns igenom.
+En chattsida där du skriver fritt och assistenten svarar. Den får tillgång till
+den befintliga prisdatan som verktyg och kan:
 
-Ett nytt ljust tema-värde behöver definieras i `src/styles.css` som mål för botten, eftersom projektet i dag bara har Deep Space. Det blir också referensen för de kommande ljusa sektionerna.
+- tolka roll och ort ur din text och hämta rätt pris,
+- räkna på valfri marginal, t.ex. "företaget behåller 10 %", och visa hur
+  summan är uppbyggd,
+- säga tydligt när en ortsträff är osäker och be dig välja, i stället för att
+  gissa ett belopp,
+- säga rakt ut när något den frågas om inte finns i underlaget (leverantörer,
+  historik, avtalsrisker) i stället för att hitta på.
 
-## Så byggs den tidsmässiga övergången
+Chatten sparas per konversation så du kan gå tillbaka till en tidigare fråga.
 
-Animeringens 17 sekunder följer samma resa. Färgerna interpoleras med samma `interpolate`-funktion som redan driver kamera och rörelse — ingen ny teknik krävs.
+### Steg 2 — geografi och tid
 
-| Scen | Läge | Vad tittaren ser |
-|---|---|---|
-| Öppning | Mörkt | Rubriken lyser mot rymdsvart, violett glow bakom |
-| Roll | Mörkt | Chips är mörka kort med violett kant, vald chip glöder |
-| Zon | Skiftar | Bakgrunden börjar ljusna, korten tar upp mer ljus |
-| Belopp | Halvljust | Resultatkortet är ljust mot dämpad bakgrund — beloppet får full läsbarhet |
-| Notis | Ljust | Sista scenen ligger nära det ljusa temat och pekar nedåt i sidan |
+Landskap och sjukhus → kommun, samt veckonummer → datumintervall, så att
+"Hälsingland vecka 40–44" kan besvaras. Kräver ny data från backend-ägaren.
 
-Praktiskt innebär det att `BG`, `INK`, `DIM`, `LINE` och kortens fyllning blir funktioner av tiden i stället för konstanter. Accentfärgen håller sig till projektets `--primary` (violett) hela vägen, med `--accent` (rosa) sparsamt på "HÖGST ERSÄTTNING", så att identiteten består även när ljusheten ändras.
+### Steg 3 — leverantörer, historik och avtalsrisker
 
-## Läsbarhet genom hela resan
+Leverantörsregister per region, uppdragshistorik per roll och sjukhus, samt
+lagrade ramavtalsvillkor med riskbedömning. Allt detta är nytt underlag som
+måste tas fram och kvalitetssäkras innan assistenten får svara på det.
 
-Eftersom bakgrunden rör sig måste texten röra sig med den:
+## Backendändring behövs (steg 2 och 3)
 
-- Textfärgen interpoleras i takt med bakgrunden — ljus text i mörka scener, mörk text i ljusa.
-- Kontrasten hålls över 4.5:1 i varje bildruta, inte bara i ändlägena.
-- Kortens fyllning och kantlinjer följer samma kurva så att ingenting tappar sin form mitt i övergången.
-- Skuggor byter karaktär: färgad glow när det är mörkt, mjuk neutral skugga när det är ljust.
+**Vad jag försöker bygga:** en assistent som kan svara på geografi, tid,
+leverantörer, historik och avtalsrisk.
 
-## Vad som inte ändras
+**Vad som saknas:** landskap→kommun, sjukhus→kommun, leverantörer per region
+och roll, uppdragshistorik, ramavtalsvillkor med risknivå.
 
-- Tidslinje, scenlängder, easing och kamerarörelser är orörda.
-- Ingen text, inget innehåll och inga siffror ändras.
-- Inget nytt bibliotek införs.
-- Ingen påverkan på data, priser eller backend.
+**Föreslagen form:** referenstabeller för landskap och sjukhus kopplade till
+`municipality_code`; leverantörstabell kopplad till region och roll;
+historiktabell per uppdrag; en tabell för avtalsvillkor och risk per
+leverantör.
 
-## Verifiering
+**Läsa/skriva:** läsning för inloggade, skrivning enbart via migrations.
 
-- Titta på skarven mellan hero och animeringen — den ska inte gå att se.
-- Spela igenom hela loopen och kontrollera att ingen bildruta har svag kontrast.
-- Kontrollera på mobil och desktop att gradienten inte bryts av sektionens höjdskillnad.
+Det här skickar du vidare till backend-agenten — jag bygger inget av det själv.
 
-## En fråga innan bygget
+## Tekniskt (steg 1)
 
-Sektionerna under animeringen finns inte ännu. Jag föreslår att jag definierar det ljusa temat nu, som animeringens landningspunkt, och att kommande sektioner byggs mot det. Om du hellre vill bestämma det ljusa temat först säger du bara till, så inväntar jag det.
+- Chattyta i appen med streamande svar, byggd på Lovable AI.
+- Modellen får verktyg som anropar de befintliga databasfunktionerna
+  (`resolve_roles`, `resolve_municipalities`, `hero_compensation`) — inga priser
+  hårdkodas eller cachas, och inga siffror räknas fram utan spårbarhet till
+  avtalsdatan.
+- Marginalen är en parameter i verktyget; assistenten visar alltid vilken
+  marginal, sociala avgifter och pension ett belopp vilar på.
+- Osäker namnträff (`match_kind` ≠ `exact`) märks i svaret eller leder till en
+  följdfråga — aldrig ett belopp som ser bekräftat ut.
+- Ingen skrivning mot referensdata, ingen SQL, ingen Lovable Cloud.
+
+## Att bestämma innan steg 1 byggs
+
+- Ska konversationer sparas i databasen (kräver en backendändring) eller bara i
+  din webbläsare tills vidare?
