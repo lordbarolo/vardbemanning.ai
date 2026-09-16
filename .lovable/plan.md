@@ -48,10 +48,11 @@ den befintliga prisdatan som verktyg och kan:
 
 Chatten sparas per konversation så du kan gå tillbaka till en tidigare fråga.
 
-### Steg 2 — geografi och tid
+### Steg 2 — tid och sjukhus
 
-Landskap och sjukhus → kommun, samt veckonummer → datumintervall, så att
-"Hälsingland vecka 40–44" kan besvaras. Kräver ny data från backend-ägaren.
+Veckonummer → datumintervall, samt sjukhus → kommun. Landskap görs inte
+sökbart; skriver någon "Hälsingland" svarar chatten med en fråga om vilken
+kommun det gäller.
 
 ### Steg 3 — leverantörer, historik och avtalsrisker
 
