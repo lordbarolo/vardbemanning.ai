@@ -22,7 +22,7 @@ Vårdbemanning.ai. Jag bygger det här, i den här appen.)
 
 | Del av frågan | Status |
 |---|---|
-| "Hälsingland vecka 40–44" | Saknas. Hälsingland är ett landskap, inte en kommun — ingen koppling finns. Veckonummer tolkas inte heller. |
+| "Hälsingland vecka 40–44" | Delvis. Region och kommun är sökbara; landskap och städer som inte är kommuner ska inte bli sökbara — chatten ber i stället användaren ange kommun. Veckonummer tolkas inte ännu. |
 | Vilka bemanningsföretag har avtal med regionen | **Saknas helt.** Ingen leverantörsdata finns i projektet. |
 | Vilka leverantörer är historiskt starka på rollen/sjukhuset | **Saknas helt.** Ingen uppdragshistorik, inga sjukhus. |
 | Ersättning om företaget behåller 10 % | Delvis. Priset finns; men dagens beräkning använder avtalets marginalantaganden, inte en marginal du själv ställer in. |
