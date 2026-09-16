@@ -22,7 +22,7 @@ Vårdbemanning.ai. Jag bygger det här, i den här appen.)
 
 | Del av frågan | Status |
 |---|---|
-| "Hälsingland vecka 40–44" | Saknas. Hälsingland är ett landskap, inte en kommun — ingen koppling finns. Veckonummer tolkas inte heller. |
+| "Hälsingland vecka 40–44" | Delvis. Region och kommun är sökbara; landskap och städer som inte är kommuner ska inte bli sökbara — chatten ber i stället användaren ange kommun. Veckonummer tolkas inte ännu. |
 | Vilka bemanningsföretag har avtal med regionen | **Saknas helt.** Ingen leverantörsdata finns i projektet. |
 | Vilka leverantörer är historiskt starka på rollen/sjukhuset | **Saknas helt.** Ingen uppdragshistorik, inga sjukhus. |
 | Ersättning om företaget behåller 10 % | Delvis. Priset finns; men dagens beräkning använder avtalets marginalantaganden, inte en marginal du själv ställer in. |
@@ -41,15 +41,18 @@ den befintliga prisdatan som verktyg och kan:
   summan är uppbyggd,
 - säga tydligt när en ortsträff är osäker och be dig välja, i stället för att
   gissa ett belopp,
+- be dig ange kommun när du skrivit ett landskap eller en ort som inte är en
+  kommun — aldrig gissa vilken kommun som avses,
 - säga rakt ut när något den frågas om inte finns i underlaget (leverantörer,
   historik, avtalsrisker) i stället för att hitta på.
 
 Chatten sparas per konversation så du kan gå tillbaka till en tidigare fråga.
 
-### Steg 2 — geografi och tid
+### Steg 2 — tid och sjukhus
 
-Landskap och sjukhus → kommun, samt veckonummer → datumintervall, så att
-"Hälsingland vecka 40–44" kan besvaras. Kräver ny data från backend-ägaren.
+Veckonummer → datumintervall, samt sjukhus → kommun. Landskap görs inte
+sökbart; skriver någon "Hälsingland" svarar chatten med en fråga om vilken
+kommun det gäller.
 
 ### Steg 3 — leverantörer, historik och avtalsrisker
 
@@ -62,10 +65,10 @@ måste tas fram och kvalitetssäkras innan assistenten får svara på det.
 **Vad jag försöker bygga:** en assistent som kan svara på geografi, tid,
 leverantörer, historik och avtalsrisk.
 
-**Vad som saknas:** landskap→kommun, sjukhus→kommun, leverantörer per region
-och roll, uppdragshistorik, ramavtalsvillkor med risknivå.
+**Vad som saknas:** sjukhus→kommun, leverantörer per region och roll,
+uppdragshistorik, ramavtalsvillkor med risknivå.
 
-**Föreslagen form:** referenstabeller för landskap och sjukhus kopplade till
+**Föreslagen form:** referenstabell för sjukhus kopplad till
 `municipality_code`; leverantörstabell kopplad till region och roll;
 historiktabell per uppdrag; en tabell för avtalsvillkor och risk per
 leverantör.
