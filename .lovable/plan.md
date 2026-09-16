@@ -65,10 +65,10 @@ måste tas fram och kvalitetssäkras innan assistenten får svara på det.
 **Vad jag försöker bygga:** en assistent som kan svara på geografi, tid,
 leverantörer, historik och avtalsrisk.
 
-**Vad som saknas:** landskap→kommun, sjukhus→kommun, leverantörer per region
-och roll, uppdragshistorik, ramavtalsvillkor med risknivå.
+**Vad som saknas:** sjukhus→kommun, leverantörer per region och roll,
+uppdragshistorik, ramavtalsvillkor med risknivå.
 
-**Föreslagen form:** referenstabeller för landskap och sjukhus kopplade till
+**Föreslagen form:** referenstabell för sjukhus kopplad till
 `municipality_code`; leverantörstabell kopplad till region och roll;
 historiktabell per uppdrag; en tabell för avtalsvillkor och risk per
 leverantör.
