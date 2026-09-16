@@ -1,96 +1,75 @@
-# Assistenten: "Jag vill ta uppdrag i Hälsingland vecka 40–44"
+# Steg 1: sidan Leverantörsstatistik
 
-Målbilden är en assistent i appen som tar en fritextfråga och svarar med
-ersättning, leverantörer och avtalsrisker. Nedan står vad som faktiskt finns i
-projektet idag och vad som saknas.
+Ett steg i taget. Den här planen bygger **bara** en sida där du väljer yrke,
+eventuell specialisering och ort — och får en lista på vilka bemanningsföretag
+som faktiskt fakturerat mest timmar där. Ingen chatt, ingen AI, inget annat.
 
-(En notis om namnet: du skriver "Compcare", men det här projektet är
-Vårdbemanning.ai. Jag bygger det här, i den här appen.)
+## Är materialet optimalt?
 
-## Vad vi redan har
+Datapaketet i sig är bra: källa, kvalitetsförbehåll och gränser är tydligt
+beskrivna, och RPC-funktionerna gör precis det sidan behöver. Fyra saker i den
+bifogade prompten passar dock inte det här projektet och behöver ändras:
 
-- **Priser per roll och ort.** Avtalsdatan (RS 2022-03983) ligger i databasen:
-  88 roller, 290 kommuner, 3 zoner, giltig 2026-01-01–2026-12-31.
-- **Sökning i fritext.** Funktioner som tolkar "Ögonläkare" och "Torsby" och
-  säger om träffen var exakt eller gissad.
-- **Ersättningsberäkning.** Ett anrop ger regionpris, ersättning för företagare
-  respektive anställd, plus marginalerna och avgifterna beräkningen vilar på.
-- **Inloggning och profiler**, samt startsidans sökformulär som redan använder
-  allt ovan.
+1. **Ortsuppslagningen.** Prompten säger tabellen `locations` med kolumnerna
+   `kommun`, `region`, `zon`. Den tabellen finns inte här — projektet har
+   `municipalities`, `zones` och funktionen `search_municipalities`, som
+   startsidans sökruta redan använder. Jag återanvänder den i stället, så
+   ortsvalet fungerar likadant på båda ställena.
+2. **Filstrukturen.** Prompten pekar på `src/pages/...` och `App.tsx`. Projektet
+   har inte de filerna — sidor ligger som routes. Sidan hamnar därför på
+   `/leverantorer` under samma inloggningsskydd som dashboarden.
+3. **Verifieringssiffrorna** (Bonliva 24,3 % i zon 3 osv.) kan jag inte
+   kontrollera förrän datan ligger i databasen. Jag bygger sidan och redovisar
+   vad den faktiskt visar, så du kan stämma av mot din kontrollfil.
+4. **Databasdelen är inte min.** `schema.sql` och de tre CSV-filerna ska köras
+   av dig eller backend-agenten — jag rör aldrig schemat. Två anmärkningar att
+   skicka vidare: filen saknar `grant`-satser (utan dem svarar tabellerna med
+   behörighetsfel även med RLS på plats), och läsning är begränsad till
+   inloggade, vilket är rimligt men innebär att sidan måste ligga bakom login.
 
-## Vad som saknas
+Fram till att datan är importerad visar sidan ett tydligt "statistiken är inte
+tillgänglig än" i stället för tomma listor.
 
-| Del av frågan | Status |
-|---|---|
-| "Hälsingland vecka 40–44" | Delvis. Region och kommun är sökbara; landskap och städer som inte är kommuner ska inte bli sökbara — chatten ber i stället användaren ange kommun. Veckonummer tolkas inte ännu. |
-| Vilka bemanningsföretag har avtal med regionen | **Saknas helt.** Ingen leverantörsdata finns i projektet. |
-| Vilka leverantörer är historiskt starka på rollen/sjukhuset | **Saknas helt.** Ingen uppdragshistorik, inga sjukhus. |
-| Ersättning om företaget behåller 10 % | Delvis. Priset finns; men dagens beräkning använder avtalets marginalantaganden, inte en marginal du själv ställer in. |
-| Risker i ramavtalet som förs över på konsulten | **Saknas helt.** Inga avtalstexter eller riskanalyser finns lagrade. |
-| Själva assistenten (chatt) | Saknas. Appen har bara ett sökformulär. |
+## Vad som byggs
 
-## Förslag: bygg i tre steg
+En sida på `/leverantorer`, bakom inloggning, med:
 
-### Steg 1 — assistenten, på den data vi har (kan byggas nu)
+- **Yrke** (obligatoriskt). De vanligaste rollerna först, resten i bokstavsordning.
+- **Specialisering** (valfritt), som följer valt yrke. Standard: alla.
+- **Ort** (obligatoriskt). Samma sökruta som på startsidan. Under fältet står
+  vilken zon orten hör till, t.ex. "Hudiksvall ligger i zon 3", eftersom
+  statistiken bara finns per zon.
+- **Period**: senaste fyra kvartalen som standard, med val för två kvartal eller
+  hela perioden.
 
-En chattsida där du skriver fritt och assistenten svarar. Den får tillgång till
-den befintliga prisdatan som verktyg och kan:
+Resultatet är en lista sorterad efter rapporterade timmar: leverantör (med
+"avtal avslutat" där det gäller), andel av timmarna med stapel, fakturerade
+timmar, snittpris per timme, hur många kvartal de levererat och avtalsområde.
+Tio rader först, knapp för att visa alla, och en summeringsrad under.
 
-- tolka roll och ort ur din text och hämta rätt pris,
-- räkna på valfri marginal, t.ex. "företaget behåller 10 %", och visa hur
-  summan är uppbyggd,
-- säga tydligt när en ortsträff är osäker och be dig välja, i stället för att
-  gissa ett belopp,
-- be dig ange kommun när du skrivit ett landskap eller en ort som inte är en
-  kommun — aldrig gissa vilken kommun som avses,
-- säga rakt ut när något den frågas om inte finns i underlaget (leverantörer,
-  historik, avtalsrisker) i stället för att hitta på.
+Ovanför resultatet ligger informationsrutan med förbehållen, ordagrant som i
+ditt underlag, plus källänken till VGR.
 
-Chatten sparas per konversation så du kan gå tillbaka till en tidigare fråga.
+Länk "Leverantörer" läggs i samma navigation som dashboarden.
 
-### Steg 2 — tid och sjukhus
+## Osäker ortsträff
 
-Veckonummer → datumintervall, samt sjukhus → kommun. Landskap görs inte
-sökbart; skriver någon "Hälsingland" svarar chatten med en fråga om vilken
-kommun det gäller.
+Om ortsökningen inte ger en exakt träff visas det — sidan gissar aldrig fram en
+zon, eftersom fel zon ger fel leverantörslista.
 
-### Steg 3 — leverantörer, historik och avtalsrisker
+## Tekniskt
 
-Leverantörsregister per region, uppdragshistorik per roll och sjukhus, samt
-lagrade ramavtalsvillkor med riskbedömning. Allt detta är nytt underlag som
-måste tas fram och kvalitetssäkras innan assistenten får svara på det.
+- Ny route `src/routes/_authenticated/leverantorer.tsx` plus komponenter under
+  `src/components/leverantorer/`.
+- Allt via befintlig Supabase-klient: `supplier_ranking`,
+  `national_agreement_roles`, `national_agreement_quarters`, och
+  `search_municipalities` för ort → zon. Ingen ny dependency, ingen SQL, inga
+  hårdkodade siffror.
+- Fel från databasen ger "Kunde inte hämta statistiken just nu." med möjlighet
+  att försöka igen — aldrig en tom lista som ser ut som ett svar.
+- Befintliga moduler och startsidan lämnas orörda.
 
-## Backendändring behövs (steg 2 och 3)
+## Innan jag börjar
 
-**Vad jag försöker bygga:** en assistent som kan svara på geografi, tid,
-leverantörer, historik och avtalsrisk.
-
-**Vad som saknas:** sjukhus→kommun, leverantörer per region och roll,
-uppdragshistorik, ramavtalsvillkor med risknivå.
-
-**Föreslagen form:** referenstabell för sjukhus kopplad till
-`municipality_code`; leverantörstabell kopplad till region och roll;
-historiktabell per uppdrag; en tabell för avtalsvillkor och risk per
-leverantör.
-
-**Läsa/skriva:** läsning för inloggade, skrivning enbart via migrations.
-
-Det här skickar du vidare till backend-agenten — jag bygger inget av det själv.
-
-## Tekniskt (steg 1)
-
-- Chattyta i appen med streamande svar, byggd på Lovable AI.
-- Modellen får verktyg som anropar de befintliga databasfunktionerna
-  (`resolve_roles`, `resolve_municipalities`, `hero_compensation`) — inga priser
-  hårdkodas eller cachas, och inga siffror räknas fram utan spårbarhet till
-  avtalsdatan.
-- Marginalen är en parameter i verktyget; assistenten visar alltid vilken
-  marginal, sociala avgifter och pension ett belopp vilar på.
-- Osäker namnträff (`match_kind` ≠ `exact`) märks i svaret eller leder till en
-  följdfråga — aldrig ett belopp som ser bekräftat ut.
-- Ingen skrivning mot referensdata, ingen SQL, ingen Lovable Cloud.
-
-## Att bestämma innan steg 1 byggs
-
-- Ska konversationer sparas i databasen (kräver en backendändring) eller bara i
-  din webbläsare tills vidare?
+Säg till när `schema.sql` och de tre CSV-filerna är körda mot databasen — jag
+kan bygga sidan innan dess, men inte verifiera siffrorna.
