@@ -41,6 +41,8 @@ den befintliga prisdatan som verktyg och kan:
   summan är uppbyggd,
 - säga tydligt när en ortsträff är osäker och be dig välja, i stället för att
   gissa ett belopp,
+- be dig ange kommun när du skrivit ett landskap eller en ort som inte är en
+  kommun — aldrig gissa vilken kommun som avses,
 - säga rakt ut när något den frågas om inte finns i underlaget (leverantörer,
   historik, avtalsrisker) i stället för att hitta på.
 
