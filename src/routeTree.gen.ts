@@ -13,6 +13,8 @@ import { Route as IndexRouteImport } from './routes/index'
 import { Route as AuthenticatedRouteRouteImport } from './routes/_authenticated/route'
 import { Route as AnimeringDevRouteImport } from './routes/animering-dev'
 import { Route as AuthRouteImport } from './routes/auth'
+import { Route as IntegritetspolicyRouteImport } from './routes/integritetspolicy'
+import { Route as KopplingRouteImport } from './routes/koppling'
 import { Route as ResetPasswordRouteImport } from './routes/reset-password'
 import { Route as AuthenticatedDashboardRouteImport } from './routes/_authenticated/dashboard'
 import { Route as AuthenticatedProfilRouteImport } from './routes/_authenticated/profil'
@@ -36,6 +38,16 @@ const AuthRoute = AuthRouteImport.update({
   path: '/auth',
   getParentRoute: () => rootRouteImport,
 } as any)
+const IntegritetspolicyRoute = IntegritetspolicyRouteImport.update({
+  id: '/integritetspolicy',
+  path: '/integritetspolicy',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const KopplingRoute = KopplingRouteImport.update({
+  id: '/koppling',
+  path: '/koppling',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ResetPasswordRoute = ResetPasswordRouteImport.update({
   id: '/reset-password',
   path: '/reset-password',
@@ -56,6 +68,8 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/animering-dev': typeof AnimeringDevRoute
   '/auth': typeof AuthRoute
+  '/integritetspolicy': typeof IntegritetspolicyRoute
+  '/koppling': typeof KopplingRoute
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/profil': typeof AuthenticatedProfilRoute
@@ -64,6 +78,8 @@ export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/animering-dev': typeof AnimeringDevRoute
   '/auth': typeof AuthRoute
+  '/integritetspolicy': typeof IntegritetspolicyRoute
+  '/koppling': typeof KopplingRoute
   '/reset-password': typeof ResetPasswordRoute
   '/dashboard': typeof AuthenticatedDashboardRoute
   '/profil': typeof AuthenticatedProfilRoute
@@ -74,6 +90,8 @@ export interface FileRoutesById {
   '/_authenticated': typeof AuthenticatedRouteRouteWithChildren
   '/animering-dev': typeof AnimeringDevRoute
   '/auth': typeof AuthRoute
+  '/integritetspolicy': typeof IntegritetspolicyRoute
+  '/koppling': typeof KopplingRoute
   '/reset-password': typeof ResetPasswordRoute
   '/_authenticated/dashboard': typeof AuthenticatedDashboardRoute
   '/_authenticated/profil': typeof AuthenticatedProfilRoute
@@ -84,6 +102,8 @@ export interface FileRouteTypes {
     | '/'
     | '/animering-dev'
     | '/auth'
+    | '/integritetspolicy'
+    | '/koppling'
     | '/reset-password'
     | '/dashboard'
     | '/profil'
@@ -92,6 +112,8 @@ export interface FileRouteTypes {
     | '/'
     | '/animering-dev'
     | '/auth'
+    | '/integritetspolicy'
+    | '/koppling'
     | '/reset-password'
     | '/dashboard'
     | '/profil'
@@ -101,6 +123,8 @@ export interface FileRouteTypes {
     | '/_authenticated'
     | '/animering-dev'
     | '/auth'
+    | '/integritetspolicy'
+    | '/koppling'
     | '/reset-password'
     | '/_authenticated/dashboard'
     | '/_authenticated/profil'
@@ -111,6 +135,8 @@ export interface RootRouteChildren {
   AuthenticatedRouteRoute: typeof AuthenticatedRouteRouteWithChildren
   AnimeringDevRoute: typeof AnimeringDevRoute
   AuthRoute: typeof AuthRoute
+  IntegritetspolicyRoute: typeof IntegritetspolicyRoute
+  KopplingRoute: typeof KopplingRoute
   ResetPasswordRoute: typeof ResetPasswordRoute
 }
 
@@ -142,6 +168,20 @@ declare module '@tanstack/react-router' {
       path: '/auth'
       fullPath: '/auth'
       preLoaderRoute: typeof AuthRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/integritetspolicy': {
+      id: '/integritetspolicy'
+      path: '/integritetspolicy'
+      fullPath: '/integritetspolicy'
+      preLoaderRoute: typeof IntegritetspolicyRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/koppling': {
+      id: '/koppling'
+      path: '/koppling'
+      fullPath: '/koppling'
+      preLoaderRoute: typeof KopplingRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/reset-password': {
@@ -186,6 +226,8 @@ const rootRouteChildren: RootRouteChildren = {
   AuthenticatedRouteRoute: AuthenticatedRouteRouteWithChildren,
   AnimeringDevRoute: AnimeringDevRoute,
   AuthRoute: AuthRoute,
+  IntegritetspolicyRoute: IntegritetspolicyRoute,
+  KopplingRoute: KopplingRoute,
   ResetPasswordRoute: ResetPasswordRoute,
 }
 export const routeTree = rootRouteImport
