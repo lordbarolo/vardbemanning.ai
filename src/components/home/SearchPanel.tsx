@@ -48,6 +48,7 @@ function Combobox<T>({
   const [open, setOpen] = useState(false);
   const [loading, setLoading] = useState(false);
   const skipRef = useRef(false);
+  const focusedRef = useRef(false);
   const [attempt, setAttempt] = useState(0);
 
   useEffect(() => {
@@ -74,7 +75,7 @@ function Combobox<T>({
             setItems(result.status === "ok" ? result.data : []);
             setFailed(false);
           }
-          setOpen(true);
+          setOpen(focusedRef.current);
         })
         .finally(() => active && setLoading(false));
     }, 220);
@@ -99,8 +100,14 @@ function Combobox<T>({
           value={value}
           autoComplete="off"
           onChange={(e) => onChange(e.target.value)}
-          onFocus={() => (items.length > 0 || failed) && setOpen(true)}
-          onBlur={() => setTimeout(() => setOpen(false), 150)}
+          onFocus={() => {
+            focusedRef.current = true;
+            if (items.length > 0 || failed) setOpen(true);
+          }}
+          onBlur={() => {
+            focusedRef.current = false;
+            setTimeout(() => setOpen(false), 150);
+          }}
           placeholder={placeholder}
           className="h-[4.25rem] w-full rounded-xl border border-border/70 bg-secondary/40 px-4 pb-2 pt-7 pr-10 text-base font-medium text-foreground outline-none transition-all placeholder:font-normal placeholder:text-muted-foreground hover:bg-secondary/60 focus:border-cream/70 focus:ring-2 focus:ring-cream/30"
         />
@@ -142,8 +149,8 @@ function Combobox<T>({
                   }}
                   className="flex h-auto w-full flex-col items-start rounded-lg px-3 py-2 text-left text-sm font-medium text-foreground hover:bg-muted"
                 >
-                  <span>{getLabel(item)}</span>
-                  <span className="text-xs font-normal text-muted-foreground">
+                  <span className="max-w-full whitespace-normal break-words">{getLabel(item)}</span>
+                  <span className="max-w-full whitespace-normal break-words text-xs font-normal text-muted-foreground">
                     {getHint(item)}
                   </span>
                 </Button>
@@ -381,7 +388,7 @@ export function SearchPanel() {
             Som företagare
           </p>
           <div className="flex min-h-9 flex-wrap items-baseline gap-x-2 gap-y-1">
-            <span className="text-2xl font-semibold text-foreground tabular-nums sm:text-3xl">
+            <span className="whitespace-nowrap text-xl font-semibold text-foreground tabular-nums">
               {loading ? "…" : result ? `${formatSek(result.foretagare_low)}–${formatSek(result.foretagare_high)}` : "—"}
             </span>
             <span className="text-sm font-medium text-muted-foreground">kr/timme</span>
@@ -392,7 +399,7 @@ export function SearchPanel() {
             Som löntagare
           </p>
           <div className="flex min-h-9 flex-wrap items-baseline gap-x-2 gap-y-1">
-            <span className="text-2xl font-semibold text-foreground tabular-nums sm:text-3xl">
+            <span className="whitespace-nowrap text-xl font-semibold text-foreground tabular-nums">
               {loading ? "…" : result ? `${formatSek(result.anstalld_low)}–${formatSek(result.anstalld_high)}` : "—"}
             </span>
             <span className="text-sm font-medium text-muted-foreground">kr/timme brutto</span>
