@@ -3,11 +3,11 @@ import type { PostHog } from "posthog-js";
 export const POSTHOG_KEY = "phc_AFPm7q5MQPFhR8cNu3LiRapyRaanNZNKWN2hzZrRkDoY";
 export type LookupProps = {
   outcome: "single" | "candidates" | "empty";
-  role_code?: string;
-  municipality_code?: string;
-  zone?: number;
-  role_match?: string;
-  municipality_match?: string;
+  role_code?: string | undefined;
+  municipality_code?: string | undefined;
+  zone?: number | undefined;
+  role_match?: string | undefined;
+  municipality_match?: string | undefined;
   candidate_count: number;
 };
 
@@ -53,10 +53,10 @@ function capture(event: string, properties: Record<string, unknown>) {
   }).catch(() => undefined);
 }
 
-export function trackPageview() {
+export function trackPageview(navigation = false) {
   if (typeof window === "undefined") return;
   const url = window.location.origin + window.location.pathname;
-  if (url === lastPageUrl) return;
+  if (!navigation && url === lastPageUrl) return;
   lastPageUrl = url;
   capture("$pageview", {});
 }

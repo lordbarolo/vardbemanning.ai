@@ -131,7 +131,7 @@ function RootComponent() {
 
   useEffect(() => {
     trackPageview();
-    return router.subscribe("onResolved", () => trackPageview());
+    return router.subscribe("onResolved", () => trackPageview(true));
   }, [router]);
 
   useEffect(() => {

@@ -67,7 +67,7 @@ export type HeroResult = SourceResult<HeroCompensation> |
 export function classifyHeroRows(rows: HeroCompensation[]): HeroResult {
   if (rows.length === 0) return { status: "empty" };
   const row = rows[0];
-  if (rows.length === 1 && row.role_match === "exact" && row.municipality_match === "exact") {
+  if (rows.length === 1 && row && row.role_match === "exact" && row.municipality_match === "exact") {
     return { status: "ok", data: row };
   }
   return { status: "candidates", data: rows };

@@ -232,14 +232,6 @@ export function SearchPanel() {
           if (!active) return;
           setResult(null);
           setUnavailable(true);
-          if (res.status !== "unavailable") {
-            const row = res.status === "ok" ? res.data : undefined;
-            const outcome = res.status === "ok" ? "single" : res.status;
-            const count = res.status === "candidates" ? res.data.length : res.status === "ok" ? 1 : 0;
-            logLookup(outcome, row, count);
-            trackLookup({ outcome, role_code: row?.role_code, municipality_code: row?.municipality_code,
-              zone: row?.zone, role_match: row?.role_match, municipality_match: row?.municipality_match, candidate_count: count });
-          }
           setLoading(false);
         });
     };
