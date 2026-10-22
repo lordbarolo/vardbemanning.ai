@@ -1,48 +1,97 @@
 export const privacyText = `# Integritetspolicy
 
-*Gäller vardbemanning.ai och kopplingen "vårdbemanning.ai – löneanalys" för AI-assistenter. Senast ändrad 2026-10-21.*
+Senast uppdaterad: juni 2026
 
-**Personuppgiftsansvarig:** Piemonte Invest AB, org.nr 559264-3836. Kontakt: info@vardbemanning.ai.
+## 1. Personuppgiftsansvarig
 
-## Vad tjänsten gör
+Vi är personuppgiftsansvariga för behandlingen av dina personuppgifter när du använder vårdbemanning.ai.
 
-Tjänsten svarar på vad en konsult inom vårdbemanning kan få i ersättning per timme för en yrkesroll i en kommun, utifrån SKR:s nationella hyrbemanningsavtal (RS 2022-03983) och en angiven branschmarginal. Den finns som webbsida och som koppling (MCP-server) som kan läggas till i AI-assistenter som Claude och ChatGPT.
+Kontakt: info@vardbemanning.ai
 
-## Vilka uppgifter vi behandlar
+## 2. Vilka uppgifter vi samlar in
 
-Tjänsten kräver inget konto och frågar inte efter namn, e-post eller andra uppgifter om dig.
+### 2.1 Löneenkäten
 
-När du gör ett uppslag sparar vi:
+När du gör en analys på vårdbemanning.ai samlar vi in: yrkesroll (ev. specialisering), kommun/region, anställningsform (anställd/egenföretagare), aktuell timersättning eller månadslön, samt e-postadress för att leverera rapporten. Uppgifterna används för att beräkna din marknadsposition mot SKR:s ramavtalspriser.
 
-- vilken yrkesroll och kommun som slogs upp, som koder ur avtalets katalog, inte din fritext
-- om svaret var entydigt, tvetydigt eller tomt
-- tidpunkt och om uppslaget kom från webbsidan eller från en AI-koppling
+### 2.2 Kontouppgifter
 
-Vi sparar inte IP-adress, användar-id eller det du skrev. För att begränsa missbruk räknar kopplingen antalet anrop per avsändare under tio minuter; räknaren använder en envägshash av IP-adressen som raderas inom ett dygn.
+Om du skapar ett konto sparar vi e-postadress och (vid lösenordsinloggning) ett krypterat lösenord. Du kan även logga in via Google, då tar vi emot ditt namn och e-postadress från Google.
 
-På webbsidan använder vi Google Analytics 4 och PostHog för besöksstatistik. PostHog körs utan kakor och utan sessionsinspelning; IP-adress sparas inte.
+### 2.3 Tekniska uppgifter och analys
 
-## Rättslig grund och ändamål
+Vi använder PostHog (EU-baserat, eu.posthog.com) för anonym användarstatistik. PostHog är opt-out som standard och aktiveras först efter att du accepterat cookies. Data som samlas in inkluderar sidvisningar, klick och enhetsinformation. IP-adresser lagras inte i klartext och vi använder inte session recordings. Vi använder inte Google Analytics eller andra tredjepartsspårare för reklam.
 
-Behandlingen sker med stöd av berättigat intresse (artikel 6.1 f GDPR): att driva och förbättra tjänsten och förstå vilka roller och orter som efterfrågas. Uppgifterna kan inte knytas till en enskild person.
+### 2.4 Kupongkoder och kampanjer
 
-## Mottagare
+Om du anländer via en kampanjlänk eller anger en kupongkod sparar vi vilken kod som använts kopplat till din rapport-ID.
 
-Data lagras hos Supabase (EU, Stockholm). Besöksstatistik behandlas av Google respektive PostHog enligt deras villkor. När du använder kopplingen via en AI-assistent behandlar den leverantören (t.ex. Anthropic eller OpenAI) din konversation enligt sin egen policy; vi tar bara emot roll och kommun.
+## 3. Varför vi behandlar dina uppgifter
 
-## Lagringstid
+- Leverans av tjänsten: Skapa och visa din löneanalys. Rättslig grund: fullgörande av avtal (artikel 6.1b GDPR).
+- Kontoadministration: Hantera inloggning och inställningar om du valt att skapa konto. Rättslig grund: fullgörande av avtal (artikel 6.1b GDPR).
+- Kommunikation: Skicka transaktionsmeddelanden (rapportleverans, kontoaktivering, lösenordsåterställning) via e-post. Rättslig grund: fullgörande av avtal (artikel 6.1b GDPR).
+- Förbättring av tjänsten: Anonymiserad användarstatistik via PostHog. Rättslig grund: samtycke (artikel 6.1a GDPR). Aktiveras först efter cookie-accept och kan när som helst återkallas.
 
-Uppslagsstatistik sparas i aggregerad form tills vidare. Räknaren för missbruk raderas inom ett dygn.
+## 4. Vilka vi delar uppgifter med
 
-## Dina rättigheter
+Vi delar uppgifter med följande tjänsteleverantörer, som agerar som personuppgiftsbiträden:
 
-Eftersom vi inte sparar uppgifter som kan knytas till dig kan vi normalt inte hitta "dina" uppgifter. Du har ändå rätt att kontakta oss med frågor om behandlingen och att klaga hos Integritetsskyddsmyndigheten (imy.se).
+- Supabase (Lovable Cloud): Databas, autentisering och fillagring. Data lagras inom EU.
+- PostHog: Anonym användaranalys på EU-instans (eu.posthog.com). Aktiveras först efter cookie-samtycke.
+- Resend: E-postleverans för transaktionsmeddelanden.
+- Google: Om du loggar in via Google delas autentiseringsuppgifter med Google enligt deras integritetspolicy.
+- AI-leverantörer (via Lovable AI Gateway): När vi använder AI för att tolka eller berika analysen skickas enbart anonymiserad kontext (yrke, zon, marknadsdata) — inga personidentifierande uppgifter.
 
-## Vad svaren är och inte är
+Vi säljer aldrig dina personuppgifter till tredje part.
 
-Beloppen är beräknade ur ett offentligt avtal och en angiven marginal. De är inte ett löfte om lön, inte lönestatistik och inte rådgivning. Kontrollera alltid villkoren med det bemanningsföretag du anlitar.
+## 5. Var lagras dina uppgifter
 
----`;
+Alla uppgifter lagras inom EU/EES. Supabase och PostHog är konfigurerade med EU-baserade servrar.
+
+## 6. Hur länge sparas uppgifterna
+
+- Konto och profil: Sparas så länge du har ett aktivt konto. Du kan begära radering av ditt konto via kontaktadressen nedan, varpå alla personuppgifter raderas inom 30 dagar.
+- Löneanalyser (rapporter): Sparas så länge ditt konto är aktivt, eller upp till 24 månader för anonyma analyser utan konto.
+- Analysdata (PostHog): Anonymiserade sessionsdata sparas i 12 månader.
+- E-postloggar: Sparas i 12 månader för felsökning och leveransuppföljning.
+
+## 7. Dina rättigheter
+
+Enligt GDPR har du rätt att:
+
+- Få tillgång till dina uppgifter — begär en kopia av de uppgifter vi har om dig.
+- Få uppgifter rättade — om något är felaktigt.
+- Få uppgifter raderade — du kan radera ditt konto direkt i tjänsten, eller kontakta oss.
+- Återkalla samtycke — du kan när som helst ändra ditt cookie-val.
+- Invända mot behandling — baserat på berättigat intresse.
+- Dataportabilitet — få dina uppgifter i ett maskinläsbart format.
+
+Kontakta oss på info@vardbemanning.ai för att utöva dina rättigheter. Vi svarar inom 30 dagar. Du har även rätt att lämna klagomål till Integritetsskyddsmyndigheten (IMY), imy.se.
+
+## 8. Cookies och spårning
+
+vårdbemanning.ai visar en cookie-banner vid första besöket. Du väljer själv om analytiska cookies ska aktiveras. Ditt val sparas i webbläsarens localStorage.
+
+- Nödvändiga: Autentiseringstokens (Supabase) för att hålla dig inloggad. Krävs för att tjänsten ska fungera och kräver inte samtycke.
+- Funktionella: SessionStorage och localStorage för att spara enkätsvar, kupongkoder och temaval under ditt besök.
+- Analys: PostHog använder localStorage för anonymt användar-ID. Aktiveras först efter att du accepterat cookies. Ingen personidentifierbar information lagras.
+
+Vi använder inte Google Analytics, Facebook Pixel eller andra tredjepartsspårare för reklam.
+
+## 9. Säkerhet
+
+Vi vidtar lämpliga tekniska och organisatoriska åtgärder för att skydda dina personuppgifter, inklusive kryptering i transit (TLS), kryptering vid lagring för uppladdade dokument, och radnivåsäkerhet (RLS) i databasen som säkerställer att varje användare enbart kan se sina egna uppgifter.
+
+## 10. Ändringar av denna policy
+
+Vi kan uppdatera denna policy. Vid väsentliga ändringar publiceras den nya versionen här med uppdaterat datum.
+
+## 11. Kontakt
+
+Har du frågor om hur vi hanterar dina uppgifter?
+
+E-post: info@vardbemanning.ai`;
 
 export const connectorText = `# Använd vårdbemanning.ai i din AI-assistent
 
