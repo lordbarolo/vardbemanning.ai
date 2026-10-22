@@ -289,10 +289,10 @@ export function SearchPanel() {
           AI-analyserad avtalsdata
         </span>
         <h2 className="text-xl font-semibold tracking-tight text-foreground sm:text-2xl">
-          Vad kan du få i ersättning?
+          Se din marknadslön
         </h2>
         <p className="mt-1.5 text-[0.9375rem] leading-relaxed text-muted-foreground">
-          Regionens avtalspris för din roll och kommun, och vad som blir kvar till dig.
+          Få en estimering baserad på roll och geografi.
         </p>
       </div>
 
